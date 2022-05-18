@@ -17,7 +17,16 @@ const Campaigns = () => {
 
     return (
         <section className={classes.campaigns_bg} >
-            {campaignsData}
+            {
+                campaignsData.forEach((data) => {
+                    return (
+                        <div>
+                            <p>{data.title}</p>
+                            <p>{data.description}</p>
+                        </div>
+                    )
+                })
+            }
         </section>
     )
 }
