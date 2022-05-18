@@ -6,11 +6,14 @@ import classes from './hero.module.css';
 const Hero = () => {
     return (
         <section className={classes.hero}>
-            <div className={classes.image}>
-                <Image src='/images/site/img9.jpg' alt='An image showing Ken' width={300} height={300} />
+            <div className={classes.header_btm}>
+                <h1 className={classes.header_heading}>
+                    Welcome to EcoSense!
+                </h1>
+                <p className={classes.header_sub}>
+                    Save Earth, Save Lives.
+                </p>
             </div>
-            <h1>Hi, I&apos;m Ken!</h1>
-            <p>I blog about web development - especially front-end frameworks like React.</p>
         </section>
     )
 }

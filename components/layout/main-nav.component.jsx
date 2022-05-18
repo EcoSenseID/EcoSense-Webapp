@@ -17,7 +17,7 @@ const MainNavigation = () => {
                     <li><Link href='/'>Media</Link></li>
                     <li><Link href='/'>Features</Link></li>
                     <li><Link href='/'>Contact</Link></li>
-                    <li className={classes.login}><Link href='/'>Log In</Link></li>
+                    <li className={classes.login}><Link href='/login'>Log In</Link></li>
                 </ul>
             </nav>
         </header>

@@ -1,0 +1,152 @@
+.footer {
+    background-image: linear-gradient(to top right, #2a2a2a, #000000);
+    padding: 5rem 5rem;
+    overflow: auto; 
+    padding-bottom: 2rem;
+}
+
+.footer_top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer_logo {
+    margin-right: 6rem;
+    height: 100px;
+}
+
+.footer_top_textbox {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    padding-left: 5rem;
+}
+
+.footer_top_1,
+.footer_top_2 {
+    margin: 0;
+    width: calc((100% - 5rem)/2);
+}
+
+/* ICONS */
+.footer_iconbox {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.footer_icon {
+    color: #2a2a2a;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    border-radius: 20%;
+    background-color: #999;
+    text-align: center;
+    line-height: 3.5rem;
+    margin-bottom: .5rem;
+    margin-right: 1.8rem;
+    transition: background-color .1s ease-in;
+}
+
+.footer_icon:hover {
+    background-color: #bdbdbd;
+}
+
+/* TEXT */
+.f_info_text_light {
+    color: white;
+    margin: 1rem 0;
+    margin-top: 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.f_info_text {
+    font-size: 1rem;
+    line-height: 2rem;
+    text-anchor: start;
+    color: var(--color-grey-50);
+    margin-bottom: 1rem;
+}
+
+/* COPYRIGHT TEXT */
+.footer_btm {
+    padding-top: 2rem;
+    border-top: .1rem solid var(--color-grey-50);
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-grey-50);
+}
+
+
+/* MEDIA QUERIES */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-top-textbox { padding-left: 0; }
+
+    .footer-logo {
+        height: auto;
+        width: 90%;
+        margin: 2rem 0 4rem 0;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-top-textbox { padding-left: 0; }
+
+    .footer-logo {
+        height: auto;
+        width: 90%;
+        margin: 2rem 0 4rem 0;
+    }
+
+    .footer-icon { margin-right: 1.3rem; }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .footer-logo { width: 60%; }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .footer-top {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .footer-logo { 
+        width: 30%; 
+        margin: 0;
+    }
+    .footer-top-textbox { padding-left: 5rem; }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .footer-logo { 
+        height: 15rem;
+        width: unset; 
+        margin: 0;
+    }
+}
+
+/* Large screen and TV */
+@media only screen  and (min-width : 1800px) {
+    .footer-top-textbox { padding-left: 10rem; }
+}

@@ -1,0 +1,35 @@
+.login_signup_bg {
+    height: 100vh;
+    min-height: 700px;
+    background-image: 
+        linear-gradient(to right, #000000, #00000000),
+        url('/images/diana-macesanu-hphxtt_aUUw-unsplash.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+    padding-top: 9rem;
+}
+
+.login_signup_container {
+    width: 75%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto;
+    padding: 60px;
+    background-color: white;
+    border-radius: 20px;
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+        width: unset;
+        align-items: center;
+    
+        *:first-child {
+            margin-bottom: 50px;
+        }
+    }
+}
