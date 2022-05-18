@@ -1,4 +1,4 @@
-# NextMeetup
+# EcoSense Web Application
 
 ## Introduction
 EcoSense Web Application is an application for managing campaigns and users.\
