@@ -16,14 +16,14 @@ const Campaigns = () => {
         })
 
     return (
-        <section className={classes.campaigns_bg} >
+        <section className={classes.campaigns_bg}>
             {
                 campaignsData.map((data) => (
-                    <div>
+                    <div key={data.id}>
                         <p>{data.title}</p>
                         <p>{data.description}</p>
                     </div>
-                )
+                ))
             }
         </section>
     )
