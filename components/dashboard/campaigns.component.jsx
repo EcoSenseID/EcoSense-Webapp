@@ -18,14 +18,12 @@ const Campaigns = () => {
     return (
         <section className={classes.campaigns_bg} >
             {
-                campaignsData.forEach((data) => {
-                    return (
-                        <div>
-                            <p>{data.title}</p>
-                            <p>{data.description}</p>
-                        </div>
-                    )
-                })
+                campaignsData.map((data) => (
+                    <div>
+                        <p>{data.title}</p>
+                        <p>{data.description}</p>
+                    </div>
+                )
             }
         </section>
     )
