@@ -67,6 +67,6 @@ button {
 }
 
 /* Disable selection */
-::selection {
+/* ::selection {
   background-color: transparent;
-}
+} */

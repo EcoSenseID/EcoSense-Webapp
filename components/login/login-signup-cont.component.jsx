@@ -7,7 +7,7 @@ import LoginPanel from "./login-panel.component";
 
 const LoginSignupContainer = () => {
     return (
-        <section className={classes.login_signup_bg}>
+        <section className={classes.login_signup_bg} >
             <div className={classes.login_signup_container}>
                 <LoginPanel />
                 <SignupPanel />

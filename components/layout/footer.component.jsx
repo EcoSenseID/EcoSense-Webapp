@@ -36,11 +36,11 @@ const Footer = () => {
                 </div>
             </div>
             <div className={classes.footer_iconbox}>
-                <Link href="/"><IoLogoFacebook size="small" name="logo-facebook" className={classes.footer_icon}></IoLogoFacebook></Link>
-                <Link href="/"><IoLogoTwitter name="logo-twitter" className={classes.footer_icon}></IoLogoTwitter></Link>
+                <IoLogoFacebook size="small" name="logo-facebook" className={classes.footer_icon}></IoLogoFacebook>
+                <IoLogoTwitter name="logo-twitter" className={classes.footer_icon}></IoLogoTwitter>
                 <a href="mailto:ecosense.id@gmail.com"><IoMail name="mail" className={classes.footer_icon}></IoMail></a>
-                <Link href="/"><IoLogoYoutube name="logo-youtube" className={classes.footer_icon}></IoLogoYoutube></Link>
-                <Link href="/"><IoLogoInstagram name="logo-instagram" className={classes.footer_icon}></IoLogoInstagram></Link>
+                <IoLogoYoutube name="logo-youtube" className={classes.footer_icon}></IoLogoYoutube>
+                <IoLogoInstagram name="logo-instagram" className={classes.footer_icon}></IoLogoInstagram>
             </div>
             <div className={classes.footer_btm}>Copyright &copy; 2022 EcoSense. Bangkit Academy 2022. All rights reserved.</div>
         </section>

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useRouter } from 'next/router';
 import CustomButton from "../ui/custom-btn.component";
 import FormInput from "../ui/form-input.component";
 
 import classes from './login-panel.module.scss';
+
+import { emailLogIn, logInWithGoogle } from "../../firebase/firebase.util";
 
 const LoginPanel = () => {
     // React Hooks
@@ -10,11 +13,26 @@ const LoginPanel = () => {
         email: '', 
         password: '' 
     });
-
     const { email, password } = userCredentials;
+    const router = useRouter();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        emailSignInStart(email, password);
+        const res = await emailLogIn(email, password);
+        if (res.status == 200) {
+            router.push('/dashboard');
+        } else {
+            alert(res.message);
+        }
+    }
+
+    const handleSubmitGoogle = async() => {
+        const res = await logInWithGoogle();
+        if (res.status == 200) {
+            router.push('/dashboard');
+        } else {
+            alert(res.message);
+        }
     }
 
     const handleChange = (event) => {
@@ -47,7 +65,7 @@ const LoginPanel = () => {
                 />
                 <div className={classes.buttons}>
                     <CustomButton type="submit">Log In</CustomButton>
-                    <CustomButton type="button" isGoogleSignIn>Log In with Google</CustomButton>
+                    <CustomButton type="button" isgooglesignin="true" onClick={handleSubmitGoogle}>Log In with Google</CustomButton>
                 </div>
             </form>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { emailSignUp } from "../../firebase/firebase.util";
 import CustomButton from "../ui/custom-btn.component";
 import FormInput from "../ui/form-input.component";
 
@@ -16,12 +17,13 @@ const SignupPanel = () => {
     const { displayName, email, password, confirmPassword } = userCredentials;
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(userCredentials);
         
         if (password !== confirmPassword) {
             alert("Passwords don't match");
             return;
         }
-        signUpStart({ displayName, email, password });
+        emailSignUp({ displayName, email, password });
     }
 
     const handleChange = (event) => {
@@ -69,7 +71,6 @@ const SignupPanel = () => {
                 />
                 <div className={classes.buttons}>
                     <CustomButton type='submit'>Sign Up</CustomButton>
-                    <CustomButton type="button" isGoogleSignIn>Sign Up with Google</CustomButton>
                 </div>
             </form>
         </div>
