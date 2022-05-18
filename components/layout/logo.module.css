@@ -1,0 +1,20 @@
+.logo {
+    font-size: var(--size-5);
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #5EDA78;
+    display: inline-block;
+    margin: 0 20px;
+    line-height: var(--size-5);
+}
+
+.logopic {
+    display: inline-block;
+    width: 100%;
+}
+  
+@media (min-width: 768px) {
+    .logo {
+        font-size: var(--size-8);
+    }
+}
