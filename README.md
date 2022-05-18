@@ -1,7 +1,7 @@
 # NextMeetup
 
 ## Introduction
-EcoSense Web Application is an application for managing campaigns and users.
+EcoSense Web Application is an application for managing campaigns and users.\
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Technologies
