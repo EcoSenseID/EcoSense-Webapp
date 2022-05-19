@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
+
 import HomepageAbout from '../components/homepage/about.component'
 import Hero from '../components/homepage/hero.component'
 import Footer from '../components/layout/footer.component'
 import ScrollUpBtn from '../components/layout/scroll-up-btn.component'
+import Campaigns from '../components/homepage/campaigns.component';
 
-const Home = () => {
+const HomePage = (props) => {
   return (
     <div>
       <Head>
@@ -17,9 +19,28 @@ const Home = () => {
         <ScrollUpBtn />
         <Hero />
         <HomepageAbout />
+        <Campaigns campaigns={props.campaigns} />
       </main>
     </div>
   )
 }
 
-export default Home;
+export const getStaticProps = async (context) => {
+  try {
+      // Fetch data from an API
+      const res = await fetch(`https://ecosense-rest-api.herokuapp.com/campaign`);
+      const data = await res.json();
+      const campaigns = await data.campaigns;
+      return {
+          props: {
+              campaigns: campaigns
+          }, 
+          revalidate: 100
+      }
+  }
+  catch (error) {
+      console.log(error);
+  }
+}
+
+export default HomePage;

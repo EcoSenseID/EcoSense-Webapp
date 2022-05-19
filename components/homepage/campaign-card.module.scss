@@ -1,0 +1,21 @@
+.card {
+    background-color: white;
+    margin: 1rem;
+    display: flex;
+    flex: 1;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.card_title {
+    font-size: large;
+    margin: 25px;
+}
+
+.card_img {
+    border-radius: 15px;
+    overflow: hidden;
+    width: 180px;
+    height: 200px;
+    position: relative;
+}

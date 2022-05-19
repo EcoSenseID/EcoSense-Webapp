@@ -1,0 +1,30 @@
+.campaigns_bg {
+    height: max-content;
+    min-height: 400px;
+    background-color: #FFFFFF50;
+    background-image: 
+        linear-gradient(to right, #000000, #00000050, #000000),
+        url('/images/jan-kopriva-OHo8ST9kugw-unsplash.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 3rem;
+    color: black;
+    justify-content: flex-start;
+    font-size: larger;
+}
+
+.section_title {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.campaign_grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}

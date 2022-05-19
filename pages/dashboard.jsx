@@ -5,7 +5,6 @@ import Head from 'next/head'
 import { AuthContext } from "../firebase/context";
 
 import DashboardContainer from '../components/dashboard/dashboard-cont.component';
-import Campaigns from '../components/dashboard/campaigns.component';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -23,7 +22,6 @@ const Dashboard = () => {
 
       <main>
         <DashboardContainer />
-        <Campaigns />
       </main>
     </div>
   )
