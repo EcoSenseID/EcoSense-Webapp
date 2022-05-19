@@ -6,7 +6,7 @@ import classes from './footer.module.scss';
 
 const Footer = () => {
     return (
-        <section className={classes.footer}>
+        <section className={classes.footer} id='footer'>
             <div className={classes.footer_top}>
                 <div>
                     <Image className={classes.footer_logo} src="/images/EcoSense LogoType@2x.png" alt="Logo" width={290} height={150}/>

@@ -6,7 +6,7 @@ import classes from './campaigns.module.scss';
 const Campaigns = ({ campaigns }) => {
     const campaignsData = campaigns;
     return (
-        <section className={classes.campaigns_bg}>
+        <section className={classes.campaigns_bg} id='campaigns'>
             <h2 className={classes.section_title}>Join the Campaigns!</h2>
             <div className={classes.campaign_grid}>
                 {

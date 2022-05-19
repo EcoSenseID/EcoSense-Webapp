@@ -8,14 +8,21 @@ export const AuthContext = React.createContext();
 
 //3. Create and export AuthProvider which contains a React Context Provider.
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState((typeof window !== "undefined") ? (JSON.parse(window.localStorage.getItem('user')) || null) : null);
   const auth = getAuth();
+  // console.log(user);
+
+  useEffect(() => {
+    window.localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => setUser(user));
   }, [auth]);
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user }}>
+      {children}
+    </AuthContext.Provider>
   );
 };

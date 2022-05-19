@@ -7,9 +7,11 @@ import Footer from '../components/layout/footer.component'
 import ScrollUpBtn from '../components/layout/scroll-up-btn.component'
 import Campaigns from '../components/homepage/campaigns.component';
 
+import Layout from '../components/layout/layout-frontpage.component'
+
 const HomePage = (props) => {
   return (
-    <div>
+    <Layout>
       <Head>
         <title>EcoSense</title>
         <meta name="description" content="An application for environmental campaigns and plant diseases detection." />
@@ -21,7 +23,7 @@ const HomePage = (props) => {
         <HomepageAbout />
         <Campaigns campaigns={props.campaigns} />
       </main>
-    </div>
+    </Layout>
   )
 }
 

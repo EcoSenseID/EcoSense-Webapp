@@ -29,10 +29,9 @@ const MainNavigation = () => {
             <nav className={classes.navbox}>
                 <ul>
                     <li><Link href='/'>Home</Link></li>
-                    <li><Link href='/'>About Us</Link></li>
-                    <li><Link href='/'>Media</Link></li>
-                    <li><Link href='/'>Features</Link></li>
-                    <li><Link href='/'>Contact</Link></li>
+                    <li><Link href='#about'>About Us</Link></li>
+                    <li><Link href='#campaigns'>Campaigns</Link></li>
+                    <li><Link href='#footer'>Contact</Link></li>
                     <li className={classes.login}>
                         {
                             user ?

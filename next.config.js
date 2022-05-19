@@ -7,7 +7,8 @@ const nextConfig = {
   images: {
     domains: [
       'upload.wikimedia.org',
-      'images.pexels.com'
+      'images.pexels.com',
+      'randomuser.me'
     ]
   }
 }

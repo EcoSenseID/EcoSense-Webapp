@@ -1,15 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
 
-import Layout from '../components/layout/layout.component'
-
 import '../styles/globals.css'
 import { AuthProvider } from '../firebase/context'
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Layout>
         <Head>
           {/* General Title */}
           <title>EcoSense</title>
@@ -34,7 +31,6 @@ function MyApp({ Component, pageProps }) {
           <meta name="theme-color" content="#ffffff" />
         </Head>
         <Component {...pageProps} />
-      </Layout>
     </AuthProvider>
   )
 }

@@ -1,17 +1,10 @@
 .dashboard_bg {
     height: max-content;
     background-image: 
-        linear-gradient(to right, #000000, #00000000),
+        linear-gradient(to left, #000000, #00000000),
         url('/images/natalie-kovach-ph7QQq63lCs-unsplash.webp');
     background-size: cover;
     background-attachment: fixed;
     overflow: hidden;
     background-position: center;
-    display: flex;
-    flex-direction: row;
-    padding-top: 9rem;
-    padding-bottom: 3rem;
-    color: white;
-    justify-content: center;
-    font-size: larger;
 }

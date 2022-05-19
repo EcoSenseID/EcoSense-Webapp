@@ -5,7 +5,7 @@ import classes from './about.module.scss';
 
 const HomepageAbout = () => {
     return (
-        <article className={classes.about}>
+        <article className={classes.about} id='about'>
             <section className={classes.about_logo}>
                 <Image alt="Logo" width={290} height={150} src={'/images/EcoSense LogoType-1@2x.png'}></Image>
             </section>
