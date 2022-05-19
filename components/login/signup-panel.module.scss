@@ -3,16 +3,30 @@
     flex-direction: column;
     width: 48%;
 
-    .title {
-        margin: 10px 0;
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        width: 100%;
     }
 
-    .buttons {
-        display: flex;
-        justify-content: left;
-        
-        button {
-          margin-right: 20px;
-        }
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        width: 100%;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        width: 100%;
+    }
+}
+
+.title {
+    margin: 10px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: left;
+    
+    button {
+      margin-right: 20px;
     }
 }

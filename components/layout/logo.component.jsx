@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import classes from './logo.module.css';
+import classes from './logo.module.scss';
 
 const Logo = () => {
     return (

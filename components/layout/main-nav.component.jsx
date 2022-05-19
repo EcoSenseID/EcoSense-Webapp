@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import Logo from "./logo.component";
-import classes from './main-nav.module.css';
+import classes from './main-nav.module.scss';
 
 import { AuthContext } from "../../firebase/context";
 import { logOutFirebase } from "../../firebase/firebase.util";
@@ -26,7 +26,7 @@ const MainNavigation = () => {
             <Link href='/'>
                 <a className={classes.logobox}><Logo /></a>
             </Link>
-            <nav>
+            <nav className={classes.navbox}>
                 <ul>
                     <li><Link href='/'>Home</Link></li>
                     <li><Link href='/'>About Us</Link></li>

@@ -1,0 +1,40 @@
+.logo {  
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #5EDA78;
+    display: inline-block;
+    margin: 0 20px;
+    line-height: var(--size-4);
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        font-size: var(--size-6);
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: var(--size-6);
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        font-size: var(--size-6);
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+        font-size: var(--size-6);
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        font-size: var(--size-6);
+    }
+}
+
+.logopic {
+    display: inline-block;
+    width: 100%;
+    min-width: 20px;
+    min-height: 20px;
+}

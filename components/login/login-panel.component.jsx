@@ -65,7 +65,7 @@ const LoginPanel = () => {
                 />
                 <div className={classes.buttons}>
                     <CustomButton type="submit">Log In</CustomButton>
-                    <CustomButton type="button" isgooglesignin="true" onClick={handleSubmitGoogle}>Log In with Google</CustomButton>
+                    <CustomButton type="button" isgooglesignin="true" onClick={handleSubmitGoogle}>Google Log In</CustomButton>
                 </div>
             </form>
         </div>

@@ -4,7 +4,7 @@
     height: 50px;
     letter-spacing: 0.5px;
     line-height: 50px;
-    padding: 0 35px 0 35px;
+    padding: 0 35px;
     font-size: 15px;
     background-color: black;
     color: white;
@@ -44,5 +44,42 @@
         color: white;
         border: none;
       }
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+      padding: 0 15px;
+      font-size: 12px;
+      height: 35px;
+      line-height: 35px;
+      border-radius: 5px;
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+      padding: 0 17.5px;
+      font-size: 13.5px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 6.5px;
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+      padding: 0 20px;
+      font-size: 14px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 8px;
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+      padding: 0 20px;
+      font-size: 15px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
     }
 }

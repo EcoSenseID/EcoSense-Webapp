@@ -23,13 +23,31 @@
     background-color: white;
     border-radius: 20px;
 
-    @media screen and (max-width: 800px) {
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
         flex-direction: column;
-        width: unset;
-        align-items: center;
-    
-        *:first-child {
-            margin-bottom: 50px;
-        }
+        width: 88%;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        flex-direction: column;
+        width: 88%;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        flex-direction: column;
+        width: 88%;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        width: 88%;
+        margin: 0 auto;
     }
 }

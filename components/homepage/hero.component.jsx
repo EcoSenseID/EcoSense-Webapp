@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-import classes from './hero.module.css';
+import classes from './hero.module.scss';
 
 const Hero = () => {
     return (
         <section className={classes.hero}>
-            <div className={classes.header_btm}>
+            <div className={classes.header_cont}>
                 <h1 className={classes.header_heading}>
                     Welcome to EcoSense!
                 </h1>

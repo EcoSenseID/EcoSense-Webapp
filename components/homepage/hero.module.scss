@@ -1,0 +1,86 @@
+.hero {
+    height: 100vh;
+    min-height: 700px;
+    background-image: 
+        linear-gradient(to right, #000000, #00000000),
+        url('/images/diana-macesanu-hphxtt_aUUw-unsplash.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.header_cont {
+    height: 100%;
+    padding: 0 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header_heading {
+    color: #5EDA78;
+    font-size: 4.5rem;
+    line-height: 5.5rem;
+    margin: 10px 0;
+    width: 80%;
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        font-size: 2.5rem; 
+        line-height: 3.5rem;
+        width: 100%;
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 3.5rem; 
+        line-height: 4.5rem;
+        width: 100%;
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        font-size: 4rem; 
+        line-height: 5rem;
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        font-size: 5.5rem; 
+        line-height: 7rem;
+    }
+}
+
+.header_sub { 
+    color: white;
+    font-size: 2rem; 
+    line-height: 3rem; 
+    margin: 10px 0;
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        font-size: 1rem; 
+        line-height: 2rem;
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 1rem; 
+        line-height: 2.4rem;
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        font-size: 1.4rem; 
+        line-height: 3rem;
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        font-size: 1.7rem; 
+        line-height: 3rem;
+    }
+}

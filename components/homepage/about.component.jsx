@@ -1,7 +1,7 @@
 import React from "react";
 import Image from 'next/image';
 
-import classes from './about.module.css';
+import classes from './about.module.scss';
 
 const HomepageAbout = () => {
     return (

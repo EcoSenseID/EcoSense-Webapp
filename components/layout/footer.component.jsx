@@ -2,8 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { IoLogoFacebook, IoLogoTwitter, IoMail, IoLogoYoutube, IoLogoInstagram } from "react-icons/io5";
 
-import classes from './footer.module.css';
-import Link from 'next/link';
+import classes from './footer.module.scss';
 
 const Footer = () => {
     return (

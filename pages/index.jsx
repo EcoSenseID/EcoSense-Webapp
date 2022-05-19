@@ -35,7 +35,7 @@ export const getStaticProps = async (context) => {
           props: {
               campaigns: campaigns
           }, 
-          revalidate: 100
+          revalidate: 60
       }
   }
   catch (error) {
