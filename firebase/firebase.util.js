@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider, 
   createUserWithEmailAndPassword 
 } from "firebase/auth";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,6 +22,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+logEvent(analytics, 'login');
+logEvent(analytics, 'search');
+logEvent(analytics, 'select_content');
+logEvent(analytics, 'share');
+logEvent(analytics, 'sign_up');
 
 // FOR LOG IN WITH GOOGLE
 const googleProvider = new GoogleAuthProvider();
