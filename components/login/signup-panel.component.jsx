@@ -35,7 +35,7 @@ const SignupPanel = () => {
     return (
         <div className={classes.sign_up}>
             <h2 className={classes.title}>I do not have an account</h2>
-            <span>Sign up with your email and password</span>
+            <span className={classes.subtitle}>Sign up with your email and password</span>
             <form onSubmit={handleSubmit} className="sign-up-form">
                 <FormInput
                     type="text"

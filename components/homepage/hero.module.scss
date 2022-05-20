@@ -18,6 +18,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        padding: 0 40px;
+    }
 }
 
 .header_heading {

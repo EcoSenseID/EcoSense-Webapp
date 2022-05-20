@@ -39,7 +39,7 @@ const Footer = () => {
                 <IoLogoTwitter name="logo-twitter" className={classes.footer_icon}></IoLogoTwitter>
                 <a href="mailto:ecosense.id@gmail.com"><IoMail name="mail" className={classes.footer_icon}></IoMail></a>
                 <IoLogoYoutube name="logo-youtube" className={classes.footer_icon}></IoLogoYoutube>
-                <IoLogoInstagram name="logo-instagram" className={classes.footer_icon}></IoLogoInstagram>
+                <IoLogoInstagram name="logo-instagram" className={`${classes.footer_icon} ${classes.last_icon}`}></IoLogoInstagram>
             </div>
             <div className={classes.footer_btm}>Copyright &copy; 2022 EcoSense. Bangkit Academy 2022. All rights reserved.</div>
         </section>

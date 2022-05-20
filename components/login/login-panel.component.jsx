@@ -44,7 +44,7 @@ const LoginPanel = () => {
     return (
         <div className={classes.log_in}>
             <h2 className={classes.title}>I already have an account</h2>
-            <span>Log in with your email and password.</span>
+            <span className={classes.subtitle}>Log in with your email and password.</span>
 
             <form onSubmit={handleSubmit}>
                 <FormInput 

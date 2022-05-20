@@ -23,6 +23,18 @@
 
 .title {
   margin: 10px 0;
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    font-size: var(--size-5);
+  }
+}
+
+.subtitle {
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    font-size: var(--size-3);
+  }
 }
 
 .buttons {
@@ -31,5 +43,11 @@
   
   button {
     margin-right: 20px;
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+      width: max-content;
+      min-width: unset;
+    }
   }
 }
