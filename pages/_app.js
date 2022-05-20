@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 
 import '../styles/globals.css'
 import { AuthProvider } from '../firebase/context'
 import { ChakraProvider } from '@chakra-ui/react'
 
+import app from '../firebase/firebase.util';
+import { getAnalytics, logEvent, isSupported } from "firebase/analytics";
+
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    if (typeof window != undefined) {
+      const analytics = getAnalytics(app);
+      logEvent(analytics, 'login');
+      logEvent(analytics, 'search');
+      logEvent(analytics, 'select_content');
+      logEvent(analytics, 'share');
+      logEvent(analytics, 'sign_up');
+    }
+  }, []);
+
   return (
     <ChakraProvider>
       <AuthProvider>
