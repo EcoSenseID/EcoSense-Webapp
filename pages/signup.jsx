@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/layout/layout-frontpage.component';
-import LoginPanel from '../components/login/login-panel.component';
 import LoginSignupContainer from '../components/login/login-signup-cont.component';
+import SignupPanel from '../components/login/signup-panel.component';
 
-const Login = () => {
+const SignUp = () => {
   return (
     <Layout>
       <Head>
@@ -14,11 +14,11 @@ const Login = () => {
 
       <main>
         <LoginSignupContainer>
-          <LoginPanel />
+            <SignupPanel />
         </LoginSignupContainer>
       </main>
     </Layout>
   )
 }
 
-export default Login;
+export default SignUp;

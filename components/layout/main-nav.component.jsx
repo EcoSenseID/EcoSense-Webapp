@@ -7,6 +7,7 @@ import classes from './main-nav.module.scss';
 
 import { AuthContext } from "../../firebase/context";
 import { logOutFirebase } from "../../firebase/firebase.util";
+import { Flex } from "@chakra-ui/react";
 
 const MainNavigation = () => {
     const { user } = useContext(AuthContext);
@@ -26,12 +27,12 @@ const MainNavigation = () => {
             <Link href='/'>
                 <a className={classes.logobox}><Logo /></a>
             </Link>
-            <nav className={classes.navbox}>
+            <Flex as={'nav'} className={classes.navbox} display={(router.asPath == '/login' || router.asPath == '/signup') ? 'none' : 'inline-flex'}>
                 <ul>
                     <li><Link href='/'>Home</Link></li>
-                    <li><Link href='#about'>About Us</Link></li>
-                    <li><Link href='#campaigns'>Campaigns</Link></li>
-                    <li><Link href='#footer'>Contact</Link></li>
+                    <li><Link href='/#about'>About Us</Link></li>
+                    <li><Link href='/#campaigns'>Campaigns</Link></li>
+                    <li><Link href='/#footer'>Contact</Link></li>
                     <li className={classes.login}>
                         {
                             user ?
@@ -40,7 +41,7 @@ const MainNavigation = () => {
                         }
                     </li>
                 </ul>
-            </nav>
+            </Flex>
         </header>
     );
 }

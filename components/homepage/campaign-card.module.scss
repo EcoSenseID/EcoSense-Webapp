@@ -4,6 +4,7 @@
     border-radius: 15px;
     padding: 15px;
     height: 230px;
+    box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.3);
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
@@ -14,6 +15,7 @@
 .card_title {
     font-size: large;
     margin-bottom: 15px;
+    font-weight: bold;
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {

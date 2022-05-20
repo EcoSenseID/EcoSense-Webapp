@@ -1,0 +1,37 @@
+.active {
+    color: white;
+    font-weight: bold !important;
+}
+
+.active_icon {
+    color: #72b578 !important;
+}
+
+.sidebar_items {
+    color: gray;
+    font-size: large;
+
+    p {
+        margin-left: 1em;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 768px) {
+        margin-bottom: 0 !important;
+
+        p {
+            margin-left: 0;
+        }
+    }
+}
+
+.sidebar_items:hover {
+    p {
+        color: #FFFFFF90;
+        font-weight: bold !important;
+    }
+
+    svg {
+        color: #72b57895;
+    }
+}

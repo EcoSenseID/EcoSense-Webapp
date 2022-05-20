@@ -1,31 +1,9 @@
-.active {
-    color: white;
-}
-
-.active_icon {
-    color: #72b578 !important;
-}
-
-.sidebar_items {
-    color: gray;
-    font-size: large;
-
-    p {
-        margin-left: 1em;
-        cursor: pointer;
-    }
-
-    :not(:last-child) {
-        margin-bottom: 1.5em;
-    }
-}
-
-.sidebar_items:hover {
-    p {
-        color: #FFFFFF90;
-    }
-
-    svg {
-        color: #72b57895;
-    }
+.leftnav_cont {
+    background-image: 
+        linear-gradient(to top, rgba(2, 15, 4, 0.7), rgba(0, 0, 0, 0.7)),
+        url('/images/natalie-kovach-ph7QQq63lCs-unsplash.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    background-position: center;
 }

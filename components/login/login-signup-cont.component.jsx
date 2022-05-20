@@ -5,12 +5,11 @@ import classes from './login-signup-cont.module.scss';
 import SignupPanel from "./signup-panel.component";
 import LoginPanel from "./login-panel.component";
 
-const LoginSignupContainer = () => {
+const LoginSignupContainer = ({ children }) => {
     return (
         <section className={classes.login_signup_bg} >
             <div className={classes.login_signup_container}>
-                <LoginPanel />
-                <SignupPanel />
+                {children}
             </div>
         </section>
     )

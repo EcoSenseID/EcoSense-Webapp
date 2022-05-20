@@ -1,28 +1,13 @@
 .log_in {
-    width: 48%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-
-  /* Extra small devices (phones, 600px and down) */
-  @media only screen and (max-width: 600px) {
-    margin-bottom: 50px;
-    width: 100%;
-  }
-
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) and (max-width: 768px) {
-    margin-bottom: 50px;
-    width: 100%;
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 992px) {
-    margin-bottom: 50px;
-    width: 100%;
-  }
 }
 
 .title {
   margin: 10px 0;
+  font-size: var(--size-6);
+  font-weight: bold;
 
   /* Extra small devices (phones, 600px and down) */
   @media only screen and (max-width: 600px) {
@@ -34,20 +19,5 @@
   /* Extra small devices (phones, 600px and down) */
   @media only screen and (max-width: 600px) {
     font-size: var(--size-3);
-  }
-}
-
-.buttons {
-  display: flex;
-  justify-content: left;
-  
-  button {
-    margin-right: 20px;
-
-    /* Extra small devices (phones, 600px and down) */
-    @media only screen and (max-width: 600px) {
-      width: max-content;
-      min-width: unset;
-    }
   }
 }
