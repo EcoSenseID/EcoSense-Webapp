@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoChevronUpOutline } from "react-icons/io5";
 
-import classes from './scroll-up-btn.module.css';
+import classes from './scroll-up-btn.module.scss';
 
 const ScrollUpBtn = () => {
     const [visible, setVisible] = useState(false);
