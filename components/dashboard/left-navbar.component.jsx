@@ -14,7 +14,8 @@ import {
 	AlertDialogHeader, 
 	AlertDialogBody, 
 	AlertDialogFooter,
-	useDisclosure
+	useDisclosure,
+	Link
 } from "@chakra-ui/react";
 import {
 	FiHome,
@@ -31,16 +32,16 @@ import NavItem from "./left-navbar/leftnav-item.component";
 
 const LeftNavbar = ({ page }) => {
 	const router = useRouter();
-	const { user } = useContext(AuthContext);
+	const { currentUser } = useContext(AuthContext);
 	const [userPhoto, setUserPhoto] = useState('https://randomuser.me/api/portraits/men/1.jpg');
 	const [userName, setUserName] = useState('User');
 	const { isOpen, onOpen, onClose } = useDisclosure()
   	const cancelRef = React.useRef()
 
 	useEffect(() => {
-		if(user && user.photoURL) setUserPhoto(user.photoURL);
-		if(user && user.displayName) setUserName(user.displayName);
-	}, [user]);
+		if(currentUser && currentUser.photoURL) setUserPhoto(currentUser.photoURL);
+		if(currentUser && currentUser.displayName) setUserName(currentUser.displayName);
+	}, [currentUser]);
 
 	const handleLogOut = async () => {
         const res = await logOutFirebase();
@@ -62,14 +63,16 @@ const LeftNavbar = ({ page }) => {
 		>
 			<Flex flexDir='column' justifyContent='space-between' height={[null, null, '100vh']}>
 				<Flex flexDir='column' as='nav'>
-					<Image src='/images/EcoSense LogoType@2x.png' alt='Logo EcoSense' mt={50}
-						mb={[25, 50, 100]} alignSelf='center' 
-						width={['150px', '150px', '0', '100px', '140px']}
-						display={['inline-flex', 'inline-flex', 'none', 'inline-flex', 'inline-flex']} />
-					<Image src='/images/EcoSense-logo-png.png' alt='Logo EcoSense' mt={50}
-						mb={[25, 50, 100]} alignSelf='center' 
-						width={['0', '0', '50%', '0', '0']}
-						display={['none', 'none', 'inline-flex', 'none', 'none']} />
+					<Link flexDir='column' justifyContent='center' align='center' href="/">
+						<Image src='/images/EcoSense LogoType@2x.png' alt='Logo EcoSense' mt={50}
+							mb={[25, 50, 100]} alignSelf='center' 
+							width={['150px', '150px', '0', '100px', '140px']}
+							display={['inline-flex', 'inline-flex', 'none', 'inline-flex', 'inline-flex']} />
+						<Image src='/images/EcoSense-logo-png.png' alt='Logo EcoSense' mt={50}
+							mb={[25, 50, 100]} alignSelf='center' 
+							width={['0', '0', '50%', '0', '0']}
+							display={['none', 'none', 'inline-flex', 'none', 'none']} />
+					</Link>
 					<Flex 
 						flexDir={['row', 'row', 'column', 'column', 'column']} 
 						align={['center', 'center', 'center', 'flex-start', 'flex-start']} 

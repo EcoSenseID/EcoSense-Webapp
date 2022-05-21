@@ -5,8 +5,10 @@ import {
   signInWithPopup, 
   signInWithEmailAndPassword, 
   GoogleAuthProvider, 
-  createUserWithEmailAndPassword 
+  createUserWithEmailAndPassword,
+  updateProfile
 } from "firebase/auth";
+import passwordStrengthChecker from './passwordStrengthChecker';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -35,22 +37,25 @@ export const logInWithGoogle = async () => {
 
     // The signed-in user info.
     const user = result.user;
+    
     return ({
-      status: 200,
-      user: user
+      error: false,
+      user: {...user, authProvider: 'google'}
     })
   }
   catch(error) {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
     // The email of the user's account used.
     const email = error.email;
     // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
+
+    if (error.code == 'auth/popup-closed-by-user') return { 
+      error: true, 
+      errorDetail: {...error, name: 'Popup Closed by User', message: 'You closed the Google Account login popup unexpectedly.'} 
+    }
     return ({
-      status: errorCode, 
-      message: errorMessage, 
+      error: true, 
+      errorDetail: error, 
       email,
       credential
     });
@@ -59,43 +64,46 @@ export const logInWithGoogle = async () => {
 
 export const emailLogIn = async (userEmail, userPassword) => {
   try {
-    return await signInWithEmailAndPassword(auth, userEmail, userPassword)
-      .then(userCredential => {
-        const user = userCredential.user;
-        return ({
-          status: 200,
-          user: user
-        });
-      })
+    const res =  await signInWithEmailAndPassword(auth, userEmail, userPassword);
+    const user = res.user;
+    return { error: false,  user: {...user, authProvider: 'local',} };
   }
-  catch(error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    return ({
-      status: errorCode,
-      message: errorMessage
-    })
+  catch(err) {
+    if (err.code == 'auth/user-not-found') {
+      return { error: true, errorDetail: {...err, name: 'Email not Found', message: 'Make sure you enter the correct email.'} }
+    } else if (err.code == 'auth/wrong-password') {
+      return { error: true, errorDetail: {...err, name: 'Wrong Password', message: 'Make sure you enter the correct password.'} }
+    }
+    return {
+      error: true,
+      errorDetail: err
+    }
   }
 }
 
 export const emailSignUp = async ({ displayName: name, email: userEmail, password: userPassword}) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-    const user = res.user;
-
-    // Save user data in database
-    const userData = {
-      uid: user.uid,
-      name,
-      authProvider: "local",
-      email: userEmail
-    }
-    // console.log(userData);
+    passwordStrengthChecker(userPassword);
+    await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+    await updateProfile(auth.currentUser, { displayName: name })
+    const updatedUser = auth.currentUser;
+    return { error: false, user: { ...updatedUser, authProvider: "local" } }
   } 
   catch (err) {
-    // console.error(err);
-    alert(err.message);
+    return {
+      error: true,
+      errorDetail: err
+    }
   }
+}
+
+export const forgotPassword = (userEmail) => {
+  firebase.auth().sendPasswordResetEmail(userEmail)
+      .then(() => {
+          alert('Please check your email...');
+      }).catch((e) => {
+          console.log(e);
+      }) 
 }
 
 export const logOutFirebase = async () => {

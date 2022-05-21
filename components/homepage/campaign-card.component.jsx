@@ -7,7 +7,7 @@ const CampaignCard = ({ posterUrl, title, description }) => {
     return (
         <div className={classes.card}>
             <div className={classes.card_img}>
-                <Image src={posterUrl} alt="Poster" layout={'fill'} objectFit="cover" ></Image>
+                <Image src={posterUrl} alt="Poster" layout={'fill'} objectFit="cover"></Image>
             </div>
             <div className={classes.card_text}>
                 <h3 className={classes.card_title}>{title}</h3> 

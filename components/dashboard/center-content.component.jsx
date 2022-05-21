@@ -12,12 +12,12 @@ import TableRow from "./center-content/table-row.component";
 
 const CenterContent = () => {
 	const [display, setDisplay] = useState('hide');
-	const { user } = useContext(AuthContext);
+	const { currentUser } = useContext(AuthContext);
 
 	const [firstName, setFirstName] = useState('User');
 	useEffect(() => {
-		if(user && user.displayName) setFirstName(user.displayName.split(' ')[0]);
-	}, [user]);
+		if(currentUser && currentUser.displayName) setFirstName(currentUser.displayName.split(' ')[0]);
+	}, [currentUser]);
 
 	return (
 		<Flex w={['100%', '100%', '60%', '60%', '55%']} p={['6%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>

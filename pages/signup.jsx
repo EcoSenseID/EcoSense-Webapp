@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Layout from '../components/layout/layout-frontpage.component';
 import LoginSignupContainer from '../components/login/login-signup-cont.component';
 import SignupPanel from '../components/login/signup-panel.component';

@@ -52,6 +52,15 @@ body {
   font-family: 'Poppins', 'Roboto', sans-serif;
 }
 
+#nprogress .bar {
+    background: #12bd4b !important;
+}
+
+#nprogress .spinner .spinner-icon {
+  border-top-color: #12bd4b;
+  border-left-color: #12bd4b;
+}
+
 h1,
 h2,
 h3 {

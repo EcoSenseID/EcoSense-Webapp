@@ -6,21 +6,11 @@ import Logo from "./logo.component";
 import classes from './main-nav.module.scss';
 
 import { AuthContext } from "../../firebase/context";
-import { logOutFirebase } from "../../firebase/firebase.util";
 import { Flex } from "@chakra-ui/react";
 
 const MainNavigation = () => {
-    const { user } = useContext(AuthContext);
+    const { isAuthenticated } = useContext(AuthContext);
     const router = useRouter();
-
-    const handleLogOut = async () => {
-        const res = await logOutFirebase();
-        if (res.status == 200) {
-            router.push('/');
-        } else {
-            alert(res.message);
-        }
-    }
     
     return (
         <header className={classes.header}>
@@ -35,8 +25,8 @@ const MainNavigation = () => {
                     <li><Link href='/#footer'>Contact</Link></li>
                     <li className={classes.login}>
                         {
-                            user ?
-                            <a onClick={handleLogOut}>Log Out</a> :
+                            isAuthenticated ?
+                            <Link href='/dashboard'>Dashboard</Link> :
                             <Link href='/login'>Log In</Link>
                         }
                     </li>

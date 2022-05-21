@@ -1,14 +1,27 @@
 import React, { useEffect } from 'react'
 import Head from 'next/head'
 
+// Page loading indicator
+import Router from 'next/router';
+import NProgress from 'nprogress'; //nprogress module
+import 'nprogress/nprogress.css'; //styles of nprogress
+
 import '../styles/globals.css'
 import { AuthProvider } from '../firebase/context'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import app from '../firebase/firebase.util';
 import { getAnalytics, logEvent, isSupported } from "firebase/analytics";
+import PrivateRoute from '../components/ui-custom-components/private-route';
+
+//Binding events. 
+Router.events.on('routeChangeStart', () => NProgress.start()); 
+Router.events.on('routeChangeComplete', () => NProgress.done()); 
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
+  const protectedRoutes = ['/dashboard', '/dashboard/campaigns', '/dashboard/data', '/dashboard/profile'];
+
   useEffect(() => {
     if (typeof window != undefined) {
       const analytics = getAnalytics(app);
@@ -23,6 +36,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <AuthProvider>
+        <PrivateRoute protectedRoutes={protectedRoutes}>
           <Head>
             {/* General Title */}
             <title>EcoSense</title>
@@ -47,6 +61,7 @@ function MyApp({ Component, pageProps }) {
             <meta name="theme-color" content="#ffffff" />
           </Head>
           <Component {...pageProps} />
+        </PrivateRoute>
       </AuthProvider>
     </ChakraProvider>
   )
