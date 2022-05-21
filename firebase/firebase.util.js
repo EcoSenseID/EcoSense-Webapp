@@ -6,7 +6,8 @@ import {
   signInWithEmailAndPassword, 
   GoogleAuthProvider, 
   createUserWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import passwordStrengthChecker from './passwordStrengthChecker';
 
@@ -97,13 +98,17 @@ export const emailSignUp = async ({ displayName: name, email: userEmail, passwor
   }
 }
 
-export const forgotPassword = (userEmail) => {
-  firebase.auth().sendPasswordResetEmail(userEmail)
-      .then(() => {
-          alert('Please check your email...');
-      }).catch((e) => {
-          console.log(e);
-      }) 
+export const forgotPassword = async (userEmail) => {
+  try {
+    await sendPasswordResetEmail(auth, userEmail);
+    return {
+      error: false, 
+      message: 'Please check your email' 
+    }
+  }
+  catch (err) {
+    return { error: true, errorDetail: err }
+  }
 }
 
 export const logOutFirebase = async () => {

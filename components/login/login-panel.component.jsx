@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import classes from './login-panel.module.scss';
 
 import { emailLogIn, logInWithGoogle, forgotPassword } from "../../firebase/firebase.util";
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Divider, FormControl, FormLabel, HStack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, ScaleFade, Stack, Text, useDisclosure } from "@chakra-ui/react";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Divider, FormControl, FormLabel, HStack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, ScaleFade, Stack, Text, useDisclosure, useToast } from "@chakra-ui/react";
 
 import { FiAtSign, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc'
@@ -25,11 +25,13 @@ const LoginPanel = () => {
 
     const [isLoading, setLoading] = useState(false);
     const [isGoogleLoading, setGoogleLoading] = useState(false);
+    const [isForgotLoading, setForgotLoading] = useState(false);
     const [error, setError] = useState({
         isError: true,
         errorMessage: '',
         errorDescription: ''
     });
+    const toast = useToast();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,7 +49,15 @@ const LoginPanel = () => {
                 errorDescription: result.errorDetail.message
             });
         } else {
+            toast({
+                title: 'Login Success.',
+                description: "Enjoy your visit~",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+            });
             router.push('/dashboard');
+            setCredentials({ email: '', password: '' });
         }
     }
 
@@ -67,13 +77,20 @@ const LoginPanel = () => {
                 errorDescription: result.errorDetail.message
             });
         } else {
+            toast({
+                title: 'Google Login Success.',
+                description: "Enjoy your visit~",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+            });
             router.push('/dashboard');
+            setCredentials({ email: '', password: '' });
         }
     }
 
     const handleChange = (event) => {
         const { value, name } = event.target;
-
         setCredentials({ ...userCredentials, [name]: value });
     }
 
@@ -81,10 +98,30 @@ const LoginPanel = () => {
         setEmailForgot(event.target.value);
     }
 
-    const handleSubmitForgot = async() => {
-        forgotPassword(emailForgot);
-        setEmailForgot('');
-        onClose();
+    const handleSubmitForgot = async () => {
+        setForgotLoading(true);
+        const result = await forgotPassword(emailForgot);
+        setForgotLoading(false);
+        console.log(result);
+        if (result.error) {
+            toast({
+                title: result.errorDetail.name,
+                description: result.errorDetail.message,
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+            });
+        } else {
+            toast({
+                title: 'Sent!',
+                description: result.message,
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+            });
+            setEmailForgot('');
+            onClose();
+        }
     }
 
     return (
@@ -202,7 +239,10 @@ const LoginPanel = () => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={handleSubmitForgot}>Send</Button>
+                        { isForgotLoading ? 
+                            <Button isLoading colorScheme='blue' mr={3}>Send</Button> :
+                            <Button colorScheme='blue' mr={3} onClick={handleSubmitForgot}>Send</Button>
+                        }
                         <Button onClick={onClose}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
