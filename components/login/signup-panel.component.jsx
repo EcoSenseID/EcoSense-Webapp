@@ -136,42 +136,7 @@ const SignupPanel = () => {
                         </InputRightElement>
                     </InputGroup>
                 </FormControl>
-                {/* <FormInput
-                    type="text"
-                    name="displayName"
-                    value={displayName}
-                    onChange={handleChange}
-                    label="Display Name"
-                    required    
-                />
-                <FormInput
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    label="Email"
-                    required    
-                />
-                <FormInput
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handleChange}
-                    label="Password"
-                    required    
-                />
-                <FormInput
-                    type="password"
-                    name="confirmPassword"
-                    value={confirmPassword}
-                    onChange={handleChange}
-                    label="Confirm Password"
-                    required    
-                /> */}
                 <Button type="submit" variant="solid" colorScheme='green' width='100%'>Sign Up</Button>
-                {/* <div className={classes.buttons}>
-                    <CustomButton type='submit'>Sign Up</CustomButton>
-                </div> */}
             </form>
         </div>
     )
