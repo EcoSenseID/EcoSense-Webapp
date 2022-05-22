@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
+import CampaignsAsideContent from '../../components/campaigns/campaigns-aside-content.component';
+import CampaignsCenterContent from '../../components/campaigns/campaigns-center-content.component';
 
 import DashboardContainer from '../../components/dashboard/dashboard-cont.component';
 import LeftNavbar from '../../components/dashboard/left-navbar.component';
@@ -14,8 +16,8 @@ const CampaignsPage = () => {
 
             <DashboardContainer>
                 <LeftNavbar page='campaigns'/>
-                <div />
-                <div />
+                <CampaignsCenterContent />
+                <CampaignsAsideContent />
             </DashboardContainer>
         </div>
     )

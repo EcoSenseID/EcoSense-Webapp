@@ -30,7 +30,6 @@ const SignupPanel = () => {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // console.log(userCredentials);
         setError({ ...error, isError: false, errorMessage: '', errorDescription: '' });
         
         if (password !== confirmPassword) {

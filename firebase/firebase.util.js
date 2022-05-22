@@ -7,7 +7,11 @@ import {
   GoogleAuthProvider, 
   createUserWithEmailAndPassword,
   updateProfile,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  sendEmailVerification,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider
 } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -125,7 +129,6 @@ export const logOutFirebase = async () => {
       });
   }
   catch(error) {
-    // console.log(error);
     return { error: true, errorDetail: err }
   };
 }
@@ -158,6 +161,45 @@ export const updateUserProfilePicture = async (file) => {
     }
   }
   catch(err) {
+    return { error: true, errorDetail: err }
+  }
+}
+
+export const sendVerifyEmail = async () => {
+  try {
+    await sendEmailVerification(auth.currentUser);
+    return {
+      error: false, 
+      message: 'Verification link sent to your email. Kindly check to verify your account!'
+    }
+  }
+  catch (err) {
+    return { error: true, errorDetail: err }
+  }
+}
+
+export const changePassword = async (oldPassword, newPassword) => {
+  try {
+    passwordStrengthChecker(newPassword);
+    const user = auth.currentUser;
+    if (user.providerData[0].providerId === 'password'){
+      const credential = EmailAuthProvider.credential(auth.currentUser.email, oldPassword);
+      await reauthenticateWithCredential(auth.currentUser, credential);
+    } else {
+      throw {
+        code: 'auth/not-for-google-account',
+        name: 'Not permitted',
+        message: 'Change password only permitted for email and password login.',
+        stack: `Not permitted: Change password only permitted for email and password login.`
+      };
+    }
+    await updatePassword(auth.currentUser, newPassword);
+    return {
+      error: false, 
+      message: 'Password changed!'
+    }
+  }
+  catch (err) {
     return { error: true, errorDetail: err }
   }
 }

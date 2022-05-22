@@ -1,13 +1,13 @@
-.verify_logo {
+.verified_logo {
     display: inline-flex !important;
     color: green;
     margin-left: 8px;
     height: 18px;
 }
 
-.verify_logo {
+.unverified_logo {
     display: inline-flex !important;
-    color: red;
+    color: rgb(186, 0, 0);
     margin-left: 8px;
     height: 18px;
 }

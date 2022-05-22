@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { AuthContext } from "../../firebase/context";
 
-
 import { Avatar, Button, Flex, FormControl, FormLabel, Heading, Input, InputGroup, Text, InputLeftElement, useToast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormHelperText, InputRightElement, Tooltip } from "@chakra-ui/react";
 import { FiUser, FiAtSign, FiPhone, FiUpload, FiMail } from 'react-icons/fi';
 import { GoVerified, GoUnverified } from 'react-icons/go';
@@ -9,7 +8,7 @@ import { FcGoogle } from 'react-icons/fc'
 
 import classes from './profile-center-content.module.scss';
 import _ from "lodash";
-import { updateUserProfile, updateUserProfilePicture } from "../../firebase/firebase.util";
+import { updateUserProfile, updateUserProfilePicture, sendVerifyEmail } from "../../firebase/firebase.util";
 
 const ProfileCenterContent = () => {
 	const { currentUser, isLoading, login } = useContext(AuthContext);
@@ -25,6 +24,7 @@ const ProfileCenterContent = () => {
 	const [newUserDetail, setNewDetail] = useState(initialUserState);
 	const [saveIsLoading, setSaveLoading] = useState(false);
 	const [uploadIsLoading, setUploadLoading] = useState(false);
+	const [verifyIsLoading, setVerifyLoading] = useState(false);
 	const [dataChanged, setDataChanged] = useState(false);
 
 	const [uploadedFile, setUploadedFile] = useState({});
@@ -138,6 +138,33 @@ const ProfileCenterContent = () => {
 		setUploadedFileName(e.target.files[0].name);
 	}
 
+	const handleVerify = async (event) => {
+		event.preventDefault();
+		setVerifyLoading(true);
+
+		// Send Request to API
+		const result = await sendVerifyEmail();
+		setVerifyLoading(false);
+
+		if (result.error) {
+            toast({
+                title: result.errorDetail.name,
+                description: result.errorDetail.message,
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+            });
+        } else {
+            toast({
+                title: 'Sent!',
+                description: result.message,
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+            });
+        }
+	}
+
 	return (
 		<Flex w={['100%', '100%', '60%', '60%', '55%']} p={['6%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
 			<Heading as="div" 
@@ -159,7 +186,7 @@ const ProfileCenterContent = () => {
 
 				<form onSubmit={handleSubmit}>
 					<FormControl mt={5} mb={5}>
-						<FormLabel htmlFor="email">Name</FormLabel>
+						<FormLabel htmlFor="userDisplayName">Name</FormLabel>
 						<InputGroup>
 							<InputLeftElement><FiUser /></InputLeftElement>
 							<Input 
@@ -177,7 +204,7 @@ const ProfileCenterContent = () => {
 					</FormControl>
 
 					<FormControl mt={5} mb={5}>
-						<FormLabel htmlFor="email">Email</FormLabel>
+						<FormLabel htmlFor="userEmail">Email</FormLabel>
 						<InputGroup>
 							<InputLeftElement><FiAtSign /></InputLeftElement>
 							<Input 
@@ -209,10 +236,16 @@ const ProfileCenterContent = () => {
 								<Flex gap={2} justifyContent={'flex-end'} alignItems={'center'}><FiMail color="green" /> Logged in with Email and Password</Flex>
 							}
 						</FormHelperText>
+						{ !userDetail.isVerified && 
+							( !verifyIsLoading ?
+								<Button onClick={handleVerify}>Send Verification Email</Button> :
+								<Button isLoading onClick={handleVerify}>Send Verification Email</Button>
+							)
+						}
 					</FormControl>
 
 					<FormControl mt={5} mb={5}>
-						<FormLabel htmlFor="email">Phone Number</FormLabel>
+						<FormLabel htmlFor="userPhoneNumber">Phone Number</FormLabel>
 						<InputGroup>
 							<InputLeftElement><FiPhone /></InputLeftElement>
 							<Input 

@@ -89,7 +89,7 @@ const LeftNavbar = ({ page }) => {
 		>
 			<Flex flexDir='column' justifyContent='space-between' height={[null, null, '100vh']}>
 				<Flex flexDir='column' as='nav'>
-					<Link flexDir='column' justifyContent='center' align='center' href="/">
+					<Link className={classes.logolink} href="/">
 						<Image src='/images/EcoSense LogoType@2x.png' alt='Logo EcoSense' mt={50}
 							mb={[25, 50, 100]} alignSelf='center' 
 							width={['150px', '150px', '0', '100px', '140px']}
