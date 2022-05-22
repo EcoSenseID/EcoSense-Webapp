@@ -4,7 +4,7 @@ import { AuthContext } from "../../firebase/context";
 
 import { Avatar, Button, Flex, FormControl, FormLabel, Heading, Input, InputGroup, Text, InputLeftElement, useToast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormHelperText, InputRightElement, Tooltip } from "@chakra-ui/react";
 import { FiUser, FiAtSign, FiPhone, FiUpload, FiMail } from 'react-icons/fi';
-import { GoVerified } from 'react-icons/go';
+import { GoVerified, GoUnverified } from 'react-icons/go';
 import { FcGoogle } from 'react-icons/fc'
 
 import classes from './profile-center-content.module.scss';
@@ -192,9 +192,12 @@ const ProfileCenterContent = () => {
 								required isReadOnly
 							/>
 							{
-								userDetail.isVerified &&
+								userDetail.isVerified ?
 								<Tooltip borderRadius={4} mt={-4} hasArrow label="Email Verified">
-									<InputRightElement><GoVerified className={classes.verify_logo}/></InputRightElement>
+									<InputRightElement><GoVerified className={classes.verified_logo}/></InputRightElement>
+								</Tooltip> :
+								<Tooltip borderRadius={4} mt={-4} hasArrow label="Email Not Verified">
+									<InputRightElement><GoUnverified className={classes.unverified_logo}/></InputRightElement>
 								</Tooltip>
 							}
 						</InputGroup>
