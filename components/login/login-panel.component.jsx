@@ -98,11 +98,14 @@ const LoginPanel = () => {
         setEmailForgot(event.target.value);
     }
 
-    const handleSubmitForgot = async () => {
+    const handleSubmitForgot = async (event) => {
+        event.preventDefault();
         setForgotLoading(true);
+
+        // Send request to API
         const result = await forgotPassword(emailForgot);
         setForgotLoading(false);
-        console.log(result);
+        // console.log(result);
         if (result.error) {
             toast({
                 title: result.errorDetail.name,

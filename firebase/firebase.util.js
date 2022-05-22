@@ -9,6 +9,8 @@ import {
   updateProfile,
   sendPasswordResetEmail
 } from "firebase/auth";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import passwordStrengthChecker from './passwordStrengthChecker';
 
 // Your web app's Firebase configuration
@@ -24,9 +26,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage();
 
 // FOR LOG IN WITH GOOGLE
-const googleProvider = new GoogleAuthProvider();
+export const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 googleProvider.setCustomParameters({ prompt: 'select_account'});
 
@@ -34,14 +37,13 @@ export const logInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
 
     // The signed-in user info.
     const user = result.user;
     
     return ({
       error: false,
-      user: {...user, authProvider: 'google'}
+      user: {...user,  authProvider: 'google'}
     })
   }
   catch(error) {
@@ -65,8 +67,9 @@ export const logInWithGoogle = async () => {
 
 export const emailLogIn = async (userEmail, userPassword) => {
   try {
-    const res =  await signInWithEmailAndPassword(auth, userEmail, userPassword);
-    const user = res.user;
+    const result =  await signInWithEmailAndPassword(auth, userEmail, userPassword);
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const user = result.user;
     return { error: false,  user: {...user, authProvider: 'local',} };
   }
   catch(err) {
@@ -115,19 +118,48 @@ export const logOutFirebase = async () => {
   try {
     return await auth.signOut()
       .then(() => {
-        return ({
-          status: 200,
-          message: 'Signed Out!'
-        })
+        return {
+          error: false, 
+          message: 'You have signed out successfully!' 
+        }
       });
   }
   catch(error) {
-    console.log(error);
-    return ({
-      status: error.code,
-      message: error.message
-    })
+    // console.log(error);
+    return { error: true, errorDetail: err }
   };
+}
+
+export const updateUserProfile = async (displayName) => {
+  try {
+    await updateProfile(auth.currentUser, { displayName });
+    return {
+      error: false, 
+      message: 'Profile updated successfully!',
+      user: auth.currentUser
+    }
+  }
+  catch (error) {
+    return { error: true, errorDetail: err }
+  }
+}
+
+export const updateUserProfilePicture = async (file) => {
+  try {
+    const profileRef = ref(storage, 'users/' + auth.currentUser.uid + '/profile.jpg');
+    const snapshot = await uploadBytes(profileRef, file);
+    const imgURL = await getDownloadURL(profileRef);
+    await updateProfile(auth.currentUser, { photoURL: imgURL });
+    return {
+      error: false, 
+      message: 'Profile picture uploaded successfully!',
+      snapshot: snapshot,
+      user: auth.currentUser
+    }
+  }
+  catch(err) {
+    return { error: true, errorDetail: err }
+  }
 }
 
 export default app;

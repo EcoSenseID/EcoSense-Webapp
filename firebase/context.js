@@ -1,7 +1,7 @@
 //1. Import React dependencies and the app from firebase.util
 import React, { useEffect, useState, useRef } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import app from "./firebase.util";
+import { getAuth, onAuthStateChanged, getIdToken } from "firebase/auth";
+import app, { googleProvider } from "./firebase.util";
 
 //2. Create and export a React context called AuthContext using React.createContext()
 export const AuthContext = React.createContext();
@@ -25,8 +25,11 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // console.log('user', user);
       if (!user) { logout(); } 
-      else { login(user); }
+      else { 
+        login(user);
+      } 
       setLoading(false);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,9 +42,13 @@ export const AuthProvider = ({ children }) => {
   }
 
   function login(user) {
-      localStorage.setItem('user', JSON.stringify(user));
-      setIsAuthenticated(true);
-      setCurrentUser(user);
+      user.getIdToken().then((idToken) => {
+        const modifiedUser = {...user, idToken: idToken}
+        localStorage.setItem('user', JSON.stringify(modifiedUser));
+        setIsAuthenticated(true);
+        setCurrentUser(modifiedUser);
+      })
+      
   }
 
   function logout() {
@@ -55,7 +62,8 @@ export const AuthProvider = ({ children }) => {
       value={{ 
         isAuthenticated,
         currentUser,
-        isLoading
+        isLoading,
+        login
       }}
     >
       {children}

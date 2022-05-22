@@ -3,9 +3,11 @@ import { useRouter } from 'next/router';
 
 import { AuthContext } from '../../firebase/context';
 import FullPageLoader from './full-page-loader';
+import { useToast } from '@chakra-ui/react';
 
 const PrivateRoute = ({ protectedRoutes, children }) => {
     const router = useRouter();
+    const toast = useToast();
     const { isAuthenticated, isLoading } = useContext(AuthContext);
 
     const pathIsProtected = protectedRoutes.indexOf(router.pathname) !== -1;
@@ -18,7 +20,7 @@ const PrivateRoute = ({ protectedRoutes, children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoading, isAuthenticated, pathIsProtected]);
 
-    if ((isLoading || !isAuthenticated) && pathIsProtected) {
+    if (((isLoading || !isAuthenticated) && pathIsProtected)) {
         return <FullPageLoader />;
     }
 
