@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { AuthContext } from "../../firebase/context";
+import _ from "lodash";
 
-import { Avatar, Button, Flex, FormControl, FormLabel, Heading, Input, InputGroup, Text, InputLeftElement, useToast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormHelperText, InputRightElement, Tooltip } from "@chakra-ui/react";
+import { Avatar, Button, Flex, FormControl, FormLabel, Heading, Input, InputGroup, Text, InputLeftElement, useToast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormHelperText, InputRightElement, Tooltip, Image } from "@chakra-ui/react";
 import { FiUser, FiAtSign, FiPhone, FiUpload, FiMail } from 'react-icons/fi';
 import { GoVerified, GoUnverified } from 'react-icons/go';
 import { FcGoogle } from 'react-icons/fc'
 
 import classes from './profile-center-content.module.scss';
-import _ from "lodash";
+import { AuthContext } from "../../firebase/context";
 import { updateUserProfile, updateUserProfilePicture, sendVerifyEmail } from "../../firebase/firebase.util";
+import { isImage } from '../helper';
 
 const ProfileCenterContent = () => {
 	const { currentUser, isLoading, login } = useContext(AuthContext);
@@ -27,7 +28,8 @@ const ProfileCenterContent = () => {
 	const [verifyIsLoading, setVerifyLoading] = useState(false);
 	const [dataChanged, setDataChanged] = useState(false);
 
-	const [uploadedFile, setUploadedFile] = useState({});
+	const [uploadedFile, setUploadedFile] = useState([]);
+    const [previewFile, setPreviewFile] = useState();
 	const [uploadedFileName, setUploadedFileName] = useState('');
 
 	const toast = useToast();
@@ -61,6 +63,19 @@ const ProfileCenterContent = () => {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentUser]);
+	
+	// create a preview as a side effect, whenever selected file is changed
+    useEffect(() => {
+        if (!uploadedFile || uploadedFile.length === 0) {
+            setPreviewFile(undefined);
+            return;
+        }
+        const objectUrl = URL.createObjectURL(uploadedFile);
+        setPreviewFile(objectUrl);
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [uploadedFile])
 
 	const handleChange = (event) => {
         const { value, name } = event.target;
@@ -134,6 +149,21 @@ const ProfileCenterContent = () => {
 	
 	const chooseFile = (e) => {
 		e.preventDefault();
+		if(e.target.files[0]) {
+            const extCheckResult = isImage(e.target.files[0].name);
+            if(!extCheckResult.isImage){
+                toast({
+                    title: 'Wrong file format',
+                    description: `We don't accept ${extCheckResult.format} file. Please only upload image!`,
+                    status: 'error',
+                    duration: 9000,
+                    isClosable: true,
+                });
+                return;
+            }
+        } else {
+            return;
+        }
 		setUploadedFile(e.target.files[0]);
 		setUploadedFileName(e.target.files[0].name);
 	}
@@ -295,11 +325,17 @@ const ProfileCenterContent = () => {
                         <Text mb={6}>Choose your file for the new profile picture.</Text>
                         <FormControl>
                             <FormLabel>New Profile</FormLabel>
+							{ previewFile && <Image maxW={100} maxH={100} src={previewFile} alt='Poster Preview' mb={5} borderRadius={8}/>}
                             <InputGroup>
                                 <Input type='file' onChange={(event) => chooseFile(event)} ref={fileRef} placeholder='Your file' hidden />
 								<Button ref={initialRef} leftIcon={<FiUpload />} value={'Upload File'} onClick={() => fileRef.current.click()}>Upload Image</Button>
                             </InputGroup>
-							<Text isTruncated noOfLines={1} mt={2}>{uploadedFileName}</Text>
+							<Flex mt={2} width='100%' overflow='hidden'>
+								<Text className={classes.truncated}>
+									{uploadedFileName && <Text as='span' fontWeight={'bold'}>File name: </Text>}
+									{uploadedFileName}
+								</Text>
+							</Flex>
 							<FormHelperText>Max size: 10MB</FormHelperText>
                         </FormControl>
                     </ModalBody>

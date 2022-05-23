@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import getConfig from 'next/config';
 
-import { Box, Button, Divider, Flex, FormControl, FormLabel, Heading, Input, InputGroup, InputLeftElement, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, FormControl, FormLabel, Heading, Input, InputGroup, InputLeftElement, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Tooltip, useDisclosure, useToast } from "@chakra-ui/react";
 import { FiLock, FiLoader, FiEye, FiEyeOff } from 'react-icons/fi';
 import { changePassword } from "../../firebase/firebase.util";
 import { AuthContext } from "../../firebase/context";
@@ -77,7 +77,9 @@ const ProfileAsideContent = () => {
                 <Text>Your primary account password.</Text>
                 { currentUser.providerData[0].providerId == 'password' ?
                     <Button leftIcon={<FiLock />} mt={5} variant="outline" colorScheme='red' width='100%' onClick={onOpen}>Change Password</Button> :
-                    <Button disabled leftIcon={<FiLock />} mt={5} variant="outline" colorScheme='red' width='100%' onClick={onOpen}>Change Password</Button>
+                    <Tooltip hasArrow label='Not available for Google Account login' shouldWrapChildren mt='3'>
+                        <Button disabled leftIcon={<FiLock />} mt={5} variant="outline" colorScheme='red' width='100%' onClick={onOpen}>Change Password</Button>
+                    </Tooltip>
                 }
             </Box>
             <Box bgColor='white' borderRadius={10} padding={7} mb={5}>
@@ -88,7 +90,7 @@ const ProfileAsideContent = () => {
             <Divider borderColor={'blackAlpha.300'} mb={5}/>
             <Box>
                 <Heading as="div" fontSize='xl' fontWeight='bold' mb={3} letterSpacing='tight'>About EcoSense</Heading>
-                <Text>EcoSense Admin v{publicRuntimeConfig?.version} - Made with ❤️ by EcoSense Team. </Text>
+                <Text>EcoSense for Organizer v{publicRuntimeConfig?.version} - Made with ❤️ by EcoSense Team. </Text>
             </Box>
 
             <Modal 

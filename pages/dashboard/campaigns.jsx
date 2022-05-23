@@ -6,7 +6,9 @@ import CampaignsCenterContent from '../../components/campaigns/campaigns-center-
 import DashboardContainer from '../../components/dashboard/dashboard-cont.component';
 import LeftNavbar from '../../components/dashboard/left-navbar.component';
 
-const CampaignsPage = () => {
+import categoriesListData from '../../dummyData/categories.data';
+
+const CampaignsPage = ({ categoriesList }) => {
     return (
         <div>
             <Head>
@@ -16,11 +18,33 @@ const CampaignsPage = () => {
 
             <DashboardContainer>
                 <LeftNavbar page='campaigns'/>
-                <CampaignsCenterContent />
+                <CampaignsCenterContent categoriesList={categoriesList}/>
                 <CampaignsAsideContent />
             </DashboardContainer>
         </div>
     )
+}
+
+export const getStaticProps = async (context) => {
+    try {
+        // Fetch data from an API
+        // const res = await fetch(`https://ecosense-rest-api.herokuapp.com/categories`);
+        // const data = await res.json();
+        // let categories = await data.categories;
+        // if (categories.length === 0) {
+        //     categories.push(...categoriesListData);
+        // }
+        let categories = categoriesListData;
+        return {
+            props: {
+                categoriesList: categories
+            }, 
+            revalidate: 60
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
 export default CampaignsPage;
