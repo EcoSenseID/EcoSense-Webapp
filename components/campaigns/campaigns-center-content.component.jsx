@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 
 import { Button, Flex, FormControl, FormHelperText, FormLabel, Heading, IconButton, Image, Input, InputGroup, InputLeftAddon, InputLeftElement, InputRightAddon, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Select, Stack, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react';
-import { FiItalic, FiList, FiCalendar, FiUser, FiUpload, FiStar, FiPlus, FiGrid } from 'react-icons/fi';
+import { FiItalic, FiList, FiCalendar, FiUser, FiUpload, FiStar, FiPlus, FiGrid, FiTrash2 } from 'react-icons/fi';
 import { FaCircle } from 'react-icons/fa';
 
 import { AuthContext } from '../../firebase/context';
@@ -70,7 +70,7 @@ const CampaignsCenterContent = ({ categoriesList }) => {
 
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl);
-    }, [uploadedFile])
+    }, [uploadedFile]);
 
     const handleChange = (event) => {
         const { value, name } = event.target;
@@ -79,23 +79,27 @@ const CampaignsCenterContent = ({ categoriesList }) => {
 
     const handleAddCategory = (event) => {
         if (addCategoryData.id_category !== '' && addCategoryData.earned_experience_point !== 0) {
-            const id = parseInt(addCategoryData.id_category);
-            const categoryName = categoriesList.find(data => data.id === id).name;
-            const color = categoriesList.find(data => data.id === id).color_hex;
+            console.log('addCategory - currentTotalPoint', currentTotalPoint);
+            console.log('addCategory - currentCategoriesList', currentCategoriesList);
+            console.log('addCategory - newCampaignDetail', newCampaignDetail);
+            const idCategory = parseInt(addCategoryData.id_category);
+            const categoryName = categoriesList.find(data => data.id === idCategory).name;
+            const earnedExperiencePoint = parseInt(addCategoryData.earned_experience_point);
+            const colorHex = categoriesList.find(data => data.id === idCategory).colorHex;
             setNewCampaignDetail({
                 ...newCampaignDetail,
                 campaignCategories: [
-                    ...campaignCategories, 
+                    ...newCampaignDetail.campaignCategories, 
                     {
-                        id_category: addCategoryData.id_category,
+                        id: idCategory,
                         name: categoryName,
-                        earned_experience_point: addCategoryData.earned_experience_point,
-                        color_hex: color
+                        earned_experience_point: earnedExperiencePoint,
+                        color_hex: colorHex
                     }
                 ]
             });
-            setCurrentTotalPoint(currentTotalPoint + addCategoryData.earned_experience_point);
-            setCurrentCategoriesList(currentCategoriesList.filter(data => data.id !== id));
+            setCurrentTotalPoint(currentTotalPoint + earnedExperiencePoint);
+            setCurrentCategoriesList(currentCategoriesList.filter(data => data.id !== idCategory));
             setAddCategoryData({ id_category: 0, earned_experience_point: 0 });
             onCloseModalAddCategory();
         } else {
@@ -128,6 +132,17 @@ const CampaignsCenterContent = ({ categoriesList }) => {
     const handleChangeNumberAddCategoryModal = (event) => {
         const value = event;
         setAddCategoryData({ ...addCategoryData, earned_experience_point: value });
+    }
+
+    const handleRemoveCategory = (data, idx) => {
+        // console.log('index', idx);
+        // console.log('data', data);
+        // console.log('removeCategory - currentTotalPoint', currentTotalPoint);
+        // console.log('removeCategory - currentCategoriesList', currentCategoriesList);
+        // console.log('removeCategory - newCampaignDetail', newCampaignDetail);
+        setCurrentTotalPoint(currentTotalPoint - data.earned_experience_point);
+        setCurrentCategoriesList([...currentCategoriesList, ...categoriesList.filter(catListData => catListData.id === data.id)]);
+        setNewCampaignDetail({...newCampaignDetail, campaignCategories: campaignCategories.filter(category => category.id !== data.id)});
     }
 
     const handleAddTask = (event) => {
@@ -301,12 +316,11 @@ const CampaignsCenterContent = ({ categoriesList }) => {
                                     placeholder='This campaign is about...' 
                                     focusBorderColor="blue.400" 
                                     errorBorderColor="red.400"
-                                    rounded="md"
-                                    maxLength={255} required
+                                    rounded="md" required
                                 />
                                 <InputRightElement><FaCircle color={`${data.color_hex}`}/></InputRightElement>
                             </InputGroup> Point:
-                            <InputGroup>
+                            <InputGroup maxW={'35%'} >
                                 <InputLeftElement><FiStar color='gray' /></InputLeftElement>
                                 <Input isReadOnly
                                     type='text' 
@@ -316,9 +330,9 @@ const CampaignsCenterContent = ({ categoriesList }) => {
                                     placeholder='This campaign is about...' 
                                     focusBorderColor="blue.400" 
                                     errorBorderColor="red.400"
-                                    rounded="md"
-                                    maxLength={255} required
+                                    rounded="md" required
                                 />
+                                <IconButton ml={2} icon={<FiTrash2 />} onClick={() => handleRemoveCategory(data, idx)} ></IconButton>
                             </InputGroup>
                         </Flex>
                     ))}</Flex> }

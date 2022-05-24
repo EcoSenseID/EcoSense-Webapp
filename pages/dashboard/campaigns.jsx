@@ -28,13 +28,12 @@ const CampaignsPage = ({ categoriesList }) => {
 export const getStaticProps = async (context) => {
     try {
         // Fetch data from an API
-        // const res = await fetch(`https://ecosense-rest-api.herokuapp.com/categories`);
-        // const data = await res.json();
-        // let categories = await data.categories;
-        // if (categories.length === 0) {
-        //     categories.push(...categoriesListData);
-        // }
-        let categories = categoriesListData;
+        const res = await fetch(`https://ecosense-rest-api.herokuapp.com/categories`);
+        const data = await res.json();
+        let categories = await data.categories;
+        if (categories.length === 0) {
+            categories.push(...categoriesListData);
+        }
         return {
             props: {
                 categoriesList: categories

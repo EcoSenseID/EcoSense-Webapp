@@ -149,10 +149,10 @@ export const updateUserProfile = async (displayName) => {
 
 export const updateUserProfilePicture = async (file) => {
   try {
-    const profileRef = ref(storage, 'users/' + auth.currentUser.uid + '/profile.jpg');
-    const snapshot = await uploadBytes(profileRef, file);
-    const imgURL = await getDownloadURL(profileRef);
-    await updateProfile(auth.currentUser, { photoURL: imgURL });
+    const profileRef = ref(storage, 'users/' + auth.currentUser.uid + '/profile.jpg'); // make reference in firebase storage
+    const snapshot = await uploadBytes(profileRef, file); // upload file to firebase storage
+    const imgURL = await getDownloadURL(profileRef); // get download URL from uploaded file
+    await updateProfile(auth.currentUser, { photoURL: imgURL }); // update user profile using firebase/auth
     return {
       error: false, 
       message: 'Profile picture uploaded successfully!',
