@@ -5,3 +5,27 @@
     text-overflow: ellipsis;
     max-width: 500px;
 }
+
+.form {
+    width: 55%;
+
+    @media only screen and (min-width: 0) and (max-width: 30em) {
+        width: 100%
+    }
+
+    @media only screen and (min-width: 30em) and (max-width: 48em) {
+        width: 100%
+    }
+
+    @media only screen and (min-width: 48em) and (max-width: 62em) {
+        width: 85%
+    }
+
+    @media only screen and (min-width: 62em) and (max-width: 80em) {
+        width: 70%
+    }
+
+    @media only screen and (min-width: 80em) and (max-width: 96em) {
+        width: 55%
+    }
+}

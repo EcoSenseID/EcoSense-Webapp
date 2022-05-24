@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   function login(user) {
-      user.getIdToken().then((idToken) => {
+      getIdToken(user, /* forceRefresh */ true).then((idToken) => {
         const modifiedUser = {...user, idToken: idToken}
         localStorage.setItem('user', JSON.stringify(modifiedUser));
         setIsAuthenticated(true);

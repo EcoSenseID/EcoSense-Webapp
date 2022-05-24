@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import getConfig from 'next/config';
 
-import { Box, Button, Divider, Flex, FormControl, FormLabel, Heading, Input, InputGroup, InputLeftElement, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Tooltip, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, FormControl, FormLabel, Heading, Input, InputGroup, InputLeftElement, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Tooltip, useBreakpointValue, useDisclosure, useToast } from "@chakra-ui/react";
 import { FiLock, FiLoader, FiEye, FiEyeOff } from 'react-icons/fi';
 import { changePassword } from "../../firebase/firebase.util";
 import { AuthContext } from "../../firebase/context";
@@ -100,7 +100,7 @@ const ProfileAsideContent = () => {
                 onClose={onClose} 
                 closeOnOverlayClick={false} 
                 isCentered
-                size='sm'
+                size={useBreakpointValue(["xs", "sm", "md", "xl", "2xl"])}
                 motionPreset='scale'
             >
                 <ModalOverlay bg='blackAlpha.300' backdropFilter='blur(5px)'/>
