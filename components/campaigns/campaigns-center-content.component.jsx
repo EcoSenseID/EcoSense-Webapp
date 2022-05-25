@@ -45,7 +45,8 @@ const CampaignsCenterContent = ({ categoriesList }) => {
 	const { isOpen: isOpenModalAddCategory, onOpen: onOpenModalAddCategory, onClose: onCloseModalAddCategory } = useDisclosure();
     const initialRefModalAddCategory = useRef();
     const [currentTotalPoint, setCurrentTotalPoint] = useState(0);
-    const [currentCategoriesList, setCurrentCategoriesList] = useState(categoriesList);
+    const [fullCategoriesList, setFullCategoriesList] = useState([]);
+    const [currentCategoriesList, setCurrentCategoriesList] = useState([]);
     const [addCategoryData, setAddCategoryData] = useState({
         id_category: '',
         earned_experience_point: 0
@@ -61,7 +62,10 @@ const CampaignsCenterContent = ({ categoriesList }) => {
     });
     const [currentTaskOrder, setCurrentTaskOrder] = useState(1);
 
-    useEffect(() => { setCurrentCategoriesList(categoriesList); }, [categoriesList]);
+    useEffect(() => { 
+        setCurrentCategoriesList(categoriesList);
+        setFullCategoriesList(categoriesList); 
+    }, [categoriesList]);
 
     useEffect(() => {
         setNewCampaignDetail({...newCampaignDetail, campaignInitiator: currentUser.displayName })
@@ -89,9 +93,9 @@ const CampaignsCenterContent = ({ categoriesList }) => {
     const handleAddCategory = (event) => {
         if (addCategoryData.id_category !== '' && addCategoryData.earned_experience_point !== 0) {
             const idCategory = parseInt(addCategoryData.id_category);
-            const categoryName = categoriesList.find(data => data.id === idCategory).name;
+            const categoryName = fullCategoriesList.find(data => data.id === idCategory).name;
             const earnedExperiencePoint = parseInt(addCategoryData.earned_experience_point);
-            const colorHex = categoriesList.find(data => data.id === idCategory).colorHex;
+            const colorHex = fullCategoriesList.find(data => data.id === idCategory).colorHex;
             setNewCampaignDetail({
                 ...newCampaignDetail,
                 campaignCategories: [
@@ -142,7 +146,7 @@ const CampaignsCenterContent = ({ categoriesList }) => {
 
     const handleRemoveCategory = (data, idx) => {
         setCurrentTotalPoint(currentTotalPoint - data.earned_experience_point);
-        setCurrentCategoriesList([...currentCategoriesList, ...categoriesList.filter(catListData => catListData.id === data.id)]);
+        setCurrentCategoriesList([...currentCategoriesList, ...fullCategoriesList.filter(catListData => catListData.id === data.id)]);
         setNewCampaignDetail({...newCampaignDetail, campaignCategories: campaignCategories.filter(category => category.id !== data.id)});
     }
 
@@ -245,7 +249,7 @@ const CampaignsCenterContent = ({ categoriesList }) => {
     const handleReset = (event) => {
 		event.preventDefault();
         setCurrentTaskOrder(1);
-        setCurrentCategoriesList(categoriesList);
+        setCurrentCategoriesList(fullCategoriesList);
         setCurrentTotalPoint(0);
 		setNewCampaignDetail({...newCampaignInitialState, campaignInitiator: currentUser.displayName});
 	}

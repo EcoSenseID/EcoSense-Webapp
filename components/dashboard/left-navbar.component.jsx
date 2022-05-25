@@ -81,6 +81,7 @@ const LeftNavbar = ({ page }) => {
 	return (
 		<Flex
 			w={['100%', '100%', '10%', '15%', '15%']}
+			minW={[0, 0, 0, '190px', '230px']}
 			flexDir='column'
 			alignItems='center'
 			backgroundImage='rgba(2, 15, 4, .75)'

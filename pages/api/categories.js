@@ -13,9 +13,9 @@ export default async function handler (req, res) {
         });
         const data = await result.json();
         let categories = await data.categories;
-        if (categories.length === 0) {
-            categories.push(...categoriesListData);
-        }
+        // if (categories.length === 0) {
+        //     categories.push(...categoriesListData);
+        // }
         res.status(200).json({
             error: false,
             message: 'Categories fetched successfully!',
