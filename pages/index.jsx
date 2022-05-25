@@ -30,9 +30,9 @@ const HomePage = (props) => {
 export const getStaticProps = async (context) => {
   try {
       // Fetch data from an API
-      const res = await fetch(`https://ecosense-rest-api.herokuapp.com/campaign`);
+      const res = await fetch(`http://ecosense-rest-api.herokuapp.com/trendingCampaigns`);
       const data = await res.json();
-      const campaigns = await data.campaigns;
+      const { campaigns } = await data;
       return {
           props: {
               campaigns: campaigns

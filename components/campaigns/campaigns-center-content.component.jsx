@@ -61,6 +61,8 @@ const CampaignsCenterContent = ({ categoriesList }) => {
     });
     const [currentTaskOrder, setCurrentTaskOrder] = useState(1);
 
+    useEffect(() => { setCurrentCategoriesList(categoriesList); }, [categoriesList]);
+
     useEffect(() => {
         setNewCampaignDetail({...newCampaignDetail, campaignInitiator: currentUser.displayName })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -458,7 +460,7 @@ const CampaignsCenterContent = ({ categoriesList }) => {
                         <FormControl mb={6}>
                             <FormLabel htmlFor='category'>Category</FormLabel>
 							<Select value={addCategoryData.id_category} onChange={handleChangeSelectAddCategoryModal} ref={initialRefModalAddCategory} name='category' icon={<FiGrid color='grey' />} placeholder='Select a campaign category'>
-                                { currentCategoriesList.map((data) => (
+                                { currentCategoriesList && currentCategoriesList.map((data) => (
                                     <option key={data.id} value={data.id}>{data.name}</option>
                                 ))}
                             </Select>

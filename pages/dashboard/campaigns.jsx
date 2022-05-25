@@ -1,13 +1,34 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CampaignsCenterContent from '../../components/campaigns/campaigns-center-content.component';
 
 import DashboardContainer from '../../components/dashboard/dashboard-cont.component';
 import LeftNavbar from '../../components/dashboard/left-navbar.component';
 
 import categoriesListData from '../../dummyData/categories.data';
+import { AuthContext } from '../../firebase/context';
 
-const CampaignsPage = ({ categoriesList }) => {
+const CampaignsPage = () => {
+    const [fullCategoriesList, setCategoriesList] = useState([]);
+    const { currentUser } = useContext(AuthContext);
+
+    const getCategories = async () => {
+        const response = await fetch('/api/categories', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + currentUser.idToken
+            },
+        });
+        const data = await response.json();
+        setCategoriesList([...fullCategoriesList, ...data.categoriesList]);
+    }
+
+    useEffect(() => {
+        if (fullCategoriesList.length === 0) getCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <div>
             <Head>
@@ -17,32 +38,11 @@ const CampaignsPage = ({ categoriesList }) => {
 
             <DashboardContainer>
                 <LeftNavbar page='campaigns'/>
-                <CampaignsCenterContent categoriesList={categoriesList}/>
+                <CampaignsCenterContent categoriesList={fullCategoriesList}/>
                 <div />
             </DashboardContainer>
         </div>
     )
-}
-
-export const getStaticProps = async (context) => {
-    try {
-        // Fetch data from an API
-        const res = await fetch(`https://ecosense-rest-api.herokuapp.com/categories`);
-        const data = await res.json();
-        let categories = await data.categories;
-        if (categories.length === 0) {
-            categories.push(...categoriesListData);
-        }
-        return {
-            props: {
-                categoriesList: categories
-            }, 
-            revalidate: 60
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
 }
 
 export default CampaignsPage;
