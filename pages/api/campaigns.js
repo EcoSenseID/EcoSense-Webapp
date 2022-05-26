@@ -1,16 +1,15 @@
-import categoriesListData from "../../dummyData/categories.data";
-
 export default async function handler (req, res) {
     const {authorization} = req.headers;
 
     if(req.method === 'GET') {
-        const result = await fetch(`https://ecosense-bangkit.uc.r.appspot.com/categories`, {
+        const result = await fetch(`https://ecosense-bangkit.uc.r.appspot.com/myCampaigns?displayName=${req.query.displayName}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': authorization
             },
         });
+        
         const data = await result.json();
         let categories = await data.categories;
         // if (categories.length === 0) {

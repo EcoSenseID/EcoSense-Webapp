@@ -20,7 +20,9 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
-  const protectedRoutes = ['/dashboard', '/dashboard/campaigns', '/dashboard/data', '/dashboard/profile'];
+  const protectedRoutes = [
+    '/dashboard', '/dashboard/campaigns', '/dashboard/data', '/dashboard/profile', '/dashboard/addCampaign'
+  ];
 
   useEffect(() => {
     if (typeof window != undefined) {

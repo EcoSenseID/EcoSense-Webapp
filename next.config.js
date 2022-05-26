@@ -11,7 +11,8 @@ const nextConfig = {
     domains: [
       'upload.wikimedia.org',
       'images.pexels.com',
-      'randomuser.me'
+      'randomuser.me',
+      'storage.googleapis.com'
     ]
   }
 }

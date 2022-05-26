@@ -1,19 +1,16 @@
-import Head from 'next/head';
 import React, { useState, useEffect, useContext } from 'react';
 import CampaignsCenterContent from '../../components/campaigns/campaigns-center-content.component';
 
 import DashboardContainer from '../../components/dashboard/dashboard-cont.component';
 import LeftNavbar from '../../components/dashboard/left-navbar.component';
-
-import categoriesListData from '../../dummyData/categories.data';
 import { AuthContext } from '../../firebase/context';
 
 const CampaignsPage = () => {
-    const [fullCategoriesList, setCategoriesList] = useState([]);
+    const [myCampaigns, setMyCampaigns] = useState([]);
     const { currentUser } = useContext(AuthContext);
 
-    const getCategories = async () => {
-        const response = await fetch('/api/categories', {
+    const getMyCampaigns = async () => {
+        const response = await fetch(`/api/campaigns?displayName=${currentUser.displayName}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,27 +18,19 @@ const CampaignsPage = () => {
             },
         });
         const data = await response.json();
-        setCategoriesList([...fullCategoriesList, ...data.categoriesList]);
+        setMyCampaigns(data.campaigns);
     }
 
     useEffect(() => {
-        if (fullCategoriesList.length === 0) getCategories();
+        getMyCampaigns();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <div>
-            <Head>
-                <title>EcoSense | Campaigns</title>
-                <meta name="description" content="An application for environmental campaigns and plant diseases detection." />
-            </Head>
-
-            <DashboardContainer>
-                <LeftNavbar page='campaigns'/>
-                <CampaignsCenterContent categoriesList={fullCategoriesList}/>
-                <div />
-            </DashboardContainer>
-        </div>
+        <DashboardContainer>
+            <LeftNavbar page='campaigns'/>
+            <CampaignsCenterContent myCampaigns={myCampaigns} />
+        </DashboardContainer>
     )
 }
 
