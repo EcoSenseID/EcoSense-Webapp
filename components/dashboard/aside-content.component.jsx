@@ -40,9 +40,9 @@ const AsideContent = () => {
                 <CampaignCard className={classes.dash_card} {...campaignDummyData[2]}/>
             }
             <Flex justifyContent='center' mt={7}>
-                <Button bgColor={value == 1 ? "gray.600" : "gray.400"} onClick={() => setValue(1)} size='xs' mx={1}/>
-                <Button bgColor={value == 2 ? "gray.600" : "gray.400"} onClick={() => setValue(2)} size='xs' mx={1}/>
-                <Button bgColor={value == 3 ? "gray.600" : "gray.400"} onClick={() => setValue(3)} size='xs' mx={1}/>
+                <Button className={classes.cardnav} bgColor={value == 1 ? "gray.600" : "gray.400"} onClick={() => setValue(1)} size='xs' mx={1}/>
+                <Button className={classes.cardnav} bgColor={value == 2 ? "gray.600" : "gray.400"} onClick={() => setValue(2)} size='xs' mx={1}/>
+                <Button className={classes.cardnav} bgColor={value == 3 ? "gray.600" : "gray.400"} onClick={() => setValue(3)} size='xs' mx={1}/>
             </Flex>
 
             <Flex flexDir='column' my={4}>

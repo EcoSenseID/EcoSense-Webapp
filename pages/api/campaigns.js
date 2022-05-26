@@ -11,14 +11,14 @@ export default async function handler (req, res) {
         });
         
         const data = await result.json();
-        let categories = await data.categories;
+        let campaigns = await data.campaigns;
         // if (categories.length === 0) {
         //     categories.push(...categoriesListData);
         // }
         res.status(200).json({
             error: false,
             message: 'Categories fetched successfully!',
-            categoriesList: categories
+            campaigns: campaigns
         });
         return;
     }

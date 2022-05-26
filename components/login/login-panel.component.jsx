@@ -49,6 +49,7 @@ const LoginPanel = () => {
                 errorDescription: result.errorDetail.message
             });
         } else {
+            // console.log(result.message);
             toast({
                 title: 'Login Success.',
                 description: "Enjoy your visit~",
@@ -79,7 +80,7 @@ const LoginPanel = () => {
         } else {
             toast({
                 title: 'Google Login Success.',
-                description: "Enjoy your visit~",
+                description: result.message + " Enjoy your visit~",
                 status: 'success',
                 duration: 9000,
                 isClosable: true,

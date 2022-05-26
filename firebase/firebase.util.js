@@ -11,7 +11,8 @@ import {
   sendEmailVerification,
   updatePassword,
   reauthenticateWithCredential,
-  EmailAuthProvider
+  EmailAuthProvider,
+  getIdToken
 } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -44,11 +45,29 @@ export const logInWithGoogle = async () => {
 
     // The signed-in user info.
     const user = result.user;
+    const idToken = await getIdToken(user, /* forceRefresh */ true);
+    const apiResult = await fetch('https://ecosense-bangkit.uc.r.appspot.com/loginToWeb', {
+    // const apiResult = await fetch('http://localhost:3001/loginToWeb', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + idToken
+      },
+    });
+    const apiResultData = await apiResult.json();
+    if (apiResultData.error) {
+      return ({
+        error: true,
+        errorDetail: { name: 'API Error', message: apiResultData.message },
+        user: {...user,  authProvider: 'google'}
+      });
+    } else {
+      return ({
+        error: false,
+        message: apiResultData.message,
+        user: {...user,  authProvider: 'google'}
+      })
+    }
     
-    return ({
-      error: false,
-      user: {...user,  authProvider: 'google'}
-    })
   }
   catch(error) {
     // The email of the user's account used.
@@ -95,7 +114,28 @@ export const emailSignUp = async ({ displayName: name, email: userEmail, passwor
     await createUserWithEmailAndPassword(auth, userEmail, userPassword);
     await updateProfile(auth.currentUser, { displayName: name })
     const updatedUser = auth.currentUser;
-    return { error: false, user: { ...updatedUser, authProvider: "local" } }
+    const idToken = await getIdToken(updatedUser, /* forceRefresh */ true);
+    const apiResult = await fetch('https://ecosense-bangkit.uc.r.appspot.com/loginToWeb', {
+    // const apiResult = await fetch('http://localhost:3001/loginToWeb', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + idToken
+      },
+    });
+    const apiResultData = await apiResult.json();
+    if (apiResultData.error) {
+      return ({
+        error: true,
+        errorDetail: { name: 'API Error', message: apiResultData.message },
+        user: {...updatedUser,  authProvider: 'local'}
+      });
+    } else {
+      return ({
+        error: false,
+        message: apiResultData.message,
+        user: {...updatedUser,  authProvider: 'local'}
+      })
+    }
   } 
   catch (err) {
     return {

@@ -56,7 +56,7 @@ const SignupPanel = () => {
             } else {
                 toast({
                     title: 'Account created.',
-                    description: "Now, please log in with your new account.",
+                    description: result.message + " Now, please log in with your new account.",
                     status: 'success',
                     duration: 9000,
                     isClosable: true,

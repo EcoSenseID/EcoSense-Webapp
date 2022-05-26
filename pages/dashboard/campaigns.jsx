@@ -18,6 +18,7 @@ const CampaignsPage = () => {
             },
         });
         const data = await response.json();
+        console.log(data);
         setMyCampaigns(data.campaigns);
     }
 

@@ -3,6 +3,7 @@ import React from 'react';
 
 import DashboardContainer from '../../components/dashboard/dashboard-cont.component';
 import LeftNavbar from '../../components/dashboard/left-navbar.component';
+import DataCenterContent from '../../components/data/data-center-content.component';
 
 const DataPage = () => {
     return (
@@ -14,7 +15,7 @@ const DataPage = () => {
 
             <DashboardContainer>
                 <LeftNavbar page='data'/>
-                <div />
+                <DataCenterContent />
                 <div />
             </DashboardContainer>
         </div>
