@@ -10,6 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 [![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=for-the-badge&logo=javascript)](https://github.com/EcoSenseID?tab=repositories&language=javascript)
 [![React](https://img.shields.io/badge/-React-black?style=for-the-badge&logo=react)](https://github.com/EcoSenseID?tab=repositories&language=javascript)
 [![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)](https://github.com/EcoSenseID?tab=repositories)
+[![TypeScript](https://img.shields.io/badge/typescript-black?style=for-the-badge&logo=typescript&logoColor=%23007ACC)](https://github.com/EcoSenseID?tab=repositories&language=typescript)
 
 ## Dependencies
 [Go to List of Dependencies](https://github.com/EcoSenseID/EcoSense-Webapp/network/dependencies)
