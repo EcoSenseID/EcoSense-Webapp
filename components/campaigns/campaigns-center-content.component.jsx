@@ -5,7 +5,7 @@ import { FiPlus } from 'react-icons/fi';
 import MyCampaignCard from './my-campaign-card.component';
 
 const CampaignsCenterContent = ({ myCampaigns }) => {
-    const [myCampaignsList, setMyCampaignsList] = useState([]);
+    const [myCampaignsList, setMyCampaignsList] = useState();
 
     useEffect(() => {
         setMyCampaignsList(myCampaigns);
@@ -23,7 +23,7 @@ const CampaignsCenterContent = ({ myCampaigns }) => {
 
                 <Link style={{ textDecoration: 'none' }} href='/dashboard/addCampaign'><Button colorScheme='green' leftIcon={<FiPlus />}>New Campaign</Button></Link>
             </Flex>
-            { myCampaignsList.length == 0 ?
+            { !myCampaignsList ?
                 <HStack flexDir='row' gap={5}>
                     <Box boxShadow='lg' bg='white' width={320} height={470} borderRadius={10}>
                         <Skeleton height='200px' />
@@ -45,11 +45,14 @@ const CampaignsCenterContent = ({ myCampaigns }) => {
                     </Box>
                 </HStack>
                 :
-                <Flex flexDir='row' gap={5}>
-                    { myCampaignsList && myCampaignsList.map(data => (
-                        <MyCampaignCard key={data.id} data={data} />
-                    ))}
-                </Flex>
+                ( myCampaignsList.length === 0 ?
+                    <Text>You don&apos;t have any campaign.</Text> :
+                    <Flex flexDir='row' gap={5}>
+                        { myCampaignsList && myCampaignsList.map(data => (
+                            <MyCampaignCard key={data.id} data={data} />
+                        ))}
+                    </Flex>    
+                )
             }
         </Flex>
     )

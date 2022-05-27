@@ -41,7 +41,7 @@ googleProvider.setCustomParameters({ prompt: 'select_account'});
 export const logInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
-    const credential = GoogleAuthProvider.credentialFromResult(result);
+    // const credential = GoogleAuthProvider.credentialFromResult(result);
 
     // The signed-in user info.
     const user = result.user;
@@ -69,7 +69,7 @@ export const logInWithGoogle = async () => {
     }
     
   }
-  catch(error) {
+  catch(error: any) {
     // The email of the user's account used.
     const email = error.email;
     // The AuthCredential type that was used.
@@ -88,14 +88,14 @@ export const logInWithGoogle = async () => {
   }
 }
 
-export const emailLogIn = async (userEmail, userPassword) => {
+export const emailLogIn = async (userEmail: string, userPassword: string) => {
   try {
     const result =  await signInWithEmailAndPassword(auth, userEmail, userPassword);
-    const credential = GoogleAuthProvider.credentialFromResult(result);
+    // const credential = GoogleAuthProvider.credentialFromResult(result);
     const user = result.user;
     return { error: false,  user: {...user, authProvider: 'local',} };
   }
-  catch(err) {
+  catch(err: any) {
     if (err.code == 'auth/user-not-found') {
       return { error: true, errorDetail: {...err, name: 'Email not Found', message: 'Make sure you enter the correct email.'} }
     } else if (err.code == 'auth/wrong-password') {
@@ -108,13 +108,19 @@ export const emailLogIn = async (userEmail, userPassword) => {
   }
 }
 
-export const emailSignUp = async ({ displayName: name, email: userEmail, password: userPassword}) => {
+type EmailSignUpProps = {
+  displayName: string,
+  email: string, 
+  password: string
+}
+
+export const emailSignUp = async ({ displayName: name, email: userEmail, password: userPassword}: EmailSignUpProps) => {
   try {
     passwordStrengthChecker(userPassword);
     await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-    await updateProfile(auth.currentUser, { displayName: name })
+    await updateProfile(auth.currentUser!, { displayName: name })
     const updatedUser = auth.currentUser;
-    const idToken = await getIdToken(updatedUser, /* forceRefresh */ true);
+    const idToken = await getIdToken(updatedUser!, /* forceRefresh */ true);
     const apiResult = await fetch('https://ecosense-bangkit.uc.r.appspot.com/loginToWeb', {
     // const apiResult = await fetch('http://localhost:3001/loginToWeb', {
       method: 'POST',
@@ -137,7 +143,7 @@ export const emailSignUp = async ({ displayName: name, email: userEmail, passwor
       })
     }
   } 
-  catch (err) {
+  catch (err: any) {
     return {
       error: true,
       errorDetail: err
@@ -145,7 +151,7 @@ export const emailSignUp = async ({ displayName: name, email: userEmail, passwor
   }
 }
 
-export const forgotPassword = async (userEmail) => {
+export const forgotPassword = async (userEmail: string) => {
   try {
     await sendPasswordResetEmail(auth, userEmail);
     return {
@@ -168,14 +174,14 @@ export const logOutFirebase = async () => {
         }
       });
   }
-  catch(error) {
-    return { error: true, errorDetail: err }
+  catch(error: any) {
+    return { error: true, errorDetail: error }
   };
 }
 
-export const updateUserProfile = async (displayName) => {
+export const updateUserProfile = async (displayName: string) => {
   try {
-    await updateProfile(auth.currentUser, { displayName });
+    await updateProfile(auth.currentUser!, { displayName });
     return {
       error: false, 
       message: 'Profile updated successfully!',
@@ -183,16 +189,16 @@ export const updateUserProfile = async (displayName) => {
     }
   }
   catch (error) {
-    return { error: true, errorDetail: err }
+    return { error: true, errorDetail: error }
   }
 }
 
-export const updateUserProfilePicture = async (file) => {
+export const updateUserProfilePicture = async (file: File) => {
   try {
-    const profileRef = ref(storage, 'users/' + auth.currentUser.uid + '/profile.jpg'); // make reference in firebase storage
+    const profileRef = ref(storage, 'users/' + auth.currentUser!.uid + '/profile.jpg'); // make reference in firebase storage
     const snapshot = await uploadBytes(profileRef, file); // upload file to firebase storage
     const imgURL = await getDownloadURL(profileRef); // get download URL from uploaded file
-    await updateProfile(auth.currentUser, { photoURL: imgURL }); // update user profile using firebase/auth
+    await updateProfile(auth.currentUser!, { photoURL: imgURL }); // update user profile using firebase/auth
     return {
       error: false, 
       message: 'Profile picture uploaded successfully!',
@@ -207,7 +213,7 @@ export const updateUserProfilePicture = async (file) => {
 
 export const sendVerifyEmail = async () => {
   try {
-    await sendEmailVerification(auth.currentUser);
+    await sendEmailVerification(auth.currentUser!);
     return {
       error: false, 
       message: 'Verification link sent to your email. Kindly check to verify your account!'
@@ -218,13 +224,13 @@ export const sendVerifyEmail = async () => {
   }
 }
 
-export const changePassword = async (oldPassword, newPassword) => {
+export const changePassword = async (oldPassword: string, newPassword: string) => {
   try {
     passwordStrengthChecker(newPassword);
     const user = auth.currentUser;
-    if (user.providerData[0].providerId === 'password'){
-      const credential = EmailAuthProvider.credential(auth.currentUser.email, oldPassword);
-      await reauthenticateWithCredential(auth.currentUser, credential);
+    if (user!.providerData[0].providerId === 'password'){
+      const credential = EmailAuthProvider.credential(auth.currentUser!.email!, oldPassword);
+      await reauthenticateWithCredential(auth.currentUser!, credential);
     } else {
       throw {
         code: 'auth/not-for-google-account',
@@ -233,13 +239,13 @@ export const changePassword = async (oldPassword, newPassword) => {
         stack: `Not permitted: Change password only permitted for email and password login.`
       };
     }
-    await updatePassword(auth.currentUser, newPassword);
+    await updatePassword(auth.currentUser!, newPassword);
     return {
       error: false, 
       message: 'Password changed!'
     }
   }
-  catch (err) {
+  catch (err: any) {
     return { error: true, errorDetail: err }
   }
 }

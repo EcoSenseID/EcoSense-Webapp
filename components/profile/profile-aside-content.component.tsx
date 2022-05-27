@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import getConfig from 'next/config';
 
 import { Box, Button, Divider, Flex, FormControl, FormLabel, Heading, Input, InputGroup, InputLeftElement, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Tooltip, useBreakpointValue, useDisclosure, useToast } from "@chakra-ui/react";
@@ -22,16 +22,16 @@ const ProfileAsideContent = () => {
     const [displayOldPwd, setDisplayOldPwd] = useState(false);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const initialRef = useRef();
+    const initialRef = useRef() as React.MutableRefObject<HTMLInputElement>;
     const toast = useToast();
     const { currentUser } = useContext(AuthContext);
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setNewPasswords({...newPasswords, [name]: value });
     }
 
-    const handleSubmitNewPassword = async (event) => {
+    const handleSubmitNewPassword = async (event: React.FormEvent) => {
         event.preventDefault();
 
         if (newPassword !== confirmNewPassword) {
