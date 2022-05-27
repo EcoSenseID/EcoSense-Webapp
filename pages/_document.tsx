@@ -1,6 +1,9 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import React from 'react';
 
-class MyDocument extends Document {
+type Props = {};
+
+class MyDocument extends NextDocument<Props> {
     render() {
         return (
             <Html lang='en' style={{scrollBehavior:'smooth'}}>

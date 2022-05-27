@@ -7,7 +7,6 @@ import CenterContent from '../../components/dashboard/center-content.component';
 import AsideContent from '../../components/dashboard/aside-content.component';
 
 const Dashboard = () => {
-
   return (
     <div>
       <Head>

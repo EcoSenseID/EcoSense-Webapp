@@ -8,7 +8,7 @@ import LeftNavbar from '../../components/dashboard/left-navbar.component';
 import { AuthContext } from '../../firebase/context';
 
 const AddCampaignPage = () => {
-    const [fullCategoriesList, setCategoriesList] = useState([]);
+    const [fullCategoriesList, setCategoriesList] = useState<Array<any>>([]);
     const { currentUser } = useContext(AuthContext);
 
     const getCategories = async () => {

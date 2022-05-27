@@ -1,15 +1,14 @@
+import React from 'react';
 import Head from 'next/head'
-import Image from 'next/image'
 
 import HomepageAbout from '../components/homepage/about.component'
 import Hero from '../components/homepage/hero.component'
-import Footer from '../components/layout/footer.component'
 import ScrollUpBtn from '../components/layout/scroll-up-btn.component'
 import Campaigns from '../components/homepage/campaigns.component';
 
 import Layout from '../components/layout/layout-frontpage.component'
 
-const HomePage = (props) => {
+const HomePage = (props: any) => {
   return (
     <Layout>
       <Head>
@@ -27,7 +26,7 @@ const HomePage = (props) => {
   )
 }
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async () => {
   try {
       // Fetch data from an API
       const res = await fetch(`http://ecosense-rest-api.herokuapp.com/trendingCampaigns`);
@@ -42,6 +41,7 @@ export const getStaticProps = async (context) => {
   }
   catch (error) {
       console.log(error);
+      return error;
   }
 }
 

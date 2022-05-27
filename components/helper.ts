@@ -1,9 +1,9 @@
-export const getExtension = (filename) => {
+export const getExtension = (filename: string) => {
     let parts = filename.split('.');
     return parts[parts.length - 1];
 }
   
-export const isImage = (filename) => {
+export const isImage = (filename: string) => {
     let ext = getExtension(filename);
     switch (ext.toLowerCase()) {
         case 'jpg':

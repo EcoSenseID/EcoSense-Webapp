@@ -3,11 +3,14 @@ import { useRouter } from 'next/router';
 
 import { AuthContext } from '../../firebase/context';
 import FullPageLoader from './full-page-loader';
-import { useToast } from '@chakra-ui/react';
 
-const PrivateRoute = ({ protectedRoutes, children }) => {
+type PrivateRouteProps = {
+    protectedRoutes: Array<string>,
+    children: any
+}
+
+const PrivateRoute = ({ protectedRoutes, children }: PrivateRouteProps) => {
     const router = useRouter();
-    const toast = useToast();
     const { isAuthenticated, isLoading } = useContext(AuthContext);
 
     const pathIsProtected = protectedRoutes.indexOf(router.pathname) !== -1;

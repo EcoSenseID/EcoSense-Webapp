@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Head from 'next/head'
+import { AppProps } from 'next/app'
 
 // Page loading indicator
 import Router from 'next/router';
@@ -11,7 +12,7 @@ import { AuthProvider } from '../firebase/context'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import app from '../firebase/firebase.util';
-import { getAnalytics, logEvent, isSupported } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import PrivateRoute from '../components/ui-custom-components/private-route';
 
 //Binding events. 
@@ -19,7 +20,7 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done()); 
 Router.events.on('routeChangeError', () => NProgress.done());
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const protectedRoutes = [
     '/dashboard', '/dashboard/campaigns', '/dashboard/data', '/dashboard/profile', '/dashboard/addCampaign'
   ];
