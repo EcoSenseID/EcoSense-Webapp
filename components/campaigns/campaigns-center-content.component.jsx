@@ -5,10 +5,13 @@ import { FiPlus } from 'react-icons/fi';
 import MyCampaignCard from './my-campaign-card.component';
 
 const CampaignsCenterContent = ({ myCampaigns }) => {
-    const [myCampaignsList, setMyCampaignsList] = useState();
-
+    const [myCampaignsList, setMyCampaignsList] = useState(undefined);
+    const [campaignsIsLoading, setCampaignsLoading] = useState(true);
+    
     useEffect(() => {
         setMyCampaignsList(myCampaigns);
+        if (myCampaignsList !== undefined) setCampaignsLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [myCampaigns]);
 
     return (
@@ -23,7 +26,7 @@ const CampaignsCenterContent = ({ myCampaigns }) => {
 
                 <Link style={{ textDecoration: 'none' }} href='/dashboard/addCampaign'><Button colorScheme='green' leftIcon={<FiPlus />}>New Campaign</Button></Link>
             </Flex>
-            { !myCampaignsList ?
+            { campaignsIsLoading ?
                 <HStack flexDir='row' gap={5}>
                     <Box boxShadow='lg' bg='white' width={320} height={470} borderRadius={10}>
                         <Skeleton height='200px' />

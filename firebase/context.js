@@ -1,7 +1,7 @@
 //1. Import React dependencies and the app from firebase.util
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, getIdToken } from "firebase/auth";
-import app, { googleProvider } from "./firebase.util";
+// import app, { googleProvider } from "./firebase.util";
 
 //2. Create and export a React context called AuthContext using React.createContext()
 export const AuthContext = React.createContext();

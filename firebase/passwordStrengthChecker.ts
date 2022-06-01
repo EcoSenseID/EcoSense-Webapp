@@ -1,4 +1,4 @@
-const passwordChecker = (pwdInputValue) => {
+const passwordChecker = (pwdInputValue: string) => {
     // REGEX
     const uppercaseRegExp   = /(?=.*?[A-Z])/;
     const lowercaseRegExp   = /(?=.*?[a-z])/;
