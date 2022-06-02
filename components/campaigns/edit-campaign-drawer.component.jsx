@@ -144,8 +144,8 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
         }
         formData.append('uploadPoster', uploadedFile);
         
-        // const response = await fetch('https://ecosense-bangkit.uc.r.appspot.com/editCampaign', {
-        const response = await fetch('http://localhost:3001/editCampaign', {
+        const response = await fetch('https://ecosense-bangkit.uc.r.appspot.com/editCampaign', {
+        // const response = await fetch('http://localhost:3001/editCampaign', {
             method: 'PUT',
             body: formData,
             headers: { 'Authorization': 'Bearer ' + currentUser.idToken },

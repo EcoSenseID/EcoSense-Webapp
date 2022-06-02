@@ -4,8 +4,8 @@ export default async function handler (req, res) {
     const {authorization} = req.headers;
 
     if(req.method === 'GET') {
-        // const result = await fetch(`https://ecosense-bangkit.uc.r.appspot.com/allCategories`, {
-        const result = await fetch(`http://localhost:3001/allCategories`, {
+        const result = await fetch(`https://ecosense-bangkit.uc.r.appspot.com/allCategories`, {
+        // const result = await fetch(`http://localhost:3001/allCategories`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
