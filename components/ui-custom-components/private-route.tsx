@@ -6,7 +6,7 @@ import FullPageLoader from './full-page-loader';
 
 type PrivateRouteProps = {
     protectedRoutes: Array<string>,
-    children: JSX.Element | JSX.Element[]
+    children: any
 }
 
 const PrivateRoute = ({ protectedRoutes, children }: PrivateRouteProps) => {

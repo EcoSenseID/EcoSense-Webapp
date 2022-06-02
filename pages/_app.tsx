@@ -7,7 +7,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import { AuthProvider } from '../firebase/context'
 import { ChakraProvider } from '@chakra-ui/react'
 
