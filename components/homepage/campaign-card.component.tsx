@@ -3,7 +3,13 @@ import React from "react";
 
 import classes from './campaign-card.module.scss';
 
-const CampaignCard = ({ posterUrl, title, description }) => {
+type CampaignCardProps = {
+    posterUrl: string,
+    title: string,
+    description: string
+}
+
+const CampaignCard = ({ posterUrl, title, description }: CampaignCardProps) => {
     return (
         <div className={classes.card}>
             <div className={classes.card_img}>

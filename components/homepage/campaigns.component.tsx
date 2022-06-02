@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import CampaignCard from "./campaign-card.component";
 
 import classes from './campaigns.module.scss';
 
-const Campaigns = ({ campaigns }) => {
+type CampaignsProps = {
+    campaigns: Array<any>
+}
+
+const Campaigns = ({ campaigns }: CampaignsProps) => {
     const campaignsData = campaigns;
     return (
         <section className={classes.campaigns_bg} id='campaigns'>
