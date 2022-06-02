@@ -6,7 +6,7 @@ import classes from './login-signup-cont.module.scss';
 // import LoginPanel from "./login-panel.component";
 
 type LoginSignupContainerProps = {
-    children: JSX.Element
+    children: JSX.Element | JSX.Element[]
 }
 
 const LoginSignupContainer = ({ children }: LoginSignupContainerProps) => {

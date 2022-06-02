@@ -4,7 +4,7 @@ import Footer from "./footer.component";
 import MainNavigation from "./main-nav.component";
 
 type LayoutProps = {
-    children: JSX.Element
+    children: JSX.Element | JSX.Element[]
 }
 
 const Layout = ({ children }: LayoutProps) => {
