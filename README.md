@@ -15,6 +15,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Dependencies
 [Go to List of Dependencies](https://github.com/EcoSenseID/EcoSense-Webapp/network/dependencies)
 
+## Screenshot
+![screenshot-ecosense vercel app-2022 06 02-15_42_07](https://user-images.githubusercontent.com/60643640/171591720-82c1d59a-6c15-4f64-931c-b12754b7db6a.png)
 
 ## 
 &#169; EcoSense 2022.

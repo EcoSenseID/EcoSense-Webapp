@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from 'next/router';
 
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, FormControl, FormLabel, HStack, Input, InputGroup, InputLeftElement, InputRightElement, Link, ScaleFade, Text, useDisclosure, useToast } from "@chakra-ui/react";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, FormControl, FormLabel, HStack, Input, InputGroup, InputLeftElement, InputRightElement, Link, ScaleFade, Text, useToast } from "@chakra-ui/react";
 import { FiAtSign, FiUser, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 
 import { emailSignUp } from "../../firebase/firebase.util";
@@ -28,7 +28,7 @@ const SignupPanel = () => {
     const toast = useToast();
     const router = useRouter();
     
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setError({ ...error, isError: false, errorMessage: '', errorDescription: '' });
         
@@ -67,7 +67,7 @@ const SignupPanel = () => {
         }
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setCredentials({...userCredentials, [name]: value });
     }

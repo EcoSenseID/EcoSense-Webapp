@@ -4,7 +4,8 @@ export default async function handler (req, res) {
     const {authorization} = req.headers;
 
     if(req.method === 'GET') {
-        const result = await fetch(`https://ecosense-bangkit.uc.r.appspot.com/categories`, {
+        // const result = await fetch(`https://ecosense-bangkit.uc.r.appspot.com/allCategories`, {
+        const result = await fetch(`http://localhost:3001/allCategories`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -12,6 +13,7 @@ export default async function handler (req, res) {
             },
         });
         const data = await result.json();
+        // console.log(data);
         let categories = await data.categories;
         // if (categories.length === 0) {
         //     categories.push(...categoriesListData);

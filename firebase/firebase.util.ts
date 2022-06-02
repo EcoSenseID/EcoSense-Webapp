@@ -159,7 +159,7 @@ export const forgotPassword = async (userEmail: string) => {
       message: 'Please check your email' 
     }
   }
-  catch (err) {
+  catch (err: any) {
     return { error: true, errorDetail: err }
   }
 }

@@ -141,7 +141,7 @@ const AddCampaignForm = ({ categoriesList }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(newCampaignDetail);
+        // console.log(newCampaignDetail);
 
         if (!uploadedFile || !uploadedFileName) {
             toast({
@@ -267,7 +267,7 @@ const AddCampaignForm = ({ categoriesList }) => {
                             type='text' 
 							name="campaignInitiator" 
                             value={campaignInitiator}
-                            onChange={handleChange}
+                            onChange={() => {}} // Initiator can't be changed
                             placeholder='EcoSense' 
                             focusBorderColor="blue.400" 
                             errorBorderColor="red.400"
@@ -338,10 +338,9 @@ const AddCampaignForm = ({ categoriesList }) => {
                                 <InputLeftElement><FiGrid color='gray' /></InputLeftElement>
                                 <Input isReadOnly
                                     type='text' 
-                                    name="campaignDescription" 
+                                    name="campaignCategories" 
                                     value={data.name}
-                                    onChange={() => {}}
-                                    placeholder='This campaign is about...' 
+                                    onChange={() => {}} 
                                     focusBorderColor="blue.400" 
                                     errorBorderColor="red.400"
                                     rounded="md" required
@@ -352,10 +351,9 @@ const AddCampaignForm = ({ categoriesList }) => {
                                 <InputLeftElement><FiStar color='gray' /></InputLeftElement>
                                 <Input isReadOnly
                                     type='text' 
-                                    name="campaignDescription" 
+                                    name="campaignCategories" 
                                     value={data.earned_experience_point}
                                     onChange={() => {}}
-                                    placeholder='This campaign is about...' 
                                     focusBorderColor="blue.400" 
                                     errorBorderColor="red.400"
                                     rounded="md" required

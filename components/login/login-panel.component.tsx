@@ -21,7 +21,7 @@ const LoginPanel = () => {
     const router = useRouter();
 
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const initialRef = React.useRef();
+    const initialRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
 
     const [isLoading, setLoading] = useState(false);
     const [isGoogleLoading, setGoogleLoading] = useState(false);
@@ -33,7 +33,7 @@ const LoginPanel = () => {
     });
     const toast = useToast();
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setError({ ...error, isError: false, errorMessage: '', errorDescription: '' });
         setLoading(true);
@@ -62,7 +62,7 @@ const LoginPanel = () => {
         }
     }
 
-    const handleSubmitGoogle = async (event) => {
+    const handleSubmitGoogle = async (event: React.FormEvent) => {
         event.preventDefault();
         setError({ ...error, isError: false, errorMessage: '', errorDescription: '' });
         setGoogleLoading(true);
@@ -90,16 +90,16 @@ const LoginPanel = () => {
         }
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = event.target;
         setCredentials({ ...userCredentials, [name]: value });
     }
 
-    const handleChangeEmailForgot = (event) => {
+    const handleChangeEmailForgot = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmailForgot(event.target.value);
     }
 
-    const handleSubmitForgot = async (event) => {
+    const handleSubmitForgot = async (event: React.FormEvent) => {
         event.preventDefault();
         setForgotLoading(true);
 

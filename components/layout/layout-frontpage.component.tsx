@@ -3,11 +3,15 @@ import Footer from "./footer.component";
 
 import MainNavigation from "./main-nav.component";
 
-const Layout = (props) => {
+type LayoutProps = {
+    children: JSX.Element
+}
+
+const Layout = ({ children }: LayoutProps) => {
     return (
         <Fragment>
             <MainNavigation />
-            <main>{props.children}</main>
+            <main>{children}</main>
             <Footer />
         </Fragment>
     )

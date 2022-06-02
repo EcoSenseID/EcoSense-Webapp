@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, Button, Flex, Heading, HStack, Link, Skeleton, SkeletonCircle, SkeletonText, Spinner, Stack, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, HStack, Link, Skeleton, SkeletonCircle, SkeletonText, Spinner, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { FiPlus } from 'react-icons/fi';
+
 import MyCampaignCard from './my-campaign-card.component';
 
-const CampaignsCenterContent = ({ myCampaigns }) => {
+const CampaignsCenterContent = ({ myCampaigns, categoriesList }) => {
     const [myCampaignsList, setMyCampaignsList] = useState(undefined);
     const [campaignsIsLoading, setCampaignsLoading] = useState(true);
     
@@ -52,7 +53,7 @@ const CampaignsCenterContent = ({ myCampaigns }) => {
                     <Text>You don&apos;t have any campaign.</Text> :
                     <Flex flexDir='row' gap={5}>
                         { myCampaignsList && myCampaignsList.map(data => (
-                            <MyCampaignCard key={data.id} data={data} />
+                            <MyCampaignCard key={data.id} data={data} categoriesList={categoriesList}/>
                         ))}
                     </Flex>    
                 )

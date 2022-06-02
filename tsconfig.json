@@ -54,7 +54,10 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "include": [
-    "pages"
+    "pages",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
   ],
   "exclude": [
     "node_modules"
