@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { IoLogoFacebook, IoLogoTwitter, IoMail, IoLogoYoutube, IoLogoInstagram } from "react-icons/io5";
 
 import classes from './footer.module.scss';
+import { Flex, Image as ChakraImage } from '@chakra-ui/react';
 
 const Footer = () => {
     return (
@@ -29,11 +30,18 @@ const Footer = () => {
                         </p>
                         <p className={classes.f_info_text}>
                             A collaboration project of EcoSense Team
-                            from Universitas Indonesia (UI), Universitas Jambi (UNJA), Universitas Pelita Harapan (UPH), and UPN Veteran Jakarta.
+                            from Universitas Indonesia (UI), Universitas Jambi (UNJA), Universitas Pelita Harapan (UPH), and UPN Veteran Yogyakarta.
                         </p>
+                        <Flex mt={10} mb={5} justifyContent={['center', 'center', 'flex-start']} gap={[1, 2, 5]}>
+                            <ChakraImage draggable={false} maxH={14} src='/images/logo-ui.png' alt='Logo UI'/>
+                            <ChakraImage draggable={false} h={14} src='/images/logo-unja_.png' alt='Logo UI'/>
+                            <ChakraImage draggable={false} h={14} src='/images/logo-uph.png' alt='Logo UI'/>
+                            <ChakraImage draggable={false} h={14} src='/images/logo-upnvy_.png' alt='Logo UI'/>
+                        </Flex>
                     </div>
                 </div>
             </div>
+            
             <div className={classes.footer_iconbox}>
                 <IoLogoFacebook size="small" name="logo-facebook" className={classes.footer_icon}></IoLogoFacebook>
                 <IoLogoTwitter name="logo-twitter" className={classes.footer_icon}></IoLogoTwitter>
