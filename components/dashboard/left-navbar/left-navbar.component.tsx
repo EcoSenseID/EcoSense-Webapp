@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import { AuthContext } from "../../firebase/context";
+import { AuthContext } from "../../../firebase/context";
 
 import { 
 	Avatar, 
@@ -26,10 +26,10 @@ import {
 	FiLogOut
 } from 'react-icons/fi'
 
-import { logOutFirebase } from "../../firebase/firebase.util";
+import { logOutFirebase } from "../../../firebase/firebase.util";
 
 import classes from "./left-navbar.module.scss";
-import NavItem from "./left-navbar/leftnav-item.component";
+import NavItem from "./leftnav-item.component";
 
 type LeftNavbarProps = {
 	page: string

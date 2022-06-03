@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 
 import DashboardContainer from '../../components/dashboard/dashboard-cont.component';
-import LeftNavbar from '../../components/dashboard/left-navbar.component';
+import LeftNavbar from '../../components/dashboard/left-navbar/left-navbar.component';
 import ProfileAsideContent from '../../components/profile/profile-aside-content.component';
 import ProfileCenterContent from '../../components/profile/profile-center-content.component'
 

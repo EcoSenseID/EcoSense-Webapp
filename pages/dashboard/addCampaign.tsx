@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import AddCampaignForm from '../../components/addCampaigns/addCampaigns-form.component';
 
 import DashboardContainer from '../../components/dashboard/dashboard-cont.component';
-import LeftNavbar from '../../components/dashboard/left-navbar.component';
+import LeftNavbar from '../../components/dashboard/left-navbar/left-navbar.component';
 
 import { AuthContext } from '../../firebase/context';
 
