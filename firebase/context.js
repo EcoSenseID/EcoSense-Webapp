@@ -20,17 +20,21 @@ export const AuthProvider = ({ children }) => {
     if (!(userToken === null || userToken === undefined)) {
       loginWithToken(userToken);
     }
-    setLoading(false);
+    //setLoading(false);
   }, []);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       // console.log('user', user);
-      if (!user) { logout(); } 
-      else { 
-        login(user);
+      if (!user) { 
+        logout(); 
+        setLoading(false); 
       } 
-      setLoading(false);
+      else { 
+        setLoading(true);
+        await login(user);
+        setLoading(false);
+      } 
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -41,14 +45,12 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser(userToken);
   }
 
-  function login(user) {
-      getIdToken(user, /* forceRefresh */ true).then((idToken) => {
-        const modifiedUser = {...user, idToken: idToken}
-        localStorage.setItem('user', JSON.stringify(modifiedUser));
-        setIsAuthenticated(true);
-        setCurrentUser(modifiedUser);
-      })
-      
+  const login = async (user) => {
+      const idToken = await getIdToken(user, /* forceRefresh */ true);
+      const modifiedUser = await { ...user, idToken: idToken };
+      localStorage.setItem('user', JSON.stringify(modifiedUser));
+      setIsAuthenticated(true);
+      setCurrentUser(modifiedUser);
   }
 
   function logout() {
@@ -63,6 +65,7 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         currentUser,
         isLoading,
+        setLoading,
         login
       }}
     >

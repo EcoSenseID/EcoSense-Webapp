@@ -65,6 +65,7 @@ const LeftNavbar = ({ page }) => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
             router.push('/login');
         } else {
@@ -74,6 +75,7 @@ const LeftNavbar = ({ page }) => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
         }
     }

@@ -12,10 +12,7 @@ import { FcGoogle } from 'react-icons/fc'
 const LoginPanel = () => {
     // React Hooks
     const [displayPwd, setDisplayPwd] = useState(false);
-    const [userCredentials, setCredentials] = useState({ 
-        email: '', 
-        password: '' 
-    });
+    const [userCredentials, setCredentials] = useState({ email: '', password: '' });
     const { email, password } = userCredentials;
     const [emailForgot, setEmailForgot] = useState('');
     const router = useRouter();
@@ -56,6 +53,7 @@ const LoginPanel = () => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             });
             router.push('/dashboard');
             setCredentials({ email: '', password: '' });
@@ -84,6 +82,7 @@ const LoginPanel = () => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             });
             router.push('/dashboard');
             setCredentials({ email: '', password: '' });
