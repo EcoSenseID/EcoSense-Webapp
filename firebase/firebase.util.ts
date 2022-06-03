@@ -164,7 +164,7 @@ export const forgotPassword = async (userEmail: string) => {
   }
 }
 
-export const logOutFirebase = async () => {
+export const logOutFirebase = async (): Promise<{ error: boolean, message?: string, errorDetail?: any }> => {
   try {
     return await auth.signOut()
       .then(() => {

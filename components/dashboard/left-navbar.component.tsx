@@ -31,7 +31,11 @@ import { logOutFirebase } from "../../firebase/firebase.util";
 import classes from "./left-navbar.module.scss";
 import NavItem from "./left-navbar/leftnav-item.component";
 
-const LeftNavbar = ({ page }) => {
+type LeftNavbarProps = {
+	page: string
+}
+
+const LeftNavbar = ({ page }: LeftNavbarProps) => {
 	const router = useRouter();
 	const { currentUser, isLoading } = useContext(AuthContext);
 	const [userDetail, setUserDetail] = useState({
@@ -42,7 +46,7 @@ const LeftNavbar = ({ page }) => {
 
 	// For Log Out Alert
 	const { isOpen, onOpen, onClose } = useDisclosure();
-  	const cancelRef = React.useRef();
+  	const cancelRef = React.useRef() as React.MutableRefObject<HTMLButtonElement>;
 	const toast = useToast();
 
 	useEffect(() => {
@@ -61,7 +65,7 @@ const LeftNavbar = ({ page }) => {
         if (!result.error) {
 			toast({
                 title: 'Sign out!',
-                description: result.message,
+                description: result.message || 'Sign out success!',
                 status: 'success',
                 duration: 9000,
                 isClosable: true,

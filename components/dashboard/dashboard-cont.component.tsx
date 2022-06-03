@@ -3,7 +3,11 @@ import { Flex } from '@chakra-ui/react';
 
 import classes from './dashboard-cont.module.scss';
 
-const DashboardContainer = ({children}) => {
+type DashboardContProps = {
+    children: JSX.Element | JSX.Element[]
+}
+
+const DashboardContainer = ({children}: DashboardContProps) => {
     return (
         <Flex 
             className={classes.dashboard_bg}
