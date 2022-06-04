@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 
 import { Button, Flex, FormControl, FormHelperText, Heading, HStack, Icon, IconButton, Image, Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Tag, TagLeftIcon, Text, Tooltip, useBreakpointValue, useDisclosure, useToast } from '@chakra-ui/react';
 import { FiUsers, FiCalendar, FiGrid, FiEdit, FiTrash2, FiMoreVertical } from 'react-icons/fi';
@@ -6,6 +6,8 @@ import { RiFireFill, RiTimeFill, RiTimer2Fill } from 'react-icons/ri';
 
 import classes from './my-campaign-card.module.scss';
 import EditCampaignDrawer from './edit-campaign-drawer.component';
+import { AuthContext } from '../../firebase/context';
+
 
 const MyCampaignCard = ({ data, categoriesList }) => {
 	const { isOpen: isOpenDrawer, onOpen: onOpenDrawer, onClose: onCloseDrawer } = useDisclosure();
@@ -22,7 +24,7 @@ const MyCampaignCard = ({ data, categoriesList }) => {
         startDate,
         title,
     } = data;
-    // console.log(data);
+    const { currentUser } = useContext(AuthContext);
 
     // FOR DELETE MODAL
     const { isOpen: isOpenModalDelete, onOpen: onOpenModalDelete, onClose: onCloseModalDelete } = useDisclosure();

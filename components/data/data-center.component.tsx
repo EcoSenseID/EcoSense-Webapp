@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import { Flex, Heading, Select, Stat, StatArrow, StatGroup, StatHelpText, StatLabel, StatNumber, Text } from '@chakra-ui/react';
+import { Flex, Heading, Select, Stat, StatGroup, StatLabel, StatNumber, Text } from '@chakra-ui/react';
 
 import ChartOne from './chart-one.component';
 
-const DataCenterContent = ({ campaigns, campaignIsLoading }) => {
+type DataCenterProps = {
+    campaigns: Array<any>,
+    campaignIsLoading: boolean
+}
+
+const DataCenterContent = ({ campaigns, campaignIsLoading }: DataCenterProps) => {
     const [selectedCampaign, setSelectedCampaign] = useState('');
 
     useEffect(() => {
@@ -12,7 +17,7 @@ const DataCenterContent = ({ campaigns, campaignIsLoading }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [campaignIsLoading]);
 
-    const handleSelectChange = (event) => setSelectedCampaign(event.target.value);
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => setSelectedCampaign(event.target.value);
 
     return (
         <Flex w='100%' p={['6%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
