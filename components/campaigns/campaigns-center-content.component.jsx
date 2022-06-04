@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, Button, Flex, Heading, HStack, Link, Skeleton, SkeletonCircle, SkeletonText, Spinner, Stack, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, Heading, HStack, Link, Skeleton, SkeletonCircle, SkeletonText, Spinner, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { FiPlus } from 'react-icons/fi';
 
 import MyCampaignCard from './my-campaign-card.component';
@@ -28,34 +28,34 @@ const CampaignsCenterContent = ({ myCampaigns, categoriesList }) => {
                 <Link style={{ textDecoration: 'none' }} href='/dashboard/addCampaign'><Button colorScheme='green' leftIcon={<FiPlus />}>New Campaign</Button></Link>
             </Flex>
             { campaignsIsLoading ?
-                <HStack flexDir='row' gap={5}>
-                    <Box boxShadow='lg' bg='white' width={320} height={470} borderRadius={10}>
-                        <Skeleton height='200px' />
+                <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={8}>
+                    <Box boxShadow='lg' bg='white' height={470} borderRadius='10px'>
+                        <Skeleton height='200px' borderTopRadius='10px'/>
                         <Box p={6}>
                             <Skeleton height='30px' /> <SkeletonText  mt='4' noOfLines={6} spacing='4' />
                         </Box>
                     </Box>
-                    <Box boxShadow='lg' bg='white' width={320} height={470} mt={0}>
-                        <Skeleton height='200px' />
+                    <Box boxShadow='lg' bg='white' height={470} mt={0} borderRadius='10px'>
+                        <Skeleton height='200px' borderTopRadius='10px'/>
                         <Box p={6}>
                             <Skeleton height='30px' /> <SkeletonText  mt='4' noOfLines={6} spacing='4' />
                         </Box>
                     </Box>
-                    <Box boxShadow='lg' bg='white' width={320} height={470}>
-                        <Skeleton height='200px' />
+                    <Box boxShadow='lg' bg='white' height={470} borderRadius='10px'>
+                        <Skeleton height='200px' borderTopRadius='10px'/>
                         <Box p={6}>
                             <Skeleton height='30px' /> <SkeletonText  mt='4' noOfLines={6} spacing='4' />
                         </Box>
                     </Box>
-                </HStack>
+                </Grid>
                 :
                 ( myCampaignsList.length === 0 ?
                     <Text>You don&apos;t have any campaign.</Text> :
-                    <Flex flexDir='row' gap={5}>
+                    <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={8}>
                         { myCampaignsList && myCampaignsList.map(data => (
                             <MyCampaignCard key={data.id} data={data} categoriesList={categoriesList}/>
                         ))}
-                    </Flex>    
+                    </Grid>    
                 )
             }
         </Flex>

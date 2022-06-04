@@ -11,10 +11,10 @@ const CategoryBox = ({ data }: CategoryBoxProps) => {
     const { name, photoUrl, colorHex } = data;
 
     return (
-        <Flex bgColor='white' borderRadius={10} bgImage={photoUrl} className={classes.categoryBox}>
-            <Flex w={8} borderLeftRadius={10} bgColor={colorHex}></Flex>
+        <Flex bgColor='white' borderRadius={10} bgImage={photoUrl} className={classes.categoryBox} boxShadow='md'>
+            <Flex w={6} borderLeftRadius={10} bgColor={colorHex}></Flex>
             <Flex p={3} color='white'>
-                <Text fontWeight={500}>{name}</Text>
+                <Text ml={1.5} fontWeight={500}>{name}</Text>
             </Flex>
         </Flex>
     )

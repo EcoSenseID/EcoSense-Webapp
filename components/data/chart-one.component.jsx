@@ -3,14 +3,30 @@ import { Line } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto';
 import { Text } from '@chakra-ui/react';
 
+const getListOf7Dates = () => {
+    let result = [];
+    const tenDaysAgo = new Date(new Date().getTime() - 11*24*60*60*1000);
+    const sD = tenDaysAgo.getDate();
+    const sM = tenDaysAgo.getMonth() + 1;
+    result.push(`${sD}/${sM}`);
+
+    for (let i = 0; i<11; i++) {
+        let today = new Date(tenDaysAgo.getTime() + (i+1)*24*60*60*1000);
+        let tD = today.getDate();
+        let tM = today.getMonth() + 1;
+        result.push(`${tD}/${tM}`);
+    }
+    return result;
+}
+
 const data = {
-    labels: ['10/5', '11/5', '12/5', '13/5', '14/5', '15/5', '16/5', '17/5', '18/5', '19/5', '20/5', '21/5'],
+    labels: getListOf7Dates(),
     datasets: [
         {
             label: 'Participant',
             fill: false,
             lineTension: 0.5,
-            backgroundColor: '#db86b2',
+            backgroundColor: '#72b57d',
             // borderColor: '#B57295',
             borderColor: '#72b57d',
             borderCapStyle: 'butt',
@@ -25,7 +41,8 @@ const data = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [50, 30, 40, 50, 80, 65, 70, 69, 100, 120, 105, 130],
+            // data: [50, 30, 40, 50, 80, 65, 70, 69, 100, 120, 105, 130],
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         },
     ],
 }
@@ -54,8 +71,6 @@ const options = {
 
 const ChartOne = () => (
     <Fragment>
-        <Text color='gray' fontSize='sm' mt={4}>Participant of</Text>
-        <Text fontWeight='bold' fontSize='2xl' mb={4}>Save the Earth Campaign</Text>
         <Line data={data} options={options} />
     </Fragment>
 )

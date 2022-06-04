@@ -16,7 +16,7 @@ const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
 
   const getMyCampaigns = async () => {
-    const response = await fetch(`/api/campaigns?displayName=${currentUser.displayName}`, {
+    const response = await fetch(`/api/campaigns`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

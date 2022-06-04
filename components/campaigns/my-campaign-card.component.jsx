@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import { Button, Flex, FormControl, FormHelperText, Heading, HStack, Icon, IconButton, Image, Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Tag, TagLeftIcon, Text, Tooltip, useBreakpointValue, useDisclosure, useToast } from '@chakra-ui/react';
 import { FiUsers, FiCalendar, FiGrid, FiEdit, FiTrash2, FiMoreVertical } from 'react-icons/fi';
-import { RiFireFill, RiTimeFill } from 'react-icons/ri';
+import { RiFireFill, RiTimeFill, RiTimer2Fill } from 'react-icons/ri';
 
 import classes from './my-campaign-card.module.scss';
 import EditCampaignDrawer from './edit-campaign-drawer.component';
@@ -30,7 +30,7 @@ const MyCampaignCard = ({ data, categoriesList }) => {
     const [deleteModalInput, setDeleteModalInput] = useState('');
     const [deleteIsLoading, setDeleteLoading] = useState(false);
 
-    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+    const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
 
     const handleDeleteCampaign = async () => {
         if (title === deleteModalInput) {
@@ -75,7 +75,7 @@ const MyCampaignCard = ({ data, categoriesList }) => {
     }
 
     return (
-        <Flex boxShadow='black' className={classes.card} borderRadius={10} flexDir='column' w={320}>
+        <Flex boxShadow='black' className={classes.card} borderRadius={10} flexDir='column'>
             <Flex justifyContent='flex-end' position='relative'>
                 <Image src={posterUrl} alt={title} w='100%' h={200} borderTopRadius={10} objectFit='cover'/>
                 <Menu mt={5} placement='bottom-end'>
@@ -99,7 +99,7 @@ const MyCampaignCard = ({ data, categoriesList }) => {
                 </Menu>
             </Flex>
             <Flex p={5} flexDir='column'>
-                <Heading size={'md'} mb={2}>{title}</Heading>
+                <Heading size={'md'} mb={2} noOfLines={1}>{title}</Heading>
                 <Text noOfLines={4} maxH={100} mb={5}>{description}</Text>
                 
                 <Flex alignItems='center' mb={1.5}>
@@ -119,6 +119,7 @@ const MyCampaignCard = ({ data, categoriesList }) => {
                 <Stack direction='row' mt={5} gap={2}>
                     { isTrending && <Tag colorScheme='red'><TagLeftIcon as={RiFireFill} />TRENDING</Tag>}
                     { isNew && <Tag colorScheme='purple'><TagLeftIcon as={RiTimeFill}/>NEW</Tag>}
+                    { ((new Date(endDate)).getTime() < (new Date()).getTime()) && <Tag colorScheme='red'><TagLeftIcon as={RiTimer2Fill}/>ENDED</Tag>}
                     <Flex alignItems='center' mb={1.5}>
                         <FiUsers className={classes.smallicon}/>
                         <Text>{participantsCount}</Text>

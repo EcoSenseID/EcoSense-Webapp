@@ -34,7 +34,7 @@ const TableRow = ({ data }: TableRowProps) => {
                 </Flex>
             </Td>
             <Td>{data.categories.map(category => category.name).join(', ')}</Td>
-            <Td isNumeric>{data.tasks.length}</Td>
+            <Td isNumeric>{(data.tasks && data.tasks.length) || 0}</Td>
             <Td isNumeric>{data.participantsCount}</Td>
         </Tr>
     );

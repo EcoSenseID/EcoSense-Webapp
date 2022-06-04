@@ -33,7 +33,7 @@ const CenterContent = ({ campaigns, campaignsIsLoading }: CenterContentProps) =>
 					<Heading as='h2' size='lg' letterSpacing='tight' lineHeight='90%'>Your Campaigns</Heading>
 					<Text fontSize='small' color='gray' ml={4}>per { (new Date()).toLocaleDateString('en-US', dateOptions) }</Text>
 				</Flex>
-				<Link href="/dashboard/campaigns">
+				<Link href="/dashboard/campaigns" style={{ textDecoration: 'none' }}>
                     <Button rightIcon={<FiArrowRight />} colorScheme='blackAlpha' bgColor='#034b15' color='#fff' borderRadius={8} aria-label={""}>More</Button>
                 </Link>
 			</Flex>

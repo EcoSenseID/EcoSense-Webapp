@@ -41,7 +41,7 @@ const AsideContent = ({ categories, campaigns, campaignsIsLoading }: AsideConten
 
             { campaignsIsLoading ? 
                 <Skeleton height='100px' width='100%' borderRadius={10} mt={5}/> :
-                <StatGroup borderColor='blackAlpha.500' borderWidth={1} p={5} borderRadius={10} mt={5}>
+                <StatGroup borderColor='blackAlpha.500' p={5} borderRadius={10} mt={5} bgColor='white' boxShadow='md'>
                     <Stat>
                         <StatLabel>Total Campaign</StatLabel>
                         <StatNumber>{ (campaigns && campaigns.length) || 0 }</StatNumber>
