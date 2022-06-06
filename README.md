@@ -1,7 +1,7 @@
 # EcoSense Web Application
 [![issues](https://img.shields.io/github/issues/EcoSenseID/EcoSense-Webapp)](https://github.com/EcoSenseID/EcoSense-Webapp/issues)
-[![language](https://img.shields.io/github/languages/count/EcoSenseID/EcoSense-Webapp)](https://github.com/EcoSenseID/EcoSense-Webapp/search?l=javascript)
-[![top-language](https://img.shields.io/github/languages/top/EcoSenseID/EcoSense-Webapp)](https://github.com/EcoSenseID/EcoSense-Webapp/search?l=javascript)
+[![language](https://img.shields.io/github/languages/count/EcoSenseID/EcoSense-Webapp)](https://github.com/EcoSenseID/EcoSense-Webapp/search?l=typescript)
+[![top-language](https://img.shields.io/github/languages/top/EcoSenseID/EcoSense-Webapp)](https://github.com/EcoSenseID/EcoSense-Webapp/search?l=typescript)
 [![commit](https://img.shields.io/github/commit-activity/m/EcoSenseID/EcoSense-Webapp)](https://github.com/EcoSenseID/EcoSense-Webapp/commits/main)
 [![last-commit](https://img.shields.io/github/last-commit/EcoSenseID/EcoSense-Webapp)](https://github.com/EcoSenseID/EcoSense-Webapp/commits/main)
 
