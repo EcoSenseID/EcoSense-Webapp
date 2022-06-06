@@ -29,14 +29,14 @@ const HomePage = (props: any) => {
 export const getStaticProps = async () => {
   try {
       // Fetch data from an API
-      const res = await fetch(`http://ecosense-rest-api.herokuapp.com/trendingCampaigns`);
+      const res = await fetch(`https://ecosense-bangkit.uc.r.appspot.com/trendingCampaigns`);
       const data = await res.json();
       const { campaigns } = await data;
       return {
           props: {
-              campaigns: campaigns
+              campaigns: campaigns,
           }, 
-          revalidate: 60
+          revalidate: 60,
       }
   }
   catch (error) {

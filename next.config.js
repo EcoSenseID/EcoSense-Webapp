@@ -5,7 +5,7 @@ const { version } = require('./package.json');
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    API_URL: "ecosense-rest-api.herokuapp.com"
+    API_URL: "ecosense-bangkit.uc.r.appspot.com"
   },
   images: {
     domains: [
