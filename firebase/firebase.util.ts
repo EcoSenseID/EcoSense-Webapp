@@ -188,7 +188,7 @@ export const updateUserProfile = async (displayName: string) => {
       user: auth.currentUser
     }
   }
-  catch (error) {
+  catch (error: any) {
     return { error: true, errorDetail: error }
   }
 }
@@ -206,7 +206,7 @@ export const updateUserProfilePicture = async (file: File) => {
       user: auth.currentUser
     }
   }
-  catch(err) {
+  catch(err: any) {
     return { error: true, errorDetail: err }
   }
 }
@@ -219,7 +219,7 @@ export const sendVerifyEmail = async () => {
       message: 'Verification link sent to your email. Kindly check to verify your account!'
     }
   }
-  catch (err) {
+  catch (err: any) {
     return { error: true, errorDetail: err }
   }
 }

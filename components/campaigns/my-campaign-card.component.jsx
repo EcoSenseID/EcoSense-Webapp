@@ -8,7 +8,6 @@ import classes from './my-campaign-card.module.scss';
 import EditCampaignDrawer from './edit-campaign-drawer.component';
 import { AuthContext } from '../../firebase/context';
 
-
 const MyCampaignCard = ({ data, categoriesList }) => {
 	const { isOpen: isOpenDrawer, onOpen: onOpenDrawer, onClose: onCloseDrawer } = useDisclosure();
     const toast = useToast();

@@ -28,14 +28,14 @@ const ProfileCenterContent = () => {
 	const [verifyIsLoading, setVerifyLoading] = useState(false);
 	const [dataChanged, setDataChanged] = useState(false);
 
-	const [uploadedFile, setUploadedFile] = useState([]);
-    const [previewFile, setPreviewFile] = useState();
-	const [uploadedFileName, setUploadedFileName] = useState('');
+	const [uploadedFile, setUploadedFile] = useState<File | undefined>(undefined);
+    const [previewFile, setPreviewFile] = useState<string>();
+	const [uploadedFileName, setUploadedFileName] = useState<string>('');
 
 	const toast = useToast();
 	const { isOpen, onOpen, onClose } = useDisclosure();
-    const initialRef = useRef();
-	const fileRef = useRef();
+    const initialRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
+	const fileRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
 	useEffect(() => {
 		if(!isLoading) {
@@ -66,7 +66,7 @@ const ProfileCenterContent = () => {
 	
 	// create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
-        if (!uploadedFile || uploadedFile.length === 0) {
+        if (!uploadedFile) {
             setPreviewFile(undefined);
             return;
         }
@@ -77,14 +77,14 @@ const ProfileCenterContent = () => {
         return () => URL.revokeObjectURL(objectUrl);
     }, [uploadedFile])
 
-	const handleChange = (event) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = event.target;
         setNewDetail({ ...newUserDetail, [name]: value });
 		// console.log(userDetail);
 		// console.log(newUserDetail);
 	}
 
-	const handleSubmit = async (event) => {
+	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		setSaveLoading(true);
 
@@ -98,6 +98,7 @@ const ProfileCenterContent = () => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
         } else {
             toast({
@@ -106,23 +107,24 @@ const ProfileCenterContent = () => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
 			console.log(result.user);
 			login(result.user);
         }
 	}
 
-	const handleReset = (event) => {
+	const handleReset = (event: React.FormEvent) => {
 		event.preventDefault();
 		setNewDetail({ ...userDetail });
 	}
 
-	const handleUpload = async (event) => {
+	const handleUpload = async (event: React.FormEvent) => {
 		event.preventDefault();
 		setUploadLoading(true);
 		
 		// Send request to API
-		const result = await updateUserProfilePicture(uploadedFile);
+		const result = await updateUserProfilePicture(uploadedFile!);
 		setUploadLoading(false);
 		
 		if (result.error) {
@@ -132,6 +134,7 @@ const ProfileCenterContent = () => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
         } else {
             toast({
@@ -140,17 +143,18 @@ const ProfileCenterContent = () => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
 			login(result.user);
-            setUploadedFile({});
+            setUploadedFile(undefined);
             onClose();
         }
 	}
 	
-	const chooseFile = (e) => {
+	const chooseFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
-		if(e.target.files[0]) {
-            const extCheckResult = isImage(e.target.files[0].name);
+		if(e.target.files![0]) {
+            const extCheckResult = isImage(e.target.files![0].name);
             if(!extCheckResult.isImage){
                 toast({
                     title: 'Wrong file format',
@@ -158,17 +162,18 @@ const ProfileCenterContent = () => {
                     status: 'error',
                     duration: 9000,
                     isClosable: true,
+					position: 'top'
                 });
                 return;
             }
         } else {
             return;
         }
-		setUploadedFile(e.target.files[0]);
-		setUploadedFileName(e.target.files[0].name);
+		setUploadedFile(e.target.files![0]);
+		setUploadedFileName(e.target.files![0].name);
 	}
 
-	const handleVerify = async (event) => {
+	const handleVerify = async (event: React.FormEvent) => {
 		event.preventDefault();
 		setVerifyLoading(true);
 
@@ -183,6 +188,7 @@ const ProfileCenterContent = () => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
         } else {
             toast({
@@ -191,6 +197,7 @@ const ProfileCenterContent = () => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+				position: 'top'
             });
         }
 	}
