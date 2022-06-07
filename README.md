@@ -37,10 +37,10 @@ Visit our deployed web application through:
 
 ## Infrastructure
 - Artifact Registry (Docker) `cloud-run-source-deploy/ecosense-web`
-- Cloud Build (Latest: `e6446ccb`)
+- Cloud Build `01f4323c` (latest - June 08, 2022 03:20 GMT+7)
 - Google Cloud Storage `ecosense-bangkit_cloudbuild/source`
 - Cloud Run `ecosense-web`
-  - Revision `ecosense-web-00001-bik` (100% traffic)
+  - Revision `ecosense-web-00002-yok` (100% traffic)
   - Autoscaling - max instances `100`
 
 ```mermaid
