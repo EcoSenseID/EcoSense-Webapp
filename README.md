@@ -40,13 +40,15 @@ Visit our deployed web application through:
 - Cloud Build (Latest: `e6446ccb`)
 - Google Cloud Storage `ecosense-bangkit_cloudbuild/source`
 - Cloud Run `ecosense-web`
+  - Revision `ecosense-web-00001-bik` (100% traffic)
+  - Autoscaling - max instances `100`
 
 ```mermaid
 graph LR;
     A([Local Repository])-->B([Run Cloud Build]);
     B([Run Cloud Build])-->C([Push to GCS]);
     C([Push to GCS])-->D([Build Container]);
-    D([Build Container])-->E([Push to Cloud Run]);
+    D([Build Container])-->E([Deploy to Cloud Run]);
 ```
 
 ## Screenshot
