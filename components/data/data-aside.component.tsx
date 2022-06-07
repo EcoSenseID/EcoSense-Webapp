@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Heading, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, Heading, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
 import CampaignDatacard from './campaign-datacard.component';
 
 type DataAsideProps = {
@@ -14,17 +14,20 @@ const DataAside = ({ campaigns, campaignIsLoading }: DataAsideProps) => {
                 <Heading as="div" fontWeight='bold' mb={5} letterSpacing='tight'>Stats</Heading>
                 <Text mb={5}>A summary of your campaigns statistics.</Text>
             </Flex>
-            <Flex flexDir='column' gap={5}>
-                { campaignIsLoading ?
-                    <Box height='380px' width='100%' borderRadius='10px' bgColor='white' boxShadow='md'>
-                        <Skeleton height='100px' borderTopRadius='10px' mb='8px'/>
-                        <Box p={6}>
-                            <Skeleton height='20px' />
-                            <SkeletonText noOfLines={6} spacing='4'/>
-                        </Box>
+            
+            { campaignIsLoading ?
+                <Box height='380px' width='100%' borderRadius='10px' bgColor='white' boxShadow='md'>
+                    <Skeleton height='100px' borderTopRadius='10px' mb='8px'/>
+                    <Box p={6}>
+                        <Skeleton height='20px' />
+                        <SkeletonText noOfLines={6} spacing='4'/>
                     </Box>
-                : campaigns.map(data => <CampaignDatacard key={data.id} data={data} />) }
-            </Flex>
+                </Box>
+                : 
+                <Grid templateColumns={['repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)']} gap={5}>
+                    { campaigns.map(data => <CampaignDatacard key={data.id} data={data} />) }
+                </Grid>
+            }
         </Flex>
     )
 }

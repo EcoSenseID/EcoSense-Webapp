@@ -13,11 +13,11 @@ import AddCategoryModal from './add-category-modal.component';
 import AddTaskModal from './add-task-modal.component';
 import { AuthContext } from '../../firebase/context';
 
-const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
+const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList, refreshValue, setRefreshValue }) => {
     const initialRef = useRef();
     const toast = useToast();
     const { currentUser } = useContext(AuthContext);
-    console.log(data);
+    // console.log(data);
     const [newData, setNewData] = useState({});
     const [isLoading, setLoading] = useState(true);
     const [dataChanged, setDataChanged] = useState(false);
@@ -137,6 +137,7 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setSaveLoading(true);
+        const previousNoOfTask = data.tasks.length;
         
         try {
             const formData  = new FormData();
@@ -147,6 +148,7 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
                 formData.append('posterChanged', 'true')
             }
             formData.append('uploadPoster', uploadedFile);
+            formData.append('previousNoOfTask', previousNoOfTask);
             
             const response = await fetch('https://ecosense-bangkit.uc.r.appspot.com/editCampaign', {
             // const response = await fetch('http://localhost:3001/editCampaign', {
@@ -177,6 +179,7 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
                 });
                 setUploadedFileName('');
                 onClose();
+                window.location.reload();
             }
         }
         catch (error) {

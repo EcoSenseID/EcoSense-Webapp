@@ -46,12 +46,14 @@ export const logInWithGoogle = async () => {
     // The signed-in user info.
     const user = result.user;
     const idToken = await getIdToken(user, /* forceRefresh */ true);
-    const apiResult = await fetch('https://ecosense-bangkit.uc.r.appspot.com/loginToWeb', {
-    // const apiResult = await fetch('http://localhost:3001/loginToWeb', {
+    // const apiResult = await fetch('https://ecosense-bangkit.uc.r.appspot.com/loginToWeb', {
+    const apiResult = await fetch('http://localhost:3001/loginToWeb', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + idToken
+        'Authorization': 'Bearer ' + idToken,
+        'Content-Type': 'application/json'
       },
+      body: JSON.stringify({ displayName: user.displayName })
     });
     const apiResultData = await apiResult.json();
     if (apiResultData.error) {
@@ -127,6 +129,7 @@ export const emailSignUp = async ({ displayName: name, email: userEmail, passwor
       headers: {
         'Authorization': 'Bearer ' + idToken
       },
+      body: JSON.stringify({ displayName: updatedUser!.displayName })
     });
     const apiResultData = await apiResult.json();
     if (apiResultData.error) {

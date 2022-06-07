@@ -14,7 +14,7 @@ const CampaignDatacard = ({ data }: CampaignDatacardProps) => {
             <Image src={data.posterUrl} alt='Poster' w='100%' h={100} borderTopRadius={10} objectFit='cover' />
             <Flex p={5} flexDir='column' >
                 <Heading size={'md'} mb={2} noOfLines={1}>{data.title}</Heading>
-                <Text noOfLines={4} maxH={100} mb={5}>{data.description}</Text>
+                {/* <Text noOfLines={4} maxH={100} mb={5}>{data.description}</Text> */}
 
                 <Flex alignItems='center' mb={1.5}>
                     <Icon as={FiCalendar} mr='10px' /> 
