@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext, Fragment } from 'react';
 import _ from 'lodash';
 import { Button, ButtonGroup, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, FormControl, FormHelperText, FormLabel, IconButton, Image, Input, InputGroup, InputLeftElement, InputRightElement, NumberInput, NumberInputField, Switch, Text, Tooltip, useBreakpointValue, useDisclosure, useToast } from '@chakra-ui/react';
 
@@ -43,6 +43,8 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
 
     useEffect(() => {
         setFullCategoriesList(categoriesList);
+        setCurrentCategoriesList(categoriesList.filter(category => !listOfCategoriesId.includes(category.id)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [categoriesList]);
 
     // create a preview as a side effect, whenever selected file is changed
@@ -135,43 +137,58 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setSaveLoading(true);
-        const formData  = new FormData();
-        formData.append('newCampaignData', JSON.stringify(newData));
-        if (uploadedFileName === '') {
-            formData.append('posterChanged', 'false');
-        } else {
-            formData.append('posterChanged', 'true')
-        }
-        formData.append('uploadPoster', uploadedFile);
         
-        const response = await fetch('https://ecosense-bangkit.uc.r.appspot.com/editCampaign', {
-        // const response = await fetch('http://localhost:3001/editCampaign', {
-            method: 'PUT',
-            body: formData,
-            headers: { 'Authorization': 'Bearer ' + currentUser.idToken },
-        });
-        const data = await response.json();
-        if (data.error) {
+        try {
+            const formData  = new FormData();
+            formData.append('newCampaignData', JSON.stringify(newData));
+            if (uploadedFileName === '') {
+                formData.append('posterChanged', 'false');
+            } else {
+                formData.append('posterChanged', 'true')
+            }
+            formData.append('uploadPoster', uploadedFile);
+            
+            const response = await fetch('https://ecosense-bangkit.uc.r.appspot.com/editCampaign', {
+            // const response = await fetch('http://localhost:3001/editCampaign', {
+                method: 'PUT',
+                body: formData,
+                headers: { 'Authorization': 'Bearer ' + currentUser.idToken },
+            });
+            const data = await response.json();
+            if (data.error) {
+                setSaveLoading(false);
+                toast({
+                    title: 'Error!',
+                    description: `${data.message}`,
+                    status: 'error',
+                    duration: 9000,
+                    isClosable: true,
+                    position: 'top'
+                });
+            } else {
+                setSaveLoading(false);
+                toast({
+                    title: 'Save success!',
+                    description: `${data.message}`,
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+                    position: 'top'
+                });
+                setUploadedFileName('');
+                onClose();
+            }
+        }
+        catch (error) {
             setSaveLoading(false);
             toast({
                 title: 'Error!',
-                description: `${data.message}`,
+                description: `${error.message}`,
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
                 position: 'top'
             });
-        } else {
-            setSaveLoading(false);
-            toast({
-                title: 'Save success!',
-                description: `${data.message}`,
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-                position: 'top'
-            });
-            setUploadedFileName('');
         }
     }
 
@@ -362,9 +379,18 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
                                 </Flex>
                             ))}</Flex>}
                             <ButtonGroup>
-                                <Button mt={2} onClick={onOpenModalAddTask} leftIcon={<FiPlus />} >Add Task</Button>
-                                { !isLoading && newData.tasks.length > 0 &&
-                                    <Button colorScheme={'red'} variant='ghost' mt={2} onClick={handleRemoveLastTask} leftIcon={<FiTrash2 />} >Remove Last Task</Button>
+                                { !isLoading && !newData.canEditTask &&
+                                    <Tooltip label='Some tasks has been completed by participants, so you cannot edit anymore.' shouldWrapChildren>
+                                        <Button mt={2} isDisabled onClick={onOpenModalAddTask} leftIcon={<FiPlus />} >Add Task</Button>
+                                    </Tooltip>
+                                }
+                                { !isLoading && newData.canEditTask &&
+                                    <Fragment>
+                                        <Button mt={2} onClick={onOpenModalAddTask} leftIcon={<FiPlus />} >Add Task</Button>
+                                        { newData.tasks.length > 0 && 
+                                            <Button colorScheme={'red'} variant='ghost' mt={2} onClick={handleRemoveLastTask} leftIcon={<FiTrash2 />} >Remove Last Task</Button>
+                                        }
+                                    </Fragment>
                                 }
                             </ButtonGroup>
                         </FormControl>
@@ -399,15 +425,17 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList }) => {
                     setNewData={setNewData}
                 />
                 {/* MODAL FOR ADDING TASK */}
-                <AddTaskModal 
-                    isOpen={isOpenModalAddTask} 
-                    onOpen={onOpenModalAddTask} 
-                    onClose={onCloseModalAddTask} 
-                    currentTaskOrder={currentTaskOrder}
-                    setCurrentTaskOrder={setCurrentTaskOrder}
-                    newData={newData}
-                    setNewData={setNewData}
-                />
+                { !isLoading && newData.canEditTask && (
+                    <AddTaskModal 
+                        isOpen={isOpenModalAddTask} 
+                        onOpen={onOpenModalAddTask} 
+                        onClose={onCloseModalAddTask} 
+                        currentTaskOrder={currentTaskOrder}
+                        setCurrentTaskOrder={setCurrentTaskOrder}
+                        newData={newData}
+                        setNewData={setNewData}
+                    />
+                )}
             </Drawer>
         </>
     )

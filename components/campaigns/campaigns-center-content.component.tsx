@@ -34,19 +34,19 @@ const CampaignsCenterContent = ({ myCampaigns, categoriesList }: CampaignsCenter
             </Flex>
             { campaignsIsLoading ?
                 <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={8}>
-                    <Box boxShadow='lg' bg='white' height={470} borderRadius='10px'>
+                    <Box boxShadow='lg' bg='white' height={520} borderRadius='10px'>
                         <Skeleton height='200px' borderTopRadius='10px'/>
                         <Box p={6}>
                             <Skeleton height='30px' /> <SkeletonText  mt='4' noOfLines={6} spacing='4' />
                         </Box>
                     </Box>
-                    <Box boxShadow='lg' bg='white' height={470} mt={0} borderRadius='10px'>
+                    <Box boxShadow='lg' bg='white' height={520} mt={0} borderRadius='10px'>
                         <Skeleton height='200px' borderTopRadius='10px'/>
                         <Box p={6}>
                             <Skeleton height='30px' /> <SkeletonText  mt='4' noOfLines={6} spacing='4' />
                         </Box>
                     </Box>
-                    <Box boxShadow='lg' bg='white' height={470} borderRadius='10px'>
+                    <Box boxShadow='lg' bg='white' height={520} borderRadius='10px'>
                         <Skeleton height='200px' borderTopRadius='10px'/>
                         <Box p={6}>
                             <Skeleton height='30px' /> <SkeletonText  mt='4' noOfLines={6} spacing='4' />

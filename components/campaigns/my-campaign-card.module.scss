@@ -1,6 +1,11 @@
 .card {
     background-color: white;
     box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.4);
 }
 
 .smallicon {
