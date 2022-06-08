@@ -37,10 +37,10 @@ Visit our deployed web application through:
 
 ## Infrastructure
 - Artifact Registry (Docker) `cloud-run-source-deploy/ecosense-web`
-- Cloud Build `01f4323c` (latest - June 08, 2022 03:20 GMT+7)
+- Cloud Build `cdb65d6f` (latest - June 09, 2022 01:59 GMT+7)
 - Google Cloud Storage `ecosense-bangkit_cloudbuild/source`
 - Cloud Run `ecosense-web`
-  - Revision `ecosense-web-00002-yok` (100% traffic)
+  - Revision `ecosense-web-00003-gol` (100% traffic)
   - Autoscaling - max instances `100`
 
 ```mermaid
@@ -52,7 +52,13 @@ graph LR;
 ```
 
 ## Screenshot
-![screenshot-ecosense vercel app-2022 06 02-15_42_07](https://user-images.githubusercontent.com/60643640/171591720-82c1d59a-6c15-4f64-931c-b12754b7db6a.png)
+`Dark mode disabled`
+
+![ecosense-lightmode](https://user-images.githubusercontent.com/60643640/172697726-e55c0f69-c945-4079-83b9-bcc7fa5fe9a6.png)
+
+`Dark mode enabled`
+
+![ecosense-darkmode](https://user-images.githubusercontent.com/60643640/172697741-ce6de6d1-ec7a-4cd9-9edf-b2e78b9a47fe.png)
 
 ## 
 &#169; EcoSense 2022.
