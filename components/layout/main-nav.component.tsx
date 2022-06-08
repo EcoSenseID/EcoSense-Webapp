@@ -6,34 +6,180 @@ import Logo from "./logo.component";
 import classes from './main-nav.module.scss';
 
 import { AuthContext } from "../../firebase/context";
-import { Flex } from "@chakra-ui/react";
+import {
+    Box,
+    Flex,
+    Text,
+    IconButton,
+    Button,
+    Stack,
+    Collapse,
+    useColorModeValue,
+    useBreakpointValue,
+    useDisclosure,
+    useColorMode,
+} from '@chakra-ui/react';
+import {
+    HamburgerIcon,
+    CloseIcon,
+    MoonIcon,
+    SunIcon,
+} from '@chakra-ui/icons';
 
 const MainNavigation = () => {
     const { isAuthenticated } = useContext(AuthContext);
     const router = useRouter();
+    const { isOpen, onToggle } = useDisclosure();
+    const { colorMode, toggleColorMode } = useColorMode();
     
     return (
-        <header className={classes.header}>
-            <Link href='/'>
-                <a className={classes.logobox}><Logo /></a>
-            </Link>
-            <Flex as={'nav'} className={classes.navbox} display={(router.asPath == '/login' || router.asPath == '/signup') ? 'none' : 'inline-flex'}>
-                <ul>
-                    <li><Link href='/'>Home</Link></li>
-                    <li><Link href='/#about'>About Us</Link></li>
-                    <li><Link href='/#campaigns'>Campaigns</Link></li>
-                    <li><Link href='/#footer'>Contact</Link></li>
-                    <li className={classes.login}>
-                        {
-                            isAuthenticated ?
-                            <Link href='/dashboard'>Dashboard</Link> :
-                            <Link href='/login'>Log In</Link>
-                        }
-                    </li>
-                </ul>
+        <Box>
+            <Flex
+                as={'nav'} 
+                bgGradient={useColorModeValue('linear(to-tr, green.50, green.50)', 'linear(to-l, gray.700, gray.700)')}
+                color={useColorModeValue('gray.600', 'white')}
+                minH={'100px'}
+                py={{ base: 2 }}
+                px={{ base: '5%' }}
+                borderBottom={1}
+                borderStyle={'solid'}
+                borderColor={useColorModeValue('gray.200', 'gray.900')}
+                align={'center'}
+            >
+                <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }} display={{ base: 'flex', md: 'none' }}>
+                    <IconButton
+                        onClick={onToggle}
+                        icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
+                </Flex>
+
+                <Flex flex={{ base: 1, md: 'auto' }} justify={{ base: 'center', md: 'start' }}>
+                    <Text
+                        textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+                        fontFamily={'heading'}
+                        color={useColorModeValue('gray.800', 'white')}>
+                        <Link href='/'><a className={classes.logobox}><Logo /></a></Link>
+                    </Text>
+
+                    <Flex display={(router.asPath == '/login' || router.asPath == '/signup') ? 'none' : 'flex'}>
+                        <Flex display={{ base: 'none', md: 'flex' }} ml={10}><DesktopNav /></Flex>
+                    </Flex>
+                </Flex>
+
+                <Stack
+                    justify={'flex-end'}
+                    direction={'row'}
+                    className={classes.login}
+                    flex={{ base: 1, md: 'auto' }}
+                    gap={3}
+                >
+                    <Button onClick={toggleColorMode} display={{ base: 'none', md: 'flex' }} boxShadow='lg' bgColor={useColorModeValue('white', 'gray.600')}>
+                        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                    </Button>
+                    {
+                        isAuthenticated ?
+                        <Link href='/dashboard'>Dashboard</Link> :
+                        <Link href='/login'>Log In</Link>
+                    }
+                </Stack>
             </Flex>
-        </header>
+
+            <Collapse in={isOpen} animateOpacity><MobileNav /></Collapse>
+        </Box>
     );
 }
+
+const DesktopNav = () => {
+    const linkColor = useColorModeValue('gray.600', 'gray.200');
+    const linkHoverColor = useColorModeValue('gray.800', 'white');
+  
+    return (
+      <Stack direction={'row'} spacing={8}>
+        { NAV_ITEMS.map((navItem) => (
+          <Flex key={navItem.label} alignItems='center'>
+            <Link href={navItem.href ?? '#'}>
+                <Text 
+                    color={linkColor} 
+                    _hover={{
+                        textDecoration: 'none',
+                        color: linkHoverColor,
+                    }}
+                    cursor='pointer'
+                >
+                    {navItem.label}
+                </Text>
+            </Link>
+          </Flex>
+        ))}
+      </Stack>
+    );
+};
+  
+const MobileNav = () => {
+    return (
+      <Stack
+        bg={useColorModeValue('white', 'gray.800')}
+        p={4}
+        display={{ md: 'none' }}>
+        { NAV_ITEMS.map((navItem) => (
+          <MobileNavItem key={navItem.label} {...navItem} />
+        ))}
+      </Stack>
+    );
+};
+  
+const MobileNavItem = ({ label, href }: NavItem) => {
+  
+    return (
+      <Stack spacing={4}>
+        <Flex
+          as={Link}
+          href={href ?? '#'}>
+          <Text
+            fontWeight={600}
+            color={useColorModeValue('gray.600', 'gray.200')}>
+            {label}
+          </Text>
+        </Flex>
+      </Stack>
+    );
+};
+  
+interface NavItem {
+    label: string;
+    subLabel?: string;
+    children?: Array<NavItem>;
+    href?: string;
+}
+  
+export const NAV_ITEMS: Array<NavItem> = [
+    {
+        label: 'Home',
+        href: '/',
+    },
+    {
+        label: 'Our Partners',
+        href: '/#partners',
+    },
+    {
+      label: 'Campaigns',
+      href: '/#campaigns',
+    },
+    {
+      label: 'Features',
+      href: '/#features',
+    },
+    {
+        label: 'Our Team',
+        href: '/#team',
+    },
+    {
+        label: 'FAQ',
+        href: '/#faq',
+    },
+];
+  
 
 export default MainNavigation;

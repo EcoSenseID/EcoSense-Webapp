@@ -99,7 +99,7 @@ const MyCampaignCard = ({ data, categoriesList }) => {
                     </MenuList>
                 </Menu>
             </Flex>
-            <Flex p={5} flexDir='column'>
+            <Flex p={7} flexDir='column'>
                 <Heading size={'md'} mb={2} noOfLines={1}>{title}</Heading>
                 <Text noOfLines={4} maxH={100} mb={5}>{description}</Text>
                 

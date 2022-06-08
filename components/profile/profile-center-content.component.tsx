@@ -212,7 +212,7 @@ const ProfileCenterContent = () => {
 			</Heading>
 			<Flex flexDir='column'>
 				<Flex alignItems='center'>
-					<Avatar size={['lg', 'xl', 'xl']} my={2} src={userDetail.userPhotoUrl}/>
+					<Avatar name={userDetail.userDisplayName} bgColor='green.700' size={['lg', 'xl', 'xl']} my={2} src={userDetail.userPhotoUrl}/>
 					<Flex flexDir={'column'} ml={8}>
 						<Text fontWeight='bold' fontSize={['xl', '2xl', '2xl']} mb={[1, 3, 3]}>
 							<Flex as={'span'} display='inline-flex'>{userDetail.userDisplayName}</Flex>

@@ -1,14 +1,15 @@
 .card {
     background-color: white;
     display: flex;
-    border-radius: 15px;
-    padding: 15px;
-    height: 230px;
-    box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 0;
+    align-items: center;
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
         height: max-content;
+        flex-direction: column;
+        padding: 0;
     }
 }
 
@@ -16,6 +17,7 @@
     font-size: large;
     margin-bottom: 15px;
     font-weight: bold;
+    color: black;
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
@@ -36,38 +38,35 @@
 }
 
 .card_img {
-    border-radius: 15px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     overflow: hidden;
-    width: 180px;
     min-width: 40%;
-    height: 200px;
+    height: 100%;
+    max-height: 250px;
     position: relative;
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
-        width: 100px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 10px;
+        width: 100%;
         min-width: 100px;
-        height: 150px;
+        height: 100%;
+        max-height: 200px;
     }
 }
 
 .card_text {
     margin: 15px 25px;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
+    color: black;
+    
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        margin: 25px;
+    }
 }
 
 .card_desc {
     font-size: 0.75rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    /* Extra small devices (phones, 600px and down) */
-    @media only screen and (max-width: 600px) {
-        font-size: 0.65rem;
-        -webkit-line-clamp: 4;
-    }
 }

@@ -49,7 +49,11 @@ body {
   margin: 0;
   background-color: white;
   color: #252525;
-  font-family: 'Poppins', 'Roboto', sans-serif;
+  font-family: 'Poppins', 'Roboto', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rubik', 'Poppins', 'Roboto', sans-serif !important;
 }
 
 #nprogress .bar {

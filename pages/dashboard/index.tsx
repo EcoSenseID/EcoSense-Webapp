@@ -6,6 +6,7 @@ import LeftNavbar from '../../components/dashboard/left-navbar/left-navbar.compo
 import CenterContent from '../../components/dashboard/center-content/center-content.component';
 import AsideContent from '../../components/dashboard/aside-content/aside-content.component';
 import { AuthContext } from '../../firebase/context';
+import { useColorMode } from '@chakra-ui/react';
 
 const Dashboard = () => {
   const [myCampaigns, setMyCampaigns] = useState<any>({
@@ -14,6 +15,7 @@ const Dashboard = () => {
   });
   const [categoriesList, setCategoriesList] = useState<Array<any>>([]);
   const { currentUser } = useContext(AuthContext);
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const getMyCampaigns = async () => {
     const response = await fetch(`/api/campaigns`, {
@@ -46,6 +48,7 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
+    if (colorMode == 'dark') toggleColorMode();
     const fetchData = async () => {
         await getMyCampaigns();
         if (categoriesList.length === 0) await getCategories();

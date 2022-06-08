@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import classes from './login-panel.module.scss';
 
 import { emailLogIn, logInWithGoogle, forgotPassword } from "../../firebase/firebase.util";
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Divider, FormControl, FormLabel, HStack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, ScaleFade, Stack, Text, useDisclosure, useToast } from "@chakra-ui/react";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, DarkMode, Divider, FormControl, FormLabel, HStack, Input, InputGroup, InputLeftElement, InputRightElement, LightMode, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, ScaleFade, Stack, Text, useDisclosure, useToast } from "@chakra-ui/react";
 
 import { FiAtSign, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc'
@@ -139,15 +139,17 @@ const LoginPanel = () => {
                 </Button>
             </HStack>
             { error.isError && error.errorMessage != '' && 
-                <ScaleFade in={true} reverse={true}>
-                    <Alert status='error' borderRadius={10} mt={5} mb={5}>
-                        <AlertIcon />
-                        <Box>
-                            <AlertTitle>{error.errorMessage}</AlertTitle>
-                            <AlertDescription>{error.errorDescription}</AlertDescription>
-                        </Box>
-                    </Alert>
-                </ScaleFade>
+                <LightMode>
+                    <ScaleFade in={true} reverse={true}>
+                        <Alert status='error' borderRadius={10} mt={5} mb={5}>
+                            <AlertIcon />
+                            <Box>
+                                <AlertTitle as={Text} color={'gray.900'}>{error.errorMessage}</AlertTitle>
+                                <AlertDescription as={Text} color={'gray.900'}>{error.errorDescription}</AlertDescription>
+                            </Box>
+                        </Alert>
+                    </ScaleFade>
+                </LightMode>
             }
 
             <form onSubmit={handleSubmit}>
@@ -206,13 +208,13 @@ const LoginPanel = () => {
                     <Divider />
                     </HStack>
                     { isGoogleLoading ?
-                        <Button isLoading type="button" variant="solid" colorScheme='gray' width='100%' onClick={handleSubmitGoogle}>
-                            <Icon as={FcGoogle} mr={2}></Icon>
-                            Google Account
-                        </Button> :
-                        <Button type="button" variant="solid" colorScheme='gray' width='100%' onClick={handleSubmitGoogle}>
-                            <Icon as={FcGoogle} mr={2}></Icon>
-                            Google Account
+                        <DarkMode>
+                            <Button leftIcon={<FcGoogle />} variant="solid" isLoading colorScheme='gray' width='100%'>
+                                <Text color={'gray.600'}>Google Account</Text>
+                            </Button>
+                        </DarkMode> :
+                        <Button leftIcon={<FcGoogle />} variant="solid" colorScheme='gray' width='100%' onClick={handleSubmitGoogle}>
+                            <Text color={'gray.600'}>Google Account</Text>
                         </Button>
                     }
                 </Stack>

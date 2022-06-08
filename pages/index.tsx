@@ -1,12 +1,14 @@
 import React from 'react';
 import Head from 'next/head'
 
-import HomepageAbout from '../components/homepage/about.component'
+import SupportedBy from '../components/homepage/partners.component'
 import Hero from '../components/homepage/hero.component'
 import ScrollUpBtn from '../components/layout/scroll-up-btn.component'
 import Campaigns from '../components/homepage/campaigns.component';
 
 import Layout from '../components/layout/layout-frontpage.component'
+import OurTeam from 'components/homepage/ourteam.component';
+import Features from 'components/homepage/features.component';
 
 const HomePage = (props: any) => {
   return (
@@ -19,8 +21,10 @@ const HomePage = (props: any) => {
       <main>
         <ScrollUpBtn />
         <Hero />
-        <HomepageAbout />
+        <SupportedBy />
         <Campaigns campaigns={props.campaigns} />
+        <Features />
+        <OurTeam />
       </main>
     </Layout>
   )

@@ -46,8 +46,8 @@ export const logInWithGoogle = async () => {
     // The signed-in user info.
     const user = result.user;
     const idToken = await getIdToken(user, /* forceRefresh */ true);
-    // const apiResult = await fetch('https://ecosense-bangkit.uc.r.appspot.com/loginToWeb', {
-    const apiResult = await fetch('http://localhost:3001/loginToWeb', {
+    const apiResult = await fetch('https://ecosense-bangkit.uc.r.appspot.com/loginToWeb', {
+    // const apiResult = await fetch('http://localhost:3001/loginToWeb', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + idToken,

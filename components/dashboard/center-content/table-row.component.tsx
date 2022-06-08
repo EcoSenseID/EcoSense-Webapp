@@ -24,7 +24,7 @@ const TableRow = ({ data }: TableRowProps) => {
         <Tr>
             <Td>
                 <Flex align='center'>
-                    <Avatar src={data.posterUrl}/>
+                    <Avatar name={data.title} bgColor='green.700' src={data.posterUrl}/>
                     <Flex flexDir='column' ml={4}>
                         <Heading size='sm' letterSpacing='tight'>{data.title}</Heading>
                         <Text fontSize='sm' color='gray'>

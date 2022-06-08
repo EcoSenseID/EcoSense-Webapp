@@ -1,3 +1,4 @@
+import { Flex, LightMode, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 // import Image from "next/image";
 
@@ -11,11 +12,13 @@ type LoginSignupContainerProps = {
 
 const LoginSignupContainer = ({ children }: LoginSignupContainerProps) => {
     return (
-        <section className={classes.login_signup_bg} >
-            <div className={classes.login_signup_container}>
-                {children}
-            </div>
-        </section>
+        <LightMode>
+            <section className={classes.login_signup_bg} >
+                <Flex className={classes.login_signup_container} bgGradient={useColorModeValue('linear(to-b, green.50, white)', 'linear(to-l, gray.700, gray.800)')}>
+                    {children}
+                </Flex>
+            </section>
+        </LightMode>
     )
 }
 

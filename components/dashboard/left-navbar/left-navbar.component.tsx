@@ -119,7 +119,7 @@ const LeftNavbar = ({ page }: LeftNavbarProps) => {
 				</Flex>
 				<Flex flexDir={['row', 'row', 'column', 'column', 'column']} alignItems='center' mb={10} mt={5} justifyContent='center' align='center'>
 					<Flex flexDir='column' alignItems='center' >
-						<Avatar my={2} src={userPhotoURL}/>
+						<Avatar name={userDisplayName} bgColor='green.700' my={2} src={userPhotoURL}/>
 						<Text as="div" display={['none', 'none', 'none', 'none', 'inline-flex']} textAlign='center'>{userDisplayName}</Text>
 					</Flex>
 					<Button rightIcon={<FiLogOut />} onClick={onOpen} colorScheme='red' mt={[0, 0, 4, 4, 4]} ml={[4, 4, 0, 0, 0]} variant='outline'>

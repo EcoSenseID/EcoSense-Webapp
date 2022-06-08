@@ -1,14 +1,16 @@
 import React from "react";
-import Image from "next/image";
+import { Image, useColorModeValue } from "@chakra-ui/react";
 
 import classes from './logo.module.scss';
 
 const Logo = () => {
     return (
-        <>
-            <Image className={classes.logopic} src={`/images/EcoSense-logo-png.png`} height={'40px'} width={'40px'} alt={'Logo EcoSense'}></Image>
-            <div className={classes.logo}>EcoSense</div>
-        </>
+        <Image 
+            className={classes.logopic} 
+            src={useColorModeValue(`/images/EcoSense LogoType-1@2x.png`, `/images/EcoSense LogoType@2x.png`)} 
+            height={'50px'} 
+            alt={'Logo EcoSense'}
+        />
     );
 }
 
