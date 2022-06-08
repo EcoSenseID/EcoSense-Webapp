@@ -50,6 +50,7 @@ const AddCategoryDrawer = ({ isOpen, onClose, fullCategoriesList, currentCategor
                     status: 'error',
                     duration: 9000,
                     isClosable: true,
+					position: 'top'
                 });
             } else if (addCategoryData.earned_experience_point === 0) {
                 toast({
@@ -58,6 +59,7 @@ const AddCategoryDrawer = ({ isOpen, onClose, fullCategoriesList, currentCategor
                     status: 'error',
                     duration: 9000,
                     isClosable: true,
+					position: 'top'
                 });
             }
             return;

@@ -12,7 +12,7 @@ type AsideContentProps = {
 
 const AsideContent = ({ categories, campaigns, campaignsIsLoading }: AsideContentProps) => {
     return (
-        <Flex w={['100%', '100%', '30%']} minW={[null, null, '300px', '300px', '400px']} bgColor='#f5f5f5' p='3%' flexDir='column' overflow='auto'>
+        <Flex w={['100%', '100%', '30%']} minW={[null, null, '300px', '300px', '400px']} bgColor='#f5f5f5' p={['10%', '6%', '3%', '3%', '3%']} flexDir='column' overflow='auto'>
             <Flex alignContent='center'>
                 <InputGroup bgColor='#fff' mb={4} border='none' borderColor='#fff' borderRadius='10px' mr={2}>
                     <InputLeftElement><FiSearch color='gray' /></InputLeftElement>

@@ -33,9 +33,7 @@ export const getStaticProps = async () => {
       const data = await res.json();
       const { campaigns } = await data;
       return {
-          props: {
-              campaigns: campaigns,
-          }, 
+          props: { campaigns: campaigns, }, 
           revalidate: 60,
       }
   }

@@ -113,6 +113,7 @@ const LoginPanel = () => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             });
         } else {
             toast({
@@ -121,6 +122,7 @@ const LoginPanel = () => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             });
             setEmailForgot('');
             onClose();

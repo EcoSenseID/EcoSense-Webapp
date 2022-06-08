@@ -41,6 +41,7 @@ const ProfileAsideContent = () => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             });
             return;
         }
@@ -54,6 +55,7 @@ const ProfileAsideContent = () => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             });
             return;
         } else {
@@ -63,13 +65,14 @@ const ProfileAsideContent = () => {
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             });
             setNewPasswords({ oldPassword: '', newPassword: '', confirmNewPassword: '' });
         }
     }
 
     return (
-        <Flex w={['100%', '100%', '30%']} minW={[null, null, '300px', '300px', '400px']} bgColor='#f5f5f5' p='3%' flexDir='column' overflow='auto'>
+        <Flex w={['100%', '100%', '30%']} minW={[null, null, '300px', '300px', '400px']} bgColor='#f5f5f5' p={['10%', '6%', '3%', '3%', '3%']} flexDir='column' overflow='auto'>
             <Heading as="div" fontWeight='bold' mb={5} letterSpacing='tight'>Security</Heading>
             <Text mb={5}>Manage your account&apos;s security settings, like your password and two-factor authentication preferences.</Text>
             <Box bgColor='white' borderRadius={10} padding={7} mb={5}>

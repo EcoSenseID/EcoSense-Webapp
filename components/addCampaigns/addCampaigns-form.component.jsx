@@ -129,6 +129,7 @@ const AddCampaignForm = ({ categoriesList }) => {
                     status: 'error',
                     duration: 9000,
                     isClosable: true,
+					position: 'top'
                 });
                 return;
             }
@@ -150,6 +151,7 @@ const AddCampaignForm = ({ categoriesList }) => {
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
+                position: 'top'
             })
         } else {
             setSaveIsLoading(true);
@@ -176,6 +178,7 @@ const AddCampaignForm = ({ categoriesList }) => {
                     status: 'error',
                     duration: 9000,
                     isClosable: true,
+					position: 'top'
                 });
             } else {
                 setSaveIsLoading(false);
@@ -185,6 +188,7 @@ const AddCampaignForm = ({ categoriesList }) => {
                     status: 'success',
                     duration: 9000,
                     isClosable: true,
+					position: 'top'
                 });
                 setCurrentTaskOrder(1);
                 setCurrentCategoriesList(fullCategoriesList);

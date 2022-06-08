@@ -203,7 +203,7 @@ const ProfileCenterContent = () => {
 	}
 
 	return (
-		<Flex w={['100%', '100%', '60%', '60%', '55%']} p={['6%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
+		<Flex w={['100%', '100%', '60%', '60%', '55%']} p={['10%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
 			<Heading as="div" 
 				fontWeight='normal' 
 				mb={10} 
@@ -212,12 +212,12 @@ const ProfileCenterContent = () => {
 			</Heading>
 			<Flex flexDir='column'>
 				<Flex alignItems='center'>
-					<Avatar size='xl' my={2} src={userDetail.userPhotoUrl}/>
+					<Avatar size={['lg', 'xl', 'xl']} my={2} src={userDetail.userPhotoUrl}/>
 					<Flex flexDir={'column'} ml={8}>
-						<Text fontWeight='bold' fontSize='2xl' mb={3}>
+						<Text fontWeight='bold' fontSize={['xl', '2xl', '2xl']} mb={[1, 3, 3]}>
 							<Flex as={'span'} display='inline-flex'>{userDetail.userDisplayName}</Flex>
 						</Text>
-						<Button onClick={onOpen}>Change Profile Picture</Button>
+						<Button onClick={onOpen} size={['sm', 'md', 'md']}>Change Profile Picture</Button>
 					</Flex>
 				</Flex>
 

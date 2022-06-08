@@ -23,7 +23,7 @@ const CenterContent = ({ campaigns, campaignsIsLoading }: CenterContentProps) =>
 	console.log(campaigns);
 
 	return (
-		<Flex w={['100%', '100%', '60%', '60%', '55%']} p={['6%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
+		<Flex w={['100%', '100%', '60%', '60%', '55%']} p={['10%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
 			<Heading as="div" fontWeight='normal' mb={4} letterSpacing='tight'>
 				Welcome back, <Flex as={'span'} fontWeight='bold' display='inline-flex'>{firstName}!</Flex>
 			</Heading>

@@ -60,7 +60,7 @@ const DataCenterContent = ({ campaigns, campaignIsLoading }: DataCenterProps) =>
     }
 
     return (
-        <Flex w='100%' p={['6%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
+        <Flex w='100%' p={['10%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
             <Flex alignContent='center' justifyContent='space-between'>
                 <Heading as="div" 
                     fontWeight='normal' 
@@ -85,8 +85,8 @@ const DataCenterContent = ({ campaigns, campaignIsLoading }: DataCenterProps) =>
                 </Stat>
             </StatGroup>
 
-            <Flex alignItems='center'>
-                <Text mr={5}>Choose campaign name</Text>
+            <Flex alignItems={['flex-start', 'center', 'flex-start', 'center', 'center']} flexDir={['column', 'row', 'column', 'row', 'row']} gap={[2, 5, 2, 5, 5]}>
+                <Text>Choose campaign name</Text>
                 <Select maxW={300} onChange={handleSelectChange} value={selectedCampaign ? selectedCampaign.id : ''} placeholder='Select a campaign name'>
                     { !campaignIsLoading && campaigns.map(data => <option key={data.id} value={data.id}>{data.title}</option>)}
                 </Select>

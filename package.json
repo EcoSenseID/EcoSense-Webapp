@@ -30,7 +30,6 @@
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.0.12",
     "eslint": "^8.17.0",
-    "eslint-config-next": "12.1.6",
-    "typescript-plugin-css-modules": "^3.4.0"
+    "eslint-config-next": "12.1.6"
   }
 }

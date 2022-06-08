@@ -60,6 +60,7 @@ const SignupPanel = () => {
                     status: 'success',
                     duration: 9000,
                     isClosable: true,
+					position: 'top'
                 });
                 router.push('/login');
                 setCredentials({...userCredentials, displayName: '', email: '', password: '', confirmPassword: '' });

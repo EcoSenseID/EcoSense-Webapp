@@ -21,7 +21,7 @@ const CampaignsCenterContent = ({ myCampaigns, categoriesList }: CampaignsCenter
     }, [myCampaigns]);
 
     return (
-        <Flex w='100%' p={['6%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
+        <Flex w='100%' p={['10%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
             <Flex alignContent='center' justifyContent='space-between'>
                 <Heading as="div" 
                     fontWeight='normal' 
