@@ -2,8 +2,6 @@ import { Flex, Grid, Heading, IconButton, useColorModeValue } from "@chakra-ui/r
 import React, { useState } from "react";
 import CampaignCard from "./campaign-card.component";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import classes from './campaigns.module.scss';
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 

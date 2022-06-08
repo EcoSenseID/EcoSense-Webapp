@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useRouter } from "next/router";
+import * as router from 'next/router';
 import Link from "next/link";
 
 import Logo from "./logo.component";
@@ -28,7 +28,7 @@ import {
 
 const MainNavigation = () => {
     const { isAuthenticated } = useContext(AuthContext);
-    const router = useRouter();
+    const nextrouter = router.useRouter();
     const { isOpen, onToggle } = useDisclosure();
     const { colorMode, toggleColorMode } = useColorMode();
     
@@ -63,7 +63,7 @@ const MainNavigation = () => {
                         <Link href='/'><a className={classes.logobox}><Logo /></a></Link>
                     </Text>
 
-                    <Flex display={(router.asPath == '/login' || router.asPath == '/signup') ? 'none' : 'flex'}>
+                    <Flex display={(nextrouter.asPath == '/login' || nextrouter.asPath == '/signup') ? 'none' : 'flex'}>
                         <Flex display={{ base: 'none', md: 'flex' }} ml={10}><DesktopNav /></Flex>
                     </Flex>
                 </Flex>
@@ -78,11 +78,13 @@ const MainNavigation = () => {
                     <Button onClick={toggleColorMode} display={{ base: 'none', md: 'flex' }} boxShadow='lg' bgColor={useColorModeValue('white', 'gray.600')}>
                         {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                     </Button>
-                    {
-                        isAuthenticated ?
-                        <Link href='/dashboard'>Dashboard</Link> :
-                        <Link href='/login'>Log In</Link>
-                    }
+                    <Flex display={(nextrouter.asPath == '/login' || nextrouter.asPath == '/signup') ? 'none' : 'flex'}>
+                        {
+                            isAuthenticated ?
+                            <Link href='/dashboard'>Dashboard</Link> :
+                            <Link href='/login'>Log In</Link>
+                        }
+                    </Flex>
                 </Stack>
             </Flex>
 
@@ -174,10 +176,6 @@ export const NAV_ITEMS: Array<NavItem> = [
     {
         label: 'Our Team',
         href: '/#team',
-    },
-    {
-        label: 'FAQ',
-        href: '/#faq',
     },
 ];
   
