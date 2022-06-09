@@ -10,8 +10,8 @@ const AddCategoryModal = ({ isOpen, onClose, fullCategoriesList, currentCategori
         id_category: '',
         earned_experience_point: 0
     });
-    console.log('currentCategoriesList', currentCategoriesList);
-    console.log('fullCategoriesList', fullCategoriesList);
+    // console.log('currentCategoriesList', currentCategoriesList);
+    // console.log('fullCategoriesList', fullCategoriesList);
 
     const handleChangeSelect = (event) => {
         const { value } = event.target;

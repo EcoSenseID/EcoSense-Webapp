@@ -6,16 +6,20 @@ import LeftNavbar from '../../components/dashboard/left-navbar/left-navbar.compo
 import CenterContent from '../../components/dashboard/center-content/center-content.component';
 import AsideContent from '../../components/dashboard/aside-content/aside-content.component';
 import { AuthContext } from '../../firebase/context';
-import { useColorMode } from '@chakra-ui/react';
+import { useColorMode, useToast } from '@chakra-ui/react';
 
 const Dashboard = () => {
   const [myCampaigns, setMyCampaigns] = useState<any>({
     campaignsList: [],
     isLoading: true
   });
-  const [categoriesList, setCategoriesList] = useState<Array<any>>([]);
+  const [categoriesData, setCategoriesData] = useState<any>({
+    categoriesList: [],
+    isLoading: true
+  });
   const { currentUser } = useContext(AuthContext);
   const { colorMode, toggleColorMode } = useColorMode();
+  const toast = useToast();
 
   const getMyCampaigns = async () => {
     const response = await fetch(`/api/campaigns`, {
@@ -27,11 +31,33 @@ const Dashboard = () => {
     });
     const data = await response.json();
     // console.log(data);
-    setMyCampaigns({
-      ...myCampaigns,
-      campaignsList: data.campaigns,
-      isLoading: false
-    });
+    if (data.error) {
+      toast({
+        title: `Failed to fetch campaigns data.`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-right'
+      })
+      setMyCampaigns({
+        ...myCampaigns,
+        campaignsList: [],
+        isLoading: false
+      });
+    } else if (!data.error) {
+      toast({
+        title: data.message || `Fetched campaigns data.`,
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-right'
+      })
+      setMyCampaigns({
+        ...myCampaigns,
+        campaignsList: data.campaigns,
+        isLoading: false
+      });
+    }
   }
 
   const getCategories = async () => {
@@ -43,15 +69,41 @@ const Dashboard = () => {
         },
     });
     const data = await response.json();
-    // console.log(data);
-    setCategoriesList([...categoriesList, ...data.categoriesList]);
+    console.log(data);
+    if (data.error) {
+      toast({
+        title: `Failed to fetch categories data.`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-right'
+      })
+      setCategoriesData({
+        ...categoriesData,
+        isLoading: false
+      });
+    } else {
+      toast({
+        title: data.message || `Fetched categories data`,
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-right'
+      })
+      setCategoriesData({
+        ...categoriesData,
+        categoriesList: [...data.categoriesList],
+        isLoading: false
+      });
+    }
+    
   }
 
   useEffect(() => {
     if (colorMode == 'dark') toggleColorMode();
     const fetchData = async () => {
         await getMyCampaigns();
-        if (categoriesList.length === 0) await getCategories();
+        if (categoriesData.categoriesList.length === 0) await getCategories();
     }
     fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,7 +119,12 @@ const Dashboard = () => {
       <DashboardContainer>
         <LeftNavbar page='dashboard' />
         <CenterContent campaigns={myCampaigns.campaignsList} campaignsIsLoading={myCampaigns.isLoading} />
-        <AsideContent campaigns={myCampaigns.campaignsList} campaignsIsLoading={myCampaigns.isLoading} categories={categoriesList} />
+        <AsideContent 
+          campaigns={myCampaigns.campaignsList} 
+          campaignsIsLoading={myCampaigns.isLoading} 
+          categories={categoriesData.categoriesList} 
+          categoriesIsLoading={categoriesData.isLoading}
+        />
       </DashboardContainer>
     </div>
   )

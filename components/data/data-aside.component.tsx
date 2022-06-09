@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Grid, Heading, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, Heading, Image, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
 import CampaignDatacard from './campaign-datacard.component';
 
 type DataAsideProps = {
@@ -24,9 +24,15 @@ const DataAside = ({ campaigns, campaignIsLoading }: DataAsideProps) => {
                     </Box>
                 </Box>
                 : 
-                <Grid templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(1, 1fr)']} gap={5}>
-                    { campaigns.map(data => <CampaignDatacard key={data.id} data={data} />) }
-                </Grid>
+                ( campaigns.length > 0 ?
+                    <Grid templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(1, 1fr)']} gap={5}>
+                        { campaigns.map(data => <CampaignDatacard key={data.id} data={data} />) }
+                    </Grid> :
+                    <Flex p={5} flex={1} flexDir='column' justifyContent='center' h='40vh' minH={430} gap={10}>
+                        <Image src='/images/empty-box-icon.png' h={60} alt='Empty Box' objectFit='scale-down' pr={8}/>
+                        <Text textAlign='center'>You have no campaigns.</Text>
+                    </Flex>
+                )
             }
         </Flex>
     )

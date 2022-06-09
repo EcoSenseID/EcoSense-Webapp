@@ -62,6 +62,10 @@ const MyCampaignCard = ({ data, categoriesList }) => {
                     isClosable: true,
                     position: 'top'
                 });
+                onCloseModalDelete();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             }
         } else {
             toast({

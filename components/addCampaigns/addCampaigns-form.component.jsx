@@ -321,7 +321,7 @@ const AddCampaignForm = ({ categoriesList }) => {
                     { previewFile && <Image maxW={250} maxH={250} src={previewFile} alt='Poster Preview' mb={5} borderRadius={8}/>}
                     <InputGroup>
                         <Input name='uploadPoster' type='file' onChange={(event) => chooseFile(event)} ref={fileRef} placeholder='Your file' hidden />
-                        <Button minW='150px' leftIcon={<FiUpload />} value={'Upload File'} onClick={() => fileRef.current.click()}>Upload Image</Button>
+                        <Button minW='180px' leftIcon={<FiUpload />} value={'Upload File'} onClick={() => fileRef.current.click()}>Upload Image</Button>
                         <Flex mt={2} ml={3} width='100%' overflow='hidden'>
                             <Text className={classes.truncated}>
                                 {uploadedFileName && <Text as='span' fontWeight={'bold'}>File name: </Text>}

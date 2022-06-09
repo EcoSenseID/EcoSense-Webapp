@@ -40,8 +40,8 @@ const AddTaskModal = ({ isOpen, onClose, currentTaskOrder, setCurrentTaskOrder, 
                 position: 'top'
             });
         } else {
-            console.log('event', event);
-            console.log('addTaskData', addTaskData);
+            // console.log('event', event);
+            // console.log('addTaskData', addTaskData);
             setNewData({
                 ...newData,
                 tasks: [ ...newData.tasks, addTaskData ]

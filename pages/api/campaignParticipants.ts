@@ -3,7 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 type Data = {
     error: boolean,
     message: string,
-    participants?: Array<any>
+    participants?: Array<any>,
+    completedTasks?: Array<any>
 }
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
@@ -23,14 +24,23 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
             });
             
             const data = await result.json();
-            let participants = await data.participants;
-    
-            res.status(200).json({
-                error: false,
-                message: 'Campaign participants data fetched successfully!',
-                participants: participants
-            });
-            return;
+            if (data.error) {
+                res.status(400).json({
+                    error: true,
+                    message: data.message || 'Campaign participants data cannot be fetched!'
+                });
+            } else {
+                let participants = await data.participants;
+                let completedTasks = await data.completed_tasks;
+        
+                res.status(200).json({
+                    error: false,
+                    message: 'Campaign participants data fetched successfully!',
+                    participants: participants,
+                    completedTasks: completedTasks
+                });
+                return;
+            }
         }
         catch (error: any) {
             res.status(400).json({
@@ -39,8 +49,10 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
             });
         }
     }
-    res.status(401).json({
-        error: true,
-        message: 'Not allowed!'
-    });
+    else {
+        res.status(401).json({
+            error: true,
+            message: 'Not allowed!'
+        });
+    }
 }

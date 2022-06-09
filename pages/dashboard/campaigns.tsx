@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import React, { useState, useEffect, useContext } from 'react';
 import CampaignsCenterContent from '../../components/campaigns/campaigns-center-content.component';
 
@@ -9,6 +10,7 @@ const CampaignsPage = () => {
     const [myCampaigns, setMyCampaigns] = useState<Array<any>>([]);
     const [fullCategoriesList, setCategoriesList] = useState<Array<any>>([]);
     const { currentUser } = useContext(AuthContext);
+    const toast = useToast();
 
     const getMyCampaigns = async () => {
         const response = await fetch(`/api/campaigns`, {
@@ -20,7 +22,25 @@ const CampaignsPage = () => {
         });
         const data = await response.json();
         // console.log(data);
-        setMyCampaigns(data.campaigns);
+        if (data.error) {
+            toast({
+              title: `Failed to fetch campaigns data.`,
+              status: 'error',
+              duration: 5000,
+              isClosable: true,
+              position: 'bottom-right'
+            })
+            setMyCampaigns([]);
+        } else if (!data.error) {
+            toast({
+              title: data.message || `Fetched campaigns data.`,
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+              position: 'bottom-right'
+            })
+            setMyCampaigns(data.campaigns);
+        }
     }
 
     const getCategories = async () => {
@@ -33,7 +53,26 @@ const CampaignsPage = () => {
         });
         const data = await response.json();
         // console.log(data);
-        setCategoriesList([...fullCategoriesList, ...data.categoriesList]);
+        if (data.error) {
+            toast({
+              title: `Failed to fetch categories data.`,
+              status: 'error',
+              duration: 5000,
+              isClosable: true,
+              position: 'bottom-right'
+            })
+            setCategoriesList([...fullCategoriesList]);
+        } else if (!data.error) {
+            // toast({
+            //   title: data.message || `Fetched categories data.`,
+            //   status: 'success',
+            //   duration: 5000,
+            //   isClosable: true,
+            //   position: 'bottom-right'
+            // })
+            setCategoriesList([...fullCategoriesList, ...data.categoriesList]);
+        }
+        
     }
 
     useEffect(() => {

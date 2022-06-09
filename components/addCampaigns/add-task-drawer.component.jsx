@@ -40,8 +40,8 @@ const AddTaskDrawer = ({ isOpen, onClose, currentTaskOrder, setCurrentTaskOrder,
                 position: 'top'
             });
         } else {
-            console.log('event', event);
-            console.log('addTaskData', addTaskData);
+            // console.log('event', event);
+            // console.log('addTaskData', addTaskData);
             setNewCampaignDetail({
                 ...newCampaignDetail,
                 campaignTasks: [ ...newCampaignDetail.campaignTasks, addTaskData ]

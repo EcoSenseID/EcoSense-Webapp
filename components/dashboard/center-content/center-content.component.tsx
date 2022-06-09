@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../../firebase/context";
 
-import { Button, Divider, Flex, Heading, Link, Skeleton, SkeletonCircle, SkeletonText, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { Button, Divider, Flex, Heading, Image, Link, Skeleton, SkeletonCircle, SkeletonText, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import { FiArrowRight } from 'react-icons/fi';
 
 import TableRow from "./table-row.component";
@@ -20,7 +20,7 @@ const CenterContent = ({ campaigns, campaignsIsLoading }: CenterContentProps) =>
 		if(currentUser && currentUser.displayName) setFirstName(currentUser.displayName.split(' ')[0]);
 	}, [currentUser]);
 
-	console.log(campaigns);
+	// console.log(campaigns);
 
 	return (
 		<Flex w={['100%', '100%', '60%', '60%', '55%']} p={['10%', '6%', '3%', '3%', '3%']} bgColor='#ffffff' flexDir='column' overflow='auto' minH='100vh'>
@@ -50,7 +50,7 @@ const CenterContent = ({ campaigns, campaignsIsLoading }: CenterContentProps) =>
 						</Thead>
 						{ campaignsIsLoading ? 
 							Array.from({ length: 5 }, (_, _i) =>
-								<Tbody>
+								<Tbody key={_i}>
 									<Tr minH='80px'>
 										<Td><Flex align='center'>
 											<SkeletonCircle minH='48px' minW='48px'/>
@@ -65,13 +65,21 @@ const CenterContent = ({ campaigns, campaignsIsLoading }: CenterContentProps) =>
 									</Tr>
 								</Tbody>
 							) :
-							<Tbody>
-								{campaigns.map((data) => (
-									<TableRow key={data.id} data={data} />
-								))}
-							</Tbody>
+							( campaigns.length !== 0 &&
+								<Tbody>
+									{campaigns.map((data) => (
+										<TableRow key={data.id} data={data} />
+									))}
+								</Tbody>	
+							)
 						}
 					</Table>
+					{ (!campaignsIsLoading && campaigns.length === 0) &&
+						<Flex p={5} flex={1} flexDir='column' justifyContent='center' h='40vh' minH={430} gap={10}>
+							<Image src='/images/empty-box-icon.webp' h={60} alt='Empty Box' objectFit='scale-down' pr={8}/>
+							<Text textAlign='center'>You have no campaigns. Let&apos;s make one!</Text>
+						</Flex>
+					}
 					<Divider />
 				</Flex>
 			</Flex>

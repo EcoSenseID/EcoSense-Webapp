@@ -1,16 +1,17 @@
 import React from "react";
 
-import { Flex, Heading, IconButton, Input, InputGroup, InputLeftElement, Skeleton, Stat, StatGroup, StatLabel, StatNumber, } from "@chakra-ui/react";
+import { Flex, Heading, IconButton, Input, InputGroup, InputLeftElement, Skeleton, Stat, StatGroup, StatLabel, StatNumber, Text, } from "@chakra-ui/react";
 import { FiSearch, FiBell } from 'react-icons/fi';
 import CategoryBox from "./category-box.component";
 
 type AsideContentProps = {
     categories: Array<any>, 
     campaigns: Array<any>, 
-    campaignsIsLoading: boolean
+    campaignsIsLoading: boolean,
+    categoriesIsLoading: boolean
 }
 
-const AsideContent = ({ categories, campaigns, campaignsIsLoading }: AsideContentProps) => {
+const AsideContent = ({ categories, campaigns, campaignsIsLoading, categoriesIsLoading }: AsideContentProps) => {
     return (
         <Flex w={['100%', '100%', '30%']} minW={[null, null, '300px', '300px', '400px']} bgColor='#f5f5f5' p={['10%', '6%', '3%', '3%', '3%']} flexDir='column' overflow='auto'>
             <Flex alignContent='center'>
@@ -29,9 +30,12 @@ const AsideContent = ({ categories, campaigns, campaignsIsLoading }: AsideConten
             </Flex>
 
             <Flex flexDir='column' gap={4}>
-                { categories.length == 0 ?
-                    Array.from({ length: 5 }, (_, _i) => <Skeleton height='48px' w='100%' borderRadius='10' />) :
-                    categories.map((data, _idx) => <CategoryBox key={data.id} data={data} />)
+                { categoriesIsLoading ?
+                    Array.from({ length: 5 }, (_, _i) => <Skeleton key={_i} height='48px' w='100%' borderRadius='10' />) :
+                    ( categories.length === 0 ?
+                        <Flex><Text>No category</Text></Flex> :
+                        categories.map((data, _idx) => <CategoryBox key={data.id} data={data} />)    
+                    )
                 }
             </Flex>
 

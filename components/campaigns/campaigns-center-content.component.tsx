@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, Button, Flex, Grid, Heading, Link, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, Heading, Image, Link, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
 import { FiPlus } from 'react-icons/fi';
 
 import MyCampaignCard from './my-campaign-card.component';
@@ -55,7 +55,11 @@ const CampaignsCenterContent = ({ myCampaigns, categoriesList }: CampaignsCenter
                 </Grid>
                 :
                 ( myCampaignsList!.length === 0 ?
-                    <Text>You don&apos;t have any campaign.</Text> :
+                    <Flex justifyContent='center' flexDir='column' h='70vh' minH={500} gap={10}>
+                        <Image src='/images/empty-box-icon.webp' h={60} alt='Empty Box' objectFit='scale-down' pr={8}/>
+                        <Text textAlign='center'>You don&apos;t have any campaign.</Text> 
+                    </Flex>
+                    :
                     <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={8}>
                         { myCampaignsList && myCampaignsList.map(data => (
                             <MyCampaignCard key={data.id} data={data} categoriesList={categoriesList}/>

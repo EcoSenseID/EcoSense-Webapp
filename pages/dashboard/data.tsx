@@ -6,6 +6,7 @@ import LeftNavbar from '../../components/dashboard/left-navbar/left-navbar.compo
 import DataCenterContent from '../../components/data/data-center.component';
 import DataAside from 'components/data/data-aside.component';
 import { AuthContext } from '../../firebase/context';
+import { useToast } from '@chakra-ui/react';
 
 const DataPage = () => {
     const { currentUser } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const DataPage = () => {
         campaignsList: [],
         isLoading: true
     });
+    const toast = useToast();
 
     const getMyCampaigns = async () => {
         const response = await fetch(`/api/campaigns`, {
@@ -24,11 +26,33 @@ const DataPage = () => {
         });
         const data = await response.json();
         // console.log(data);
-        setMyCampaigns({
-          ...myCampaigns,
-          campaignsList: data.campaigns,
-          isLoading: false
-        });
+        if (data.error) {
+            toast({
+              title: `Failed to fetch campaigns data.`,
+              status: 'error',
+              duration: 5000,
+              isClosable: true,
+              position: 'bottom-right'
+            })
+            setMyCampaigns({
+              ...myCampaigns,
+              campaignsList: [],
+              isLoading: false
+            });
+        } else if (!data.error) {
+            toast({
+              title: data.message || `Fetched campaigns data.`,
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+              position: 'bottom-right'
+            })
+            setMyCampaigns({
+              ...myCampaigns,
+              campaignsList: data.campaigns,
+              isLoading: false
+            });
+        }
     }
 
     useEffect(() => {

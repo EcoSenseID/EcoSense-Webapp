@@ -179,7 +179,9 @@ const EditCampaignDrawer = ({ isOpen, onClose, data, categoriesList, refreshValu
                 });
                 setUploadedFileName('');
                 onClose();
-                window.location.reload();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             }
         }
         catch (error) {
