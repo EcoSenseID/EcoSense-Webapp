@@ -15,7 +15,7 @@ const Campaigns = ({ campaigns }: CampaignsProps) => {
     
     return (
         <Flex className={classes.campaigns_bg} bgGradient={useColorModeValue('linear(to-b, gray.100, gray.50)', 'linear(to-r, gray.900, gray.700)')} id='campaigns'>
-            <Heading className={classes.section_title} color={useColorModeValue('blackAlpha.900', 'white')}>Join the Campaigns!</Heading>
+            <Heading mb={{ base: '3rem', md: '5rem' }} textAlign='center' color={useColorModeValue('blackAlpha.900', 'white')}>Join the Campaigns!</Heading>
             <Flex display={{ base: 'none', xl: 'grid' }} >
                 <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)' ,'repeat(2, 1fr)', 'repeat(3, 1fr)']} gap={8}>
                     {

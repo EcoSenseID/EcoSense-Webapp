@@ -1,19 +1,6 @@
 .campaigns_bg {
     height: max-content;
     min-height: 400px;
-    display: flex;
     flex-direction: column;
     padding: 6rem 3rem;
-    justify-content: flex-start;
-    font-size: larger;
-}
-
-.section_title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-}
-
-.slider {
-    gap: 3px;
 }

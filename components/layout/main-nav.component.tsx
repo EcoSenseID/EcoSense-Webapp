@@ -18,19 +18,105 @@ import {
     useBreakpointValue,
     useDisclosure,
     useColorMode,
+    Icon,
 } from '@chakra-ui/react';
-import {
-    HamburgerIcon,
-    CloseIcon,
-    MoonIcon,
-    SunIcon,
-} from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { FiBell, FiBox, FiHome, FiLayers, FiUsers } from "react-icons/fi";
+import { IconType } from "react-icons";
+
+interface NavItem {
+    icon?: IconType;
+    label: string;
+    subLabel?: string;
+    children?: Array<NavItem>;
+    href?: string;
+}
+
+export const NAV_ITEMS: Array<NavItem> = [
+    {
+        icon: FiHome,
+        label: 'Home',
+        href: '/',
+    },
+    {
+        icon: FiBox,
+        label: 'Our Partners',
+        href: '/#partners',
+    },
+    {
+        icon: FiBell,
+        label: 'Campaigns',
+        href: '/#campaigns',
+    },
+    {
+        icon: FiLayers,   
+        label: 'Features',
+        href: '/#features',
+    },
+    {
+        icon: FiUsers,
+        label: 'Our Team',
+        href: '/#team',
+    },
+];
 
 const MainNavigation = () => {
     const { isAuthenticated } = useContext(AuthContext);
     const nextrouter = router.useRouter();
     const { isOpen, onToggle } = useDisclosure();
     const { colorMode, toggleColorMode } = useColorMode();
+
+    const DesktopNav = () => {
+        const linkColor = useColorModeValue('gray.600', 'gray.200');
+        const linkHoverColor = useColorModeValue('gray.800', 'white');
+      
+        return (
+          <Stack direction={'row'} spacing={8}>
+            { NAV_ITEMS.map((navItem) => (
+              <Flex key={navItem.label} alignItems='center'>
+                <Link href={navItem.href ?? '#'}>
+                    <Text 
+                        color={linkColor} 
+                        _hover={{
+                            textDecoration: 'none',
+                            color: linkHoverColor,
+                        }}
+                        cursor='pointer'
+                    >
+                        {navItem.label}
+                    </Text>
+                </Link>
+              </Flex>
+            ))}
+          </Stack>
+        );
+    };
+      
+    const MobileNav = () => {
+        return (
+          <Stack
+            bg={useColorModeValue('white', 'gray.800')}
+            p={4}
+            display={{ md: 'none' }}>
+            { NAV_ITEMS.map((navItem) => (
+              <MobileNavItem key={navItem.label} {...navItem} />
+            ))}
+          </Stack>
+        );
+    };
+      
+    const MobileNavItem = ({ icon, label, href }: NavItem) => {
+        return (
+          <Stack onClick={onToggle} alignItems='center' direction='row' spacing={4} px={4} py={2} borderBottomWidth={1} cursor='pointer'>
+            <Icon as={icon || FiHome}></Icon>
+            <Flex as={Link} href={href ?? '#'} >
+                <Text fontWeight={600} color={useColorModeValue('gray.600', 'gray.200')}> {label} </Text>
+            </Flex>
+          </Stack>
+        );
+    };
+      
+    
     
     return (
         <Box>
@@ -92,92 +178,5 @@ const MainNavigation = () => {
         </Box>
     );
 }
-
-const DesktopNav = () => {
-    const linkColor = useColorModeValue('gray.600', 'gray.200');
-    const linkHoverColor = useColorModeValue('gray.800', 'white');
-  
-    return (
-      <Stack direction={'row'} spacing={8}>
-        { NAV_ITEMS.map((navItem) => (
-          <Flex key={navItem.label} alignItems='center'>
-            <Link href={navItem.href ?? '#'}>
-                <Text 
-                    color={linkColor} 
-                    _hover={{
-                        textDecoration: 'none',
-                        color: linkHoverColor,
-                    }}
-                    cursor='pointer'
-                >
-                    {navItem.label}
-                </Text>
-            </Link>
-          </Flex>
-        ))}
-      </Stack>
-    );
-};
-  
-const MobileNav = () => {
-    return (
-      <Stack
-        bg={useColorModeValue('white', 'gray.800')}
-        p={4}
-        display={{ md: 'none' }}>
-        { NAV_ITEMS.map((navItem) => (
-          <MobileNavItem key={navItem.label} {...navItem} />
-        ))}
-      </Stack>
-    );
-};
-  
-const MobileNavItem = ({ label, href }: NavItem) => {
-  
-    return (
-      <Stack spacing={4}>
-        <Flex
-          as={Link}
-          href={href ?? '#'}>
-          <Text
-            fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}>
-            {label}
-          </Text>
-        </Flex>
-      </Stack>
-    );
-};
-  
-interface NavItem {
-    label: string;
-    subLabel?: string;
-    children?: Array<NavItem>;
-    href?: string;
-}
-  
-export const NAV_ITEMS: Array<NavItem> = [
-    {
-        label: 'Home',
-        href: '/',
-    },
-    {
-        label: 'Our Partners',
-        href: '/#partners',
-    },
-    {
-      label: 'Campaigns',
-      href: '/#campaigns',
-    },
-    {
-      label: 'Features',
-      href: '/#features',
-    },
-    {
-        label: 'Our Team',
-        href: '/#team',
-    },
-];
-  
 
 export default MainNavigation;

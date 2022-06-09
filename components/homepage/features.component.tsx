@@ -50,19 +50,20 @@ const Features = () => {
                                     name={data.id.toString()} 
                                     size='md'
                                     onClick={() => setSelected(data.id)}
+                                    className={classes.avatarNum}
                                 ></Avatar>
                             )}      
                         </Flex>
                         <Flex gap={2} flexDir='column' bgColor={'white'} py={5} px={8} borderRadius={10} boxShadow={'md'} width='100%' flex={1}>
                             <Heading color={'blackAlpha.900'} size={{ base: 'sm', md: 'md' }}>{featureData.filter(data => data.id === selected)[0].name}</Heading>
-                            <Text fontSize={{ base: 'sm', md: 'md' }} color={'blackAlpha.900'} >{featureData.filter(data => data.id === selected)[0].desc}</Text>
+                            <Text fontSize={{ base: 'xs', md: 'md' }} color={'blackAlpha.900'} >{featureData.filter(data => data.id === selected)[0].desc}</Text>
                         </Flex>
                     </Flex>
 
                     <Flex width={{ base: '100%', md: '50%' }} justifyContent='center' mb={{ base: 10, md: 0 }} flex={1}>
-                        <Image className={classes.image} display={selected === 1 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 8@2x.png' maxH='500'></Image>
-                        <Image className={classes.image} display={selected === 2 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 9@2x.png' maxH='500'></Image>
-                        <Image className={classes.image} display={selected === 3 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 10@2x.png' maxH='500'></Image>
+                        <Image className={classes.image} visibility={selected === 1 ? 'visible' : 'hidden'} display={selected === 1 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 8@2x.png' maxH='500'></Image>
+                        <Image className={classes.image} visibility={selected === 2 ? 'visible' : 'hidden'} display={selected === 2 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 9@2x.png' maxH='500'></Image>
+                        <Image className={classes.image} visibility={selected === 3 ? 'visible' : 'hidden'} display={selected === 3 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 10@2x.png' maxH='500'></Image>
                     </Flex>
                 </Flex>
             </Flex>

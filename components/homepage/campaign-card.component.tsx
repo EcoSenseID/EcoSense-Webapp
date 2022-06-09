@@ -15,7 +15,7 @@ const CampaignCard = ({ posterUrl, title, description }: CampaignCardProps) => {
     return (
         <Flex className={classes.card} boxShadow='lg' minH={{ base: '250px', md: 'unset' }}>
             <Flex className={classes.card_img}>
-                <Image src={posterUrl} minW='100%' minH='100%' alt="Poster" objectFit="cover"></Image>
+                <Image src={posterUrl} minW={{ base: '100%', md: '100%' }} minH={{ base: '100%', md: '100%' }} alt="Poster" objectFit="cover"></Image>
             </Flex>
             <Flex className={classes.card_text} flexDir='column'>
                 <Heading size='md' className={classes.card_title} noOfLines={1}>{title}</Heading> 
