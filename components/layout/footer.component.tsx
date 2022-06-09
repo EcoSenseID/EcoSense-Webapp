@@ -62,7 +62,7 @@ const Footer = () => {
                     <Stack spacing={6} flex={1}>
                         <Box>
                             <Image 
-                                src={useColorModeValue(`/images/EcoSense LogoType-1@2x.png`, `/images/EcoSense LogoType@2x.png`)} 
+                                src={useColorModeValue(`/images/ecosense-logos/EcoSense LogoType-light.png`, `/images/ecosense-logos/EcoSense LogoType-dark.png`)} 
                                 height={'80px'} 
                                 alt={'Logo EcoSense'}
                             />
@@ -79,8 +79,8 @@ const Footer = () => {
                     <Stack align={'flex-start'} flex={1}>
                         <ListHeader>Try EcoSense Now!</ListHeader>
                         <Flex gap={{ base: 4, md: 2 }} flexDir={{ base: 'row', md: 'column' }}>
-                            <Image w={{ base: 100, sm: 150, md: 200 }} draggable='false' src='/images/app-store-badge.png' alt='App Store'/>
-                            <Image w={{ base: 100, md: 200 }} draggable='false' src='/images/play-store-badge.png' alt='Play Store' />
+                            <Image w={{ base: 100, sm: 150, md: 200 }} draggable='false' src='/images/store-badge/app-store-badge.png' alt='App Store'/>
+                            <Image w={{ base: 100, md: 200 }} draggable='false' src='/images/store-badge/play-store-badge.png' alt='Play Store' />
                         </Flex>
                     </Stack>
                 </SimpleGrid>

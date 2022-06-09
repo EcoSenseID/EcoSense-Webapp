@@ -4,7 +4,7 @@ import { Image, useColorModeValue } from "@chakra-ui/react";
 const Logo = () => {
     return (
         <Image
-            src={useColorModeValue(`/images/EcoSense LogoType-1@2x.png`, `/images/EcoSense LogoType@2x.png`)} 
+            src={useColorModeValue(`/images/ecosense-logos/EcoSense LogoType-light.png`, `/images/ecosense-logos/EcoSense LogoType-dark.png`)} 
             maxH={'50px'} alt={'Logo EcoSense'}
         />
     );

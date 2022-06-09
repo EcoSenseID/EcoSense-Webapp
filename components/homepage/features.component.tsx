@@ -63,9 +63,9 @@ const Features = () => {
                 </Flex>
 
                 <Flex width={{ base: '100%', md: '50%' }} justifyContent='center' mb={{ base: 10, md: 0 }} flex={1}>
-                    <Image className={classes.image} visibility={selected === 1 ? 'visible' : 'hidden'} display={selected === 1 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 8@2x.png' maxH='500'></Image>
-                    <Image className={classes.image} visibility={selected === 2 ? 'visible' : 'hidden'} display={selected === 2 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 9@2x.png' maxH='500'></Image>
-                    <Image className={classes.image} visibility={selected === 3 ? 'visible' : 'hidden'} display={selected === 3 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 10@2x.png' maxH='500'></Image>
+                    <Image className={classes.image} visibility={selected === 1 ? 'visible' : 'hidden'} display={selected === 1 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 8@2x.webp' maxH='500'></Image>
+                    <Image className={classes.image} visibility={selected === 2 ? 'visible' : 'hidden'} display={selected === 2 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 9@2x.webp' maxH='500'></Image>
+                    <Image className={classes.image} visibility={selected === 3 ? 'visible' : 'hidden'} display={selected === 3 ? 'flex' : 'none'} draggable='false' alt='iphone' src='/images/phone/Asset 10@2x.webp' maxH='500'></Image>
                 </Flex>
             </Flex>
         </Flex>

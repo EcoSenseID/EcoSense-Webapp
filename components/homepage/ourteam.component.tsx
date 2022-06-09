@@ -6,42 +6,42 @@ const teamData = [
         id: 1,
         name: 'Darren Ngoh',
         univ: 'Universitas Indonesia',
-        avatar: '/images/team/darren@2x.png',
+        avatar: '/images/team/darren@2x.webp',
         badge: 'red.500'
     },
     {
         id: 2,
         name: 'Mirsa Salsabila',
         univ: 'Universitas Indonesia',
-        avatar: '/images/team/mirsa@2x.png',
+        avatar: '/images/team/mirsa@2x.webp',
         badge: 'red.500'
     },
     {
         id: 3,
         name: 'Deddy Romnan R.',
         univ: 'Universitas Jambi',
-        avatar: '/images/team/deddy@2x.png',
+        avatar: '/images/team/deddy@2x.webp',
         badge: 'green.500'
     },
     {
         id: 4,
         name: 'Rivano Ardiyan T. K.',
         univ: 'UPN "Veteran" Yogyakarta',
-        avatar: '/images/team/rivano@2x.png',
+        avatar: '/images/team/rivano@2x.webp',
         badge: 'green.500'
     },
     {
         id: 5,
         name: 'Kenrick Tandrian',
         univ: 'Universitas Pelita Harapan',
-        avatar: '/images/team/kenrick@2x.png',
+        avatar: '/images/team/kenrick@2x.webp',
         badge: 'blue.500'
     },
     {
         id: 6,
         name: 'Kenji Marwies',
         univ: 'Universitas Pelita Harapan',
-        avatar: '/images/team/kenji@2x.png',
+        avatar: '/images/team/kenji@2x.webp',
         badge: 'blue.500'
     },
 ]
@@ -52,10 +52,10 @@ const OurTeam = () => {
             <Flex justifyContent='space-between' mb={'5rem'} mx={{ base: 0, md: '3rem' }} flexDir={{ base: 'column', md: 'row' }} gap={4}>
                 <Heading textAlign='center' color={useColorModeValue('blackAlpha.900', 'white')}>Meet Our Team!</Heading>
                 <Flex justifyContent={['center', 'center', 'flex-start']} gap={[4, 5, 6]}>
-                    <Image draggable={false} h={[10, 12, 14]} src='/images/logo-ui.png' alt='Logo UI'/>
-                    <Image draggable={false} h={[10, 12, 14]} src='/images/logo-unja_.png' alt='Logo UNJA'/>
-                    <Image draggable={false} h={[10, 12, 14]} src='/images/logo-upnvy_.png' alt='Logo UPNVY'/>
-                    <Image draggable={false} h={[10, 12, 14]} src='/images/logo-uph.png' alt='Logo UPH'/>
+                    <Image draggable={false} h={[10, 12, 14]} src='/images/logos/logo-ui.png' alt='Logo UI'/>
+                    <Image draggable={false} h={[10, 12, 14]} src='/images/logos/logo-unja_.png' alt='Logo UNJA'/>
+                    <Image draggable={false} h={[10, 12, 14]} src='/images/logos/logo-upnvy_.png' alt='Logo UPNVY'/>
+                    <Image draggable={false} h={[10, 12, 14]} src='/images/logos/logo-uph.png' alt='Logo UPH'/>
                 </Flex>
             </Flex>
             <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)',  xl: 'repeat(6, 1fr)' }} gap={8}>

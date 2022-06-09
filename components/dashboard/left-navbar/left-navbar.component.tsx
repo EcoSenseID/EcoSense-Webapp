@@ -16,7 +16,8 @@ import {
 	AlertDialogFooter,
 	useDisclosure,
 	Link,
-	useToast
+	useToast,
+	Icon
 } from "@chakra-ui/react";
 import {
 	FiHome,
@@ -97,11 +98,11 @@ const LeftNavbar = ({ page }: LeftNavbarProps) => {
 			<Flex flexDir='column' justifyContent='space-between' height={[null, null, '100vh']}>
 				<Flex flexDir='column' as='nav'>
 					<Link className={classes.logolink} href="/">
-						<Image src='/images/EcoSense LogoType@2x.png' alt='Logo EcoSense' mt={50}
+						<Image src='/images/ecosense-logos/EcoSense LogoType-dark.png' alt='Logo EcoSense' mt={50}
 							mb={[25, 50, 100]} alignSelf='center' 
 							width={['150px', '150px', '0', '100px', '140px']}
 							display={['inline-flex', 'inline-flex', 'none', 'inline-flex', 'inline-flex']} />
-						<Image src='/images/EcoSense-logo-png.png' alt='Logo EcoSense' mt={50}
+						<Image src='/images/ecosense-logos/EcoSense-logo-png.png' alt='Logo EcoSense' mt={50}
 							mb={[25, 50, 100]} alignSelf='center' 
 							width={['0', '0', '50%', '0', '0']}
 							display={['none', 'none', 'inline-flex', 'none', 'none']} />
@@ -122,8 +123,11 @@ const LeftNavbar = ({ page }: LeftNavbarProps) => {
 						<Avatar name={userDisplayName} bgColor='green.700' my={2} src={userPhotoURL}/>
 						<Text as="div" display={['none', 'none', 'none', 'none', 'inline-flex']} textAlign='center'>{userDisplayName}</Text>
 					</Flex>
-					<Button rightIcon={<FiLogOut />} onClick={onOpen} colorScheme='red' mt={[0, 0, 4, 4, 4]} ml={[4, 4, 0, 0, 0]} variant='outline'>
-						<Text display={['inline-flex', 'inline-flex', 'none', 'none', 'inline-flex']}>Log Out</Text>
+					<Button onClick={onOpen} colorScheme='red' mt={[0, 0, 4, 4, 4]} ml={[4, 4, 0, 0, 0]} variant='outline'>
+						<Flex alignItems='center'>
+							<Text mr={3} display={['inline-flex', 'inline-flex', 'none', 'none', 'inline-flex']}>Log Out</Text>
+							<Icon as={FiLogOut}></Icon>
+						</Flex>
 					</Button>
 					<AlertDialog
 						isOpen={isOpen}

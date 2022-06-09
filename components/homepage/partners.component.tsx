@@ -19,11 +19,11 @@ const SupportedBy = () => {
                 <Heading color={'green.700'}>Our Partners</Heading>
             </Flex>
             <Grid gap={[4, 4, 10]} templateColumns={{ base: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' }} alignItems='center' justifyItems='center'>
-                <Image draggable={false} h={[6, 7, 10]} src='/images/google-logo.png' alt='Logo Google'/>
-                <Image draggable={false} h={[5, 6, 9]} src='/images/logo-bangkit.png' alt='Logo Bangkit'/>
-                <Image draggable={false} h={[8, 10, 14]} src='/images/km.png' alt='Logo Kampus Merdeka'/>
+                <Image draggable={false} h={[6, 7, 10]} src='/images/logos/google-logo.png' alt='Logo Google'/>
+                <Image draggable={false} h={[5, 6, 9]} src='/images/logos/logo-bangkit.png' alt='Logo Bangkit'/>
+                <Image draggable={false} h={[8, 10, 14]} src='/images/logos/km.png' alt='Logo Kampus Merdeka'/>
                 <Link href={'https://genbinesia.or.id/'}>
-                    <a target='_blank'><Image draggable={false} h={[6, 7, 10]} src='/images/genbinesia.png' alt='Logo Genbinesia' cursor='pointer' /></a>
+                    <a target='_blank'><Image draggable={false} h={[6, 7, 10]} src='/images/logos/genbinesia.png' alt='Logo Genbinesia' cursor='pointer' /></a>
                 </Link>
             </Grid>
         </Flex>

@@ -40,7 +40,7 @@ export const getStaticProps = async () => {
       const { campaigns } = await data;
       return {
           props: { campaigns: campaigns, }, 
-          revalidate: 60,
+          revalidate: 100,
       }
   }
   catch (error) {
