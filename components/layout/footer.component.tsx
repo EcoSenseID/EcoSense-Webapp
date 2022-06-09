@@ -57,8 +57,8 @@ const Footer = () => {
             bgGradient={useColorModeValue('linear(to-b, green.100, green.50)', 'linear(to-l, gray.900, gray.900)')}
             color={useColorModeValue('gray.700', 'gray.200')}
         >
-            <Container as={Stack} maxW={'7xl'} py={14} px={{ base: 14, md: 4 }}>
-                <SimpleGrid templateColumns={{ base: '1fr', md: '5fr 2fr 3fr', lg: '4fr 1fr 2fr', xl: '4fr 1fr 1fr' }} minChildWidth='unset' gap={{ base: 8, md: 16 }}>
+            <Container as={Stack} maxW={'7xl'} py={14} px={{ base: 14, md: 12 }}>
+                <SimpleGrid templateColumns={{ base: '1fr', md: '5fr 2fr 3fr', lg: '4fr 1fr 1fr', xl: '4fr 1fr 1fr' }} minChildWidth='unset' gap={{ base: 8, md: 16 }}>
                     <Stack spacing={6} flex={1}>
                         <Box>
                             <Image 

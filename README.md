@@ -32,15 +32,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Try the App
 Visit our deployed web application through:
-- Vercel ([https://ecosense.vercel.app](https://ecosense.vercel.app))
-- Google Cloud Run ([https://ecosense-web-of7z476jgq-as.a.run.app/](https://ecosense-web-of7z476jgq-as.a.run.app/)) - `Latest`
+- `Legacy (07-06-2022)` - Vercel ([https://ecosense.vercel.app](https://ecosense.vercel.app))
+- `Latest (09-06-2022)` - Google Cloud Run ([https://ecosense-web-of7z476jgq-as.a.run.app/](https://ecosense-web-of7z476jgq-as.a.run.app/))
 
 ## Infrastructure
 - Artifact Registry (Docker) `cloud-run-source-deploy/ecosense-web`
-- Cloud Build `cdb65d6f` (latest - June 09, 2022 01:59 GMT+7)
+- Cloud Build `27fe7122` (latest - June 09, 2022 13:26 GMT+7)
 - Google Cloud Storage `ecosense-bangkit_cloudbuild/source`
 - Cloud Run `ecosense-web`
-  - Revision `ecosense-web-00003-gol` (100% traffic)
+  - Revision `ecosense-web-00004-quq` (100% traffic)
   - Autoscaling - max instances `100`
 
 ```mermaid

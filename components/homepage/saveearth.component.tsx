@@ -31,17 +31,17 @@ const SaveTheEarth = () => {
         <Flex 
             alignItems='center' 
             py='6rem' 
-            px={{ base: '3rem', sm: '4rem', lg: '10rem' }} 
+            px={{ base: '2.5rem', sm: '4rem', lg: '10rem' }} 
             flexDir={{ base: 'column', md: 'row' }} 
-            bgGradient={useColorModeValue('linear(to-b, gray.100, gray.300)', 'linear(to-b, gray.800, gray.700)')}
+            bgGradient={useColorModeValue('linear(to-b, gray.100, gray.300)', 'linear(to-b, gray.900, gray.700)')}
             justifyContent='space-between'
         >
             <Flex flexDir='column' gap={4} mr={{ base: 0, md: '100px' }} mb={{ base: 50, md: 0 }}>
-                <Flex gap={4} justifyContent={{ base: 'center', md: 'left' }}>
+                <Flex gap={4} justifyContent={{ base: 'center', md: 'left' }} alignItems='center' flexDir={{ base: 'column', md: 'row' }}>
                     <Icon color={useColorModeValue('darkred', 'red.500')} w={10} h={10} as={IoEarth}></Icon>
-                    <Heading color={useColorModeValue('darkred', 'red.500')} >Earth is in Danger!</Heading>
+                    <Heading color={useColorModeValue('darkred', 'red.500')} textAlign={{ base: 'center', md: 'left' }}>Earth is in Danger!</Heading>
                 </Flex>
-                <Text textAlign={{ base: 'center', md: 'left' }}>Our daily actions might be harmful to the Earth. <br/> Let&quot;s save the Earth together, and it starts from you!</Text>
+                <Text textAlign={{ base: 'center', md: 'left' }}>Our daily actions might be harmful to the Earth. Let&quot;s save the Earth together, and it starts from you!</Text>
             </Flex>
 
             <Flex flexDir='column' >
