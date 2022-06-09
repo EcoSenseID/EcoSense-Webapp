@@ -15,8 +15,8 @@ import Link from "next/link";
 
 const Hero = () => {
     return (
-        <Stack minH={'90vh'} direction={{ base: 'column', md: 'row' }}>
-            <Flex p={8} flex={1} align={'center'} justify={'center'}>
+        <Stack minH={'90vh'} direction={{ base: 'column', md: 'row' }} p={10}>
+            <Flex flex={1} align={'center'} justify={'center'}>
                 <Stack spacing={6} w={'full'} maxW={'lg'}>
                     <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
                         <Text
@@ -44,14 +44,12 @@ const Hero = () => {
                         <Button bg={'green.400'} color={'white'} _hover={{ bg: 'green.500' }}>
                             <Link href={'#campaigns'}>Join Campaigns</Link>
                         </Button>
-                        <Button>
-                            <Link href={'#features'}>See Features</Link>
-                        </Button>
+                        <Button> <Link href={'#features'}>See Features</Link> </Button>
                     </Stack>
                 </Stack>
             </Flex>
             <Flex flex={1} >
-                <Flex my={{ base: 5, md: 20 }} mx={{ base: 5, md: '40px' }} mb={{ base: 10 }} maxW={1000} maxH={1000}>
+                <Flex mt={{ base: 10 }} mr={{ base: 0, xl: 10 }} mb={{ base: 10 }} maxW={1000} maxH={1000}>
                     <Image
                         alt={'Main Page Plant'}
                         objectFit={'cover'}

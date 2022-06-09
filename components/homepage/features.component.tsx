@@ -51,6 +51,7 @@ const Features = () => {
                                     size='md'
                                     onClick={() => setSelected(data.id)}
                                     className={classes.avatarNum}
+                                    cursor='pointer'
                                 ></Avatar>
                             )}      
                         </Flex>

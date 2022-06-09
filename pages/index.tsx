@@ -9,6 +9,7 @@ import Campaigns from '../components/homepage/campaigns.component';
 import Layout from '../components/layout/layout-frontpage.component'
 import OurTeam from 'components/homepage/ourteam.component';
 import Features from 'components/homepage/features.component';
+import SaveTheEarth from 'components/homepage/saveearth.component';
 
 const HomePage = (props: any) => {
   return (
@@ -22,6 +23,7 @@ const HomePage = (props: any) => {
         <ScrollUpBtn />
         <Hero />
         <SupportedBy />
+        <SaveTheEarth />
         <Campaigns campaigns={props.campaigns} />
         <Features />
         <OurTeam />

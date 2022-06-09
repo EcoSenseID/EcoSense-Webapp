@@ -12,7 +12,9 @@ const nextConfig = {
       'upload.wikimedia.org',
       'images.pexels.com',
       'randomuser.me',
-      'storage.googleapis.com'
+      'storage.googleapis.com',
+      'static.dw.com',
+      'scx2.b-cdn.net'
     ]
   }
 }
