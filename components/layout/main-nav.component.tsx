@@ -3,7 +3,6 @@ import * as router from 'next/router';
 import Link from "next/link";
 
 import Logo from "./logo.component";
-import classes from './main-nav.module.scss';
 
 import { AuthContext } from "../../firebase/context";
 import {
@@ -15,13 +14,12 @@ import {
     Stack,
     Collapse,
     useColorModeValue,
-    useBreakpointValue,
     useDisclosure,
     useColorMode,
     Icon,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { FiBell, FiBox, FiHome, FiLayers, FiUsers } from "react-icons/fi";
+import { FiBell, FiBox, FiHome, FiLayers, FiUsers, FiLogIn, FiLayout } from "react-icons/fi";
 import { IconType } from "react-icons";
 
 interface NavItem {
@@ -33,11 +31,6 @@ interface NavItem {
 }
 
 export const NAV_ITEMS: Array<NavItem> = [
-    {
-        icon: FiHome,
-        label: 'Home',
-        href: '/',
-    },
     {
         icon: FiBox,
         label: 'Our Partners',
@@ -65,13 +58,14 @@ const MainNavigation = () => {
     const nextrouter = router.useRouter();
     const { isOpen, onToggle } = useDisclosure();
     const { colorMode, toggleColorMode } = useColorMode();
+    const isLoginSignup = nextrouter.asPath == '/login' || nextrouter.asPath == '/signup';
 
     const DesktopNav = () => {
         const linkColor = useColorModeValue('gray.600', 'gray.200');
         const linkHoverColor = useColorModeValue('gray.800', 'white');
       
         return (
-          <Stack direction={'row'} spacing={8}>
+          <Stack direction={'row'} spacing={{ base: 4, lg: 8 }}>
             { NAV_ITEMS.map((navItem) => (
               <Flex key={navItem.label} alignItems='center'>
                 <Link href={navItem.href ?? '#'}>
@@ -82,9 +76,7 @@ const MainNavigation = () => {
                             color: linkHoverColor,
                         }}
                         cursor='pointer'
-                    >
-                        {navItem.label}
-                    </Text>
+                    > {navItem.label} </Text>
                 </Link>
               </Flex>
             ))}
@@ -132,7 +124,7 @@ const MainNavigation = () => {
                 borderColor={useColorModeValue('gray.200', 'gray.900')}
                 align={'center'}
             >
-                <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }} display={{ base: 'flex', md: 'none' }}>
+                <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }} display={{ base: (isLoginSignup ? 'none' : 'flex'), md: 'none' }}>
                     <IconButton
                         onClick={onToggle}
                         icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
@@ -141,15 +133,10 @@ const MainNavigation = () => {
                     />
                 </Flex>
 
-                <Flex flex={{ base: 1, md: 'auto' }} justify={{ base: 'center', md: 'start' }}>
-                    <Text
-                        textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-                        fontFamily={'heading'}
-                        color={useColorModeValue('gray.800', 'white')}>
-                        <Link href='/'><a className={classes.logobox}><Logo /></a></Link>
-                    </Text>
+                <Flex flex={{ base: 1, md: 'auto' }} justify={{ base: isLoginSignup ? 'start' : 'center', md: 'start' }}>
+                    <Link href='/'><a><Logo /></a></Link>
 
-                    <Flex display={(nextrouter.asPath == '/login' || nextrouter.asPath == '/signup') ? 'none' : 'flex'}>
+                    <Flex display={isLoginSignup ? 'none' : 'flex'}>
                         <Flex display={{ base: 'none', md: 'flex' }} ml={10}><DesktopNav /></Flex>
                     </Flex>
                 </Flex>
@@ -157,19 +144,30 @@ const MainNavigation = () => {
                 <Stack
                     justify={'flex-end'}
                     direction={'row'}
-                    className={classes.login}
                     flex={{ base: 1, md: 'auto' }}
                     gap={3}
                 >
-                    <Button onClick={toggleColorMode} display={{ base: 'none', md: 'flex' }} boxShadow='lg' bgColor={useColorModeValue('white', 'gray.600')}>
+                    <Button onClick={toggleColorMode} display={{ base: isLoginSignup ? 'flex' : 'none', md: 'flex' }} boxShadow='md' bgColor={useColorModeValue('white', 'gray.600')}>
                         {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                     </Button>
-                    <Flex display={(nextrouter.asPath == '/login' || nextrouter.asPath == '/signup') ? 'none' : 'flex'}>
+                    <Flex display={isLoginSignup ? 'none' : 'flex'}>
+                        <Button bgColor='#5EDA78' color='#2a2a2a' boxShadow='md'>
                         {
                             isAuthenticated ?
-                            <Link href='/dashboard'>Dashboard</Link> :
-                            <Link href='/login'>Log In</Link>
+                            <Link href='/dashboard'>
+                                <Flex alignItems='center'>
+                                    <Icon as={FiLayout}></Icon>
+                                    <Text ml={3} display={{ base: 'none', md: 'flex' }}>Dashboard</Text>
+                                </Flex>
+                            </Link> :
+                            <Link href='/login'>
+                                <Flex alignItems='center'>
+                                    <Icon as={FiLogIn}></Icon>
+                                    <Text ml={3} display={{ base: 'none', md: 'flex' }}>Log In</Text>
+                                </Flex>
+                            </Link>
                         }
+                        </Button>
                     </Flex>
                 </Stack>
             </Flex>
