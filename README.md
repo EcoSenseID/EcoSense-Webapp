@@ -18,6 +18,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 [![TypeScript](https://img.shields.io/badge/typescript-black?style=for-the-badge&logo=typescript&logoColor=%23007ACC)](https://github.com/EcoSenseID?tab=repositories&language=typescript)
 
 ## Dependencies
+
+### Production
 [![next](https://img.shields.io/github/package-json/dependency-version/EcoSenseID/EcoSense-Webapp/next)](https://www.npmjs.com/package/next)
 [![react](https://img.shields.io/github/package-json/dependency-version/EcoSenseID/EcoSense-Webapp/react)](https://www.npmjs.com/package/react)
 [![react-dom](https://img.shields.io/github/package-json/dependency-version/EcoSenseID/EcoSense-Webapp/react-dom)](https://www.npmjs.com/package/react-dom)
@@ -28,19 +30,23 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 [![sass](https://img.shields.io/github/package-json/dependency-version/EcoSenseID/EcoSense-Webapp/sass)](https://www.npmjs.com/package/sass)
 [![typescript](https://img.shields.io/github/package-json/dependency-version/EcoSenseID/EcoSense-Webapp/typescript)](https://www.npmjs.com/package/typescript)
 
+### Development
+[![eslint](https://img.shields.io/github/package-json/dependency-version/EcoSenseID/EcoSense-Webapp/dev/eslint)](https://www.npmjs.com/package/eslint)
+[![jest](https://img.shields.io/github/package-json/dependency-version/EcoSenseID/EcoSense-Webapp/dev/jest)](https://www.npmjs.com/package/jest)
+
 [Go to List of Dependencies](https://github.com/EcoSenseID/EcoSense-Webapp/network/dependencies)
 
 ## Try the App
 Visit our deployed web application through:
 - `Legacy (07-06-2022)` - Vercel ([https://ecosense.vercel.app](https://ecosense.vercel.app))
-- `Latest (09-06-2022)` - Google Cloud Run ([https://ecosense-web-of7z476jgq-as.a.run.app/](https://ecosense-web-of7z476jgq-as.a.run.app/))
+- `Latest (11-06-2022)` - Google Cloud Run ([https://ecosense-web-of7z476jgq-as.a.run.app/](https://ecosense-web-of7z476jgq-as.a.run.app/))
 
 ## Infrastructure
 - Artifact Registry (Docker) `cloud-run-source-deploy/ecosense-web`
-- Cloud Build `7ee6390a` (latest - June 10, 2022 00:23 GMT+7)
+- Cloud Build `53da3034` (latest - June 11, 2022 10:35 GMT+7)
 - Google Cloud Storage `ecosense-bangkit_cloudbuild/source`
 - Cloud Run `ecosense-web`
-  - Revision `ecosense-web-00007-jaf` (100% traffic) 
+  - Revision `ecosense-web-00008-zif` (100% traffic) 
   - Autoscaling - max instances `100`
 
 ```mermaid
