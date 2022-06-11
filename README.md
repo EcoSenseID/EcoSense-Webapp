@@ -40,7 +40,7 @@ Visit our deployed web application through:
 - Cloud Build `7ee6390a` (latest - June 10, 2022 00:23 GMT+7)
 - Google Cloud Storage `ecosense-bangkit_cloudbuild/source`
 - Cloud Run `ecosense-web`
-  - Revision `ecosense-web-00006-dup` (100% traffic) 
+  - Revision `ecosense-web-00007-jaf` (100% traffic) 
   - Autoscaling - max instances `100`
 
 ```mermaid

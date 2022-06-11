@@ -86,10 +86,7 @@ const MainNavigation = () => {
       
     const MobileNav = () => {
         return (
-          <Stack
-            bg={useColorModeValue('white', 'gray.800')}
-            p={4}
-            display={{ md: 'none' }}>
+          <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
             { NAV_ITEMS.map((navItem) => (
               <MobileNavItem key={navItem.label} {...navItem} />
             ))}
@@ -125,49 +122,27 @@ const MainNavigation = () => {
                 align={'center'}
             >
                 <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }} display={{ base: (isLoginSignup ? 'none' : 'flex'), md: 'none' }}>
-                    <IconButton
-                        onClick={onToggle}
-                        icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
-                        variant={'ghost'}
-                        aria-label={'Toggle Navigation'}
-                    />
+                    <IconButton onClick={onToggle} icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />} variant={'ghost'} aria-label={'Toggle Navigation'}/>
                 </Flex>
 
                 <Flex flex={{ base: 1, md: 'auto' }} justify={{ base: isLoginSignup ? 'start' : 'center', md: 'start' }}>
                     <Link href='/'><a><Logo /></a></Link>
-
                     <Flex display={isLoginSignup ? 'none' : 'flex'}>
                         <Flex display={{ base: 'none', md: 'flex' }} ml={10}><DesktopNav /></Flex>
                     </Flex>
                 </Flex>
 
-                <Stack
-                    justify={'flex-end'}
-                    direction={'row'}
-                    flex={{ base: 1, md: 'auto' }}
-                    gap={3}
-                >
+                <Stack justify={'flex-end'} direction={'row'} flex={{ base: 1, md: 'auto' }} gap={3}>
                     <Button onClick={toggleColorMode} display={{ base: isLoginSignup ? 'flex' : 'none', md: 'flex' }} boxShadow='md' bgColor={useColorModeValue('white', 'gray.600')}>
                         {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                     </Button>
                     <Flex display={isLoginSignup ? 'none' : 'flex'}>
-                        <Button bgColor='#5EDA78' color='#2a2a2a' boxShadow='md'>
-                        {
-                            isAuthenticated ?
-                            <Link href='/dashboard'>
-                                <Flex alignItems='center'>
-                                    <Icon as={FiLayout}></Icon>
-                                    <Text ml={3} display={{ base: 'none', md: 'flex' }}>Dashboard</Text>
-                                </Flex>
-                            </Link> :
-                            <Link href='/login'>
-                                <Flex alignItems='center'>
-                                    <Icon as={FiLogIn}></Icon>
-                                    <Text ml={3} display={{ base: 'none', md: 'flex' }}>Log In</Text>
-                                </Flex>
-                            </Link>
-                        }
-                        </Button>
+                        <Link href={isAuthenticated ? '/dashboard' : '/login'}>
+                            <Button alignItems='center' bgColor='#5EDA78' color='#2a2a2a' boxShadow='md'>
+                                <Icon as={isAuthenticated ? FiLayout: FiLogIn}></Icon>
+                                <Text ml={3} display={{ base: 'none', md: 'flex' }}>{isAuthenticated ? 'Dashboard' : 'Log In'}</Text>
+                            </Button>
+                        </Link>
                     </Flex>
                 </Stack>
             </Flex>
