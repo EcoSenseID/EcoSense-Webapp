@@ -17,7 +17,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "chart.js": "^3.8.0",
-    "firebase": "^9.8.2",
+    "firebase": "^9.8.3",
     "framer-motion": "^6.3.11",
     "lodash": "^4.17.21",
     "next": "12.1.6",
