@@ -5,7 +5,7 @@ const Logo = () => {
     return (
         <Image
             src={useColorModeValue(`/images/ecosense-logos/EcoSense LogoType-light.png`, `/images/ecosense-logos/EcoSense LogoType-dark.png`)} 
-            maxH={'50px'} alt={'Logo EcoSense'}
+            maxH={'50px'} alt={'EcoSense'}
         />
     );
 }
