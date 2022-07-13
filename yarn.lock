@@ -4923,10 +4923,10 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-chartjs-2@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-4.2.0.tgz#bc5693a8b161f125301cf28ab0fe980d7dce54aa"
-  integrity sha512-9Vm9Sg9XAKiR579/FnBkesofjW9goaaFLfS7XlGTzUJlWFZGSE6A/pBI6+i/bP3pobKZoFcWJdFnjShytToqXw==
+react-chartjs-2@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-4.3.0.tgz#822db15e7fd488129dcf6aef20b51c5e723cba10"
+  integrity sha512-zWnW3ReDlSC8PNiZKNqu8J/CHBOsVvx1AB4PicFbEAMUf/rpgO0/8ykRSPqS00kBUjP9d8lzfq1gFdLwYFWC8w==
 
 react-clientside-effect@^1.2.6:
   version "1.2.6"
