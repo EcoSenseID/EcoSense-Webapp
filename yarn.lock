@@ -799,20 +799,12 @@
     "@chakra-ui/form-control" "2.0.4"
     "@chakra-ui/utils" "2.0.4"
 
-"@chakra-ui/theme-tools@2.0.5":
+"@chakra-ui/theme-tools@2.0.5", "@chakra-ui/theme-tools@^2.0.2":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-2.0.5.tgz#16a77da55f9933542d74fa0a5fc7bf7dd4f362f7"
   integrity sha512-JuFKYWfVnZKnX95sM05a/0NpTzwciPTAZXfAJYwDOiy4EEqXUgEQpkHxOjC929wpzIVb3Q2Wa/HvS1v8C2f+mw==
   dependencies:
     "@chakra-ui/utils" "2.0.4"
-    "@ctrl/tinycolor" "^3.4.0"
-
-"@chakra-ui/theme-tools@^2.0.2":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-2.0.4.tgz#c3477e8959d01761130bc2dddb85a23fb9b4780e"
-  integrity sha512-jQaSPC4/dgg8pLbmfdnBdOgd2xO9ihRzNP+iNaBwlVIwS4cS6QVt8EqjfNNeMyehiEjHFn2qmeFESQe6z8WiAg==
-  dependencies:
-    "@chakra-ui/utils" "2.0.3"
     "@ctrl/tinycolor" "^3.4.0"
 
 "@chakra-ui/theme@2.1.3":
@@ -856,16 +848,6 @@
   integrity sha512-k9/01frV/Z6iEt68lfz8PLYiPoWC9N99Uo6XYQjw17kcguVxJoliq35sUharVcQJneVi5bmKTp9974/3drFDBw==
   dependencies:
     "@chakra-ui/utils" "2.0.4"
-
-"@chakra-ui/utils@2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-2.0.3.tgz#4d3aca809264eeaf7b4cc693143ceb5953acb0cb"
-  integrity sha512-BEGENnswWMc58fixsmdxRrnrbYZSrrDsTuFcvh+A4sfrbVbVfMQNJBSV46LT0Z4roMZ10Pi5/brlLH1+22gGQw==
-  dependencies:
-    "@types/lodash.mergewith" "4.6.6"
-    css-box-model "1.2.1"
-    framesync "5.3.0"
-    lodash.mergewith "4.6.2"
 
 "@chakra-ui/utils@2.0.4", "@chakra-ui/utils@^2.0.2":
   version "2.0.4"
@@ -2069,9 +2051,9 @@
   integrity sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==
 
 "@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
-  version "18.0.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.3.tgz#463fc47f13ec0688a33aec75d078a0541a447199"
-  integrity sha512-HzNRZtp4eepNitP+BD6k2L6DROIDG4Q0fm4x+dwfsr6LGmROENnok75VGw40628xf+iR24WeMFcHuuBDUAzzsQ==
+  version "18.0.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.4.tgz#48aedbf35efb3af1248e4cd4d792c730290cd5d6"
+  integrity sha512-M0+G6V0Y4YV8cqzHssZpaNCqvYwlCiulmm0PwpNLF55r/+cT8Ol42CHRU1SEaYFH2rTwiiE1aYg/2g2rrtGdPA==
 
 "@types/nprogress@^0.2.0":
   version "0.2.0"
@@ -2862,9 +2844,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.188:
-  version "1.4.188"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.188.tgz#1954bc444e6f6662cb39f24810f9e5022fcd5bb3"
-  integrity sha512-Zpa1+E+BVmD/orkyz1Z2dAT1XNUuVAHB3GrogfyY66dXN0ZWSsygI8+u6QTDai1ZayLcATDJpcv2Z2AZjEcr1A==
+  version "1.4.191"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.191.tgz#01dd4bf32502a48ce24bf3890b5553a1c5f93539"
+  integrity sha512-MeEaiuoSFh4G+rrN+Ilm1KJr8pTTZloeLurcZ+PRcthvdK1gWThje+E6baL7/7LoNctrzCncavAG/j/vpES9jg==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -3870,9 +3852,9 @@ istanbul-lib-source-maps@^4.0.0:
     source-map "^0.6.1"
 
 istanbul-reports@^3.1.3:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-3.1.4.tgz#1b6f068ecbc6c331040aab5741991273e609e40c"
-  integrity sha512-r1/DshN4KSE7xWEknZLLLLDn5CJybV3nw01VTkp6D5jzLuELlcbudfj/eSQFvrKsJuTVCGnePO7ho82Nw9zzfw==
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-3.1.5.tgz#cc9a6ab25cb25659810e4785ed9d9fb742578bae"
+  integrity sha512-nUsEMa9pBt/NOHqbcbeJEgqIlY/K7rVWUX6Lql2orY5e9roQOthbR3vtY4zzf2orPELg80fnxxk9zUyPlgwD1w==
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
