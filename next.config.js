@@ -4,6 +4,7 @@ const { version } = require('./package.json');
 
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   env: {
     API_URL: "ecosense-bangkit.uc.r.appspot.com"
   },
