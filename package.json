@@ -16,7 +16,7 @@
     "@chakra-ui/system": "^2.2.2",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "chart.js": "^3.8.2",
+    "chart.js": "^3.9.0",
     "firebase": "^9.9.1",
     "framer-motion": "^6.5.1",
     "lodash": "^4.17.21",
