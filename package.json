@@ -10,7 +10,7 @@
     "test": "jest --config ./jest.config.js"
   },
   "dependencies": {
-    "@babel/core": "^7.18.9",
+    "@babel/core": "^7.18.10",
     "@chakra-ui/icons": "^2.0.4",
     "@chakra-ui/react": "^2.2.4",
     "@chakra-ui/system": "^2.2.2",
